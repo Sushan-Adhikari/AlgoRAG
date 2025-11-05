@@ -413,5 +413,88 @@ def test_generator():
     print(f"Query type: {result['query_type']}")
 
 
+class AnswerGenerator:
+    """
+    Wrapper class for Generator that accepts backend parameter.
+    Simplifies initialization by backend name instead of model name.
+    """
+
+    def __init__(
+        self,
+        backend: str = "ollama",
+        model_name: Optional[str] = None,
+        temperature: float = 0.3,
+        max_tokens: int = 2048
+    ):
+        """
+        Initialize answer generator with backend.
+
+        Args:
+            backend: Backend type ("ollama", "gemini", "openai")
+            model_name: Optional specific model name (uses defaults if not provided)
+            temperature: Generation temperature
+            max_tokens: Maximum tokens in response
+        """
+        # Map backend to default model names
+        default_models = {
+            "ollama": "llama3.1:7b",  # Ollama default
+            "gemini": "gemini-2.0-flash-exp",
+            "openai": "gpt-4o-mini"
+        }
+
+        # Use provided model_name or default for backend
+        if model_name is None:
+            model_name = default_models.get(backend, "llama3.1:7b")
+
+        # Initialize the underlying Generator
+        self.generator = Generator(
+            model_name=model_name,
+            temperature=temperature,
+            max_tokens=max_tokens
+        )
+
+        self.backend = backend
+        self.model_name = model_name
+
+    def generate_answer(
+        self,
+        query: str,
+        retrieved_docs: List[Dict],
+        query_type: str = "general"
+    ) -> str:
+        """
+        Generate answer (simplified interface).
+
+        Args:
+            query: User query
+            retrieved_docs: Retrieved documents
+            query_type: Query type
+
+        Returns:
+            Generated answer string
+        """
+        result = self.generator.generate(query, retrieved_docs, query_type)
+        return result["answer"]
+
+    def generate(
+        self,
+        query: str,
+        retrieved_docs: List[Dict],
+        query_type: str = "general"
+    ) -> Dict:
+        """
+        Generate answer (full interface).
+
+        Args:
+            query: User query
+            retrieved_docs: Retrieved documents
+            query_type: Query type
+
+        Returns:
+            Full result dictionary
+        """
+        return self.generator.generate(query, retrieved_docs, query_type)
+
+
 if __name__ == "__main__":
     test_generator()

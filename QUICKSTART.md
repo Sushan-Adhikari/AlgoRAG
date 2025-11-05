@@ -23,29 +23,59 @@ pip install -r requirements.txt
 
 ---
 
-## Step 2: Configure API Keys (2 minutes)
+## Step 2: Setup Ollama (10 minutes) - 100% FREE!
+
+**We'll use Ollama (local LLM) - No API keys needed!**
+
+### Install Ollama
 
 ```bash
-cd ..  # Go back to AlgoRAG root
+# Linux
+curl -fsSL https://ollama.com/install.sh | sh
+
+# macOS - Download from: https://ollama.com/download
+# Windows - Download from: https://ollama.com/download
+```
+
+### Start Ollama and Pull Model
+
+```bash
+# Start Ollama (in background or separate terminal)
+ollama serve
+
+# In a new terminal, pull the model (~4.7GB download)
+ollama pull llama3.1:7b
+```
+
+**Wait for model download to complete...**
+
+### Configure Environment
+
+```bash
+cd ..  # Go back to AlgoRAG root (if in backend/)
 cp .env.example .env
 nano .env  # or use: vim .env, code .env, etc.
 ```
 
-**Add your API key** (you need at least ONE):
+**Set these values:**
 
 ```env
-# Option 1: Gemini (Recommended - Free tier available)
-GEMINI_API_KEY=your_gemini_api_key_here
+EMBED_BACKEND=local
+GENERATOR_BACKEND=ollama
+OLLAMA_MODEL=llama3.1:7b
 
-# Option 2: OpenAI (Paid)
-OPENAI_API_KEY=your_openai_api_key_here
+# Leave API keys blank - not needed!
+GEMINI_API_KEY=
+OPENAI_API_KEY=
 ```
 
-**Get API keys:**
-- Gemini: https://makersuite.google.com/app/apikey (Free tier: 15 req/min)
-- OpenAI: https://platform.openai.com/api-keys (Paid)
+**Save and exit** the editor (Ctrl+X, then Y, then Enter).
 
-**Save and exit** the editor.
+**Total cost: $0!** Everything runs locally on your machine.
+
+---
+
+**Alternative:** If you prefer cloud LLMs (Gemini/OpenAI), see `OLLAMA_SETUP.md` for comparison.
 
 ---
 
@@ -107,11 +137,17 @@ Vector database now contains: XXX documents
 ```bash
 python scripts/run_research_evaluation.py \
   --test-file evaluation/test_datasets/sample_test_cases.json \
-  --llm-backend gemini
+  --llm-backend ollama
 ```
 
-**If using OpenAI instead:**
+**If using cloud LLMs instead:**
 ```bash
+# Gemini
+python scripts/run_research_evaluation.py \
+  --test-file evaluation/test_datasets/sample_test_cases.json \
+  --llm-backend gemini
+
+# OpenAI
 python scripts/run_research_evaluation.py \
   --test-file evaluation/test_datasets/sample_test_cases.json \
   --llm-backend openai
