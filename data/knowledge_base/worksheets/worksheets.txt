@@ -1,0 +1,112 @@
+COMPLEXITY WORKSHEETS
+Total: 89 Worksheets (in 4 categories)
+
+===============================================
+1. ASYMPTOTIC ANALYSIS WORKSHEETS (Worksheets 1–26)
+===============================================
+1. Determine the Big-O, Omega, and Theta for functions: f(n) = 3n^2 + 2n, g(n) = log n, h(n) = n!
+2. Compare growth rates for n, n log n, n^2, 2^n, n!
+3. Identify tight bounds for binary search, linear search, and bubble sort algorithms.
+4. Proving f(n) = O(g(n)) using limit approach.
+5. Draw growth curves for polynomial and exponential functions.
+6. Order functions by increasing asymptotic growth: n, n!, log n, n^n, 2^n.
+7. Show why n^3 dominates n^2 + 100n for large n.
+8. True/false: For f(n) = O(g(n)), does f(n) ≤ Cg(n) always hold?
+9. Find bounds for running time of selection sort.
+10. Practice: prove log n = O(n^ε) for any ε > 0.
+11. Compare f(n) = nlog n vs g(n) = n^1.1 for large n.
+12. Analyze constant, linear, quadratic, and cubic time.
+13. Determine input sizes for which f(n)=n log n overtakes g(n)=100n.
+14. Showing that every polynomial is o(2^n).
+15. Comparing n! and 2^n asymptotic growth.
+16. Determining O, Ω, and Θ for f(n) = 5n + 7√n + 100.
+17. Sorting algorithm complexity matching exercise.
+18. Limit proofs with l'Hospital's Rule for asymptotic notation.
+19. Function comparison worksheet: log(n!), n/log n, (log n)^2, n^½.
+20. Big-O for recurrence: T(n) = T(n/2) + O(1).
+21. Order f(n) = n^a for different a values (a>1, a=1, 0<a<1).
+22. Big-O, Big-Theta, Big-Omega matching.
+23. Preprocessing worksheet for algorithm complexity estimation.
+24. How does doubling input size affect running time for various functions?
+25. Worksheet on best/worst/average case asymptotic analysis.
+26. Bounds for iterative algorithm running time analyses.
+
+===============================================
+2. RECURRENCE RELATIONS WORKSHEETS (Worksheets 27–48)
+===============================================
+27. Apply Master Theorem to T(n) = 2T(n/2) + n.
+28. Solve T(n) = T(n/3) + 5.
+29. Prove solution for T(n) = 2T(n/2) + O(n).
+30. Recursion tree for merge sort recurrence.
+31. Substitution method for T(n) = T(n-1) + 1.
+32. Solve T(n) = T(n/2) + n using tree method.
+33. Master Theorem derivative worksheet for non-standard recurrences.
+34. Worksheet: T(n) = 4T(n/2) + n^2.
+35. Recursion tree: Draw and label for T(n) = 2T(n/2) + n log n.
+36. Find closed form for T(n) = T(n-1)+T(n-2).
+37. Prove correctness of Master Theorem for general recurrences.
+38. Worksheet: Create and solve custom recurrence relations.
+39. Apply recursion tree method for T(n) = 3T(n/3) + n/3.
+40. Solve T(n) = 2T(n/2+7) + n log n.
+41. Recurrence challenge: mixture of additive/multiplicative.
+42. Recurrence analysis for Karatsuba's multiplication.
+43. Fibonacci sequence recurrence worksheet.
+44. Worksheet on lower/upper bounds for recurrence solutions.
+45. Practice: substitution method proofs.
+46. Recursion tree: Show work stepwise for a divide-and-conquer recurrence.
+47. Use Master Theorem to analyze modified mergesort recurrence.
+48. Closed form formulas for geometric and arithmetic recurrences.
+
+===============================================
+3. ALGORITHM ANALYSIS WORKSHEETS (Worksheets 49–72)
+===============================================
+49. Analyze loop complexity for: for i in 1..n, for j in 1..i.
+50. Nested loops: Determine time for double and triple nested iterations.
+51. Worksheet: Array reverse vs linear search.
+52. Recursive algorithm analysis sample: factorial vs Fibonacci.
+53. Find the running time for merge sort on an array of size n.
+54. Compare running time of recursive and iterative solutions for problem X.
+55. Step-by-step complexity worksheet for insertion sort.
+56. Worksheet on loop unrolling and its impact on time complexity.
+57. Analyze amortized complexity for dynamic arrays.
+58. Challenge: Given algorithm pseudocode, determine worst-case.
+59. Practice: Complexity of binary search tree insertions.
+60. Complexity for finding max value in unsorted list.
+61. Worksheet: Algorithm stability and its implications on complexity.
+62. Sorting challenge: analyze selection, bubble, and quicksort.
+63. Worksheet: Analyze complexity of string matching algorithms.
+64. Worksheet on space complexity estimation for recursive solutions.
+65. Compare O(n^2), O(n log n), O(n) for varying n.
+66. Complexity worksheet for elementary graph algorithms.
+67. Practice nested for-loops with changing limits.
+68. Worksheet: Prove time complexity for divide-and-conquer algorithms.
+69. Complexity practice: dynamic programming memoization vs tabulation.
+70. Analyze time for traversing all nodes in a balanced binary tree.
+71. Complexity worksheet for hashing (collision resolution impact).
+72. Space-complexity worksheet for common data structures.
+
+===============================================
+4. NP-COMPLETENESS WORKSHEETS (Worksheets 73–89)
+===============================================
+73. Reduction: Show SAT reduces to 3SAT.
+74. Problem classification: Is FIND-SUBSET SUM NP-complete?
+75. Reduce clique problem to vertex cover.
+76. Problem worksheet: Is Hamiltonian path in NP, NP-complete, or P?
+77. Reduction: Subset sum to partition problem.
+78. Worksheet: Prove Sudoku is NP-complete.
+79. Reduction: 3SAT to graph coloring.
+80. NP-hardness proof worksheet for job scheduling.
+81. Problem challenge: why is set cover NP-complete?
+82. Worksheet: Given problem, classify as P, NP, NP-hard, or NP-complete.
+83. Reduction worksheet: boolean formula to exact cover.
+84. Problem worksheet: does TSP belong to NP-complete?
+85. Classification challenge: various optimization problems.
+86. NP-completeness proofs by construction.
+87. Reduction practice: decision variant to optimization variant.
+88. Worksheet: Using polynomial-time reductions for NP-completeness proofs.
+89. Problem worksheet: prove NP ⊆ PSPACE.
+
+===============================================
+END OF COMPLEXITY WORKSHEETS
+Total Worksheets: 89
+===============================================

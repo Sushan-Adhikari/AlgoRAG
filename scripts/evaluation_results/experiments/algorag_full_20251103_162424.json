@@ -1,0 +1,634 @@
+{
+  "experiment": {
+    "experiment_id": "algorag_full",
+    "name": "AlgoRAG Full System",
+    "description": "AlgoRAG with preprocessing + pedagogical reranking",
+    "embed_backend": "local",
+    "generator_model": "gemini-2.0-flash-exp",
+    "top_k": 5,
+    "use_reranking": true,
+    "timestamp": "2025-11-03T16:20:31.345623"
+  },
+  "aggregate": {
+    "total_cases": 16,
+    "successful_cases": 12,
+    "failed_cases": 4,
+    "total_time_seconds": 224.1,
+    "avg_time_per_case_ms": 14006.35,
+    "mean_overall_quality": 0.2101,
+    "mean_bleu": 0.0234,
+    "mean_rouge_f1": 0.1171,
+    "mean_pedagogical_score": 0.5988,
+    "mean_retrieval_ms": 128.0875,
+    "mean_generation_ms": 16911.3683,
+    "by_topic": {
+      "asymptotic_analysis": {
+        "count": 2,
+        "mean_quality": 0.1751
+      },
+      "algorithms": {
+        "count": 1,
+        "mean_quality": 0.2169
+      },
+      "recurrence_relations": {
+        "count": 1,
+        "mean_quality": 0.2045
+      },
+      "dynamic_programming": {
+        "count": 2,
+        "mean_quality": 0.2096
+      },
+      "sorting_algorithms": {
+        "count": 2,
+        "mean_quality": 0.1486
+      },
+      "greedy_algorithms": {
+        "count": 1,
+        "mean_quality": 0.2828
+      },
+      "amortized_analysis": {
+        "count": 1,
+        "mean_quality": 0.2204
+      },
+      "graph_algorithms": {
+        "count": 1,
+        "mean_quality": 0.2096
+      },
+      "np_completeness": {
+        "count": 1,
+        "mean_quality": 0.3202
+      }
+    },
+    "by_query_type": {
+      "proof": {
+        "count": 2,
+        "mean_quality": 0.1621
+      },
+      "complexity": {
+        "count": 1,
+        "mean_quality": 0.2169
+      },
+      "conceptual": {
+        "count": 5,
+        "mean_quality": 0.2521
+      },
+      "problem_solving": {
+        "count": 2,
+        "mean_quality": 0.1824
+      },
+      "comparison": {
+        "count": 1,
+        "mean_quality": 0.145
+      },
+      "algorithm_explanation": {
+        "count": 1,
+        "mean_quality": 0.2096
+      }
+    },
+    "mean_proof_completeness": 0.67
+  },
+  "individual_results": [
+    {
+      "query": "Prove that 3n^2 + 5n + 2 = O(n^2)",
+      "metadata": {
+        "query_type": "proof",
+        "topic": "asymptotic_analysis",
+        "difficulty": "medium",
+        "source": "CLRS Chapter 3"
+      },
+      "bleu": {
+        "BLEU-1": 0.1183,
+        "BLEU-2": 0.0782,
+        "BLEU-3": 0.0583,
+        "BLEU-4": 0.0443,
+        "BLEU": 0.0443
+      },
+      "rouge": {
+        "ROUGE-L-P": 0.0903,
+        "ROUGE-L-R": 0.4118,
+        "ROUGE-L-F1": 0.1481
+      },
+      "pedagogical_quality": {
+        "step_count": 0,
+        "step_granularity": 0.0,
+        "explanation_depth": 0.6,
+        "has_example": 0.0,
+        "proof_structure": 1.0,
+        "mathematical_notation": 1.0,
+        "overall_pedagogical_score": 0.43
+      },
+      "relevance": {
+        "query_term_coverage": 0.875,
+        "avg_source_similarity": 0.0,
+        "avg_pedagogical_score": 0.73
+      },
+      "proof_completeness": {
+        "has_statement": true,
+        "has_steps": false,
+        "has_conclusion": true,
+        "uses_math_notation": true,
+        "logical_flow": 0.4,
+        "completeness_score": 0.64
+      },
+      "overall_quality": 0.1719,
+      "timing": {
+        "retrieval_ms": 896.32,
+        "generation_ms": 14406.71,
+        "total_ms": 15303.03
+      },
+      "generated_answer": "Okay, let's prove that $3n^2 + 5n + 2 = O(n^2)$ using the formal definition of Big-O notation.\n\n**1. Statement of the claim:**\n\nWe want to prove that the function $f(n) = 3n^2 + 5n + 2$ is Big-O of $g(n) = n^2$, i.e., $f(n) = O(g(n))$.\n\n**2. Proof Strategy:**\n\nTo prove $f(n) = O(g(n))$, we need to show that there exist constants $c > 0$ and $n_0 > 0$ such that $f(n) \\leq c \\cdot g(n)$ for all $n \\geq n_0$. In other words, we need to find a constant $c$ and a starting point $n_0$ such that for all values of $n$ greater than or equal to $n_0$, the function $f(n)$ is always less than or equal to $c$ times $g(n)$.\n\n**3. Proof Steps:**\n\n*   **Step 1: Choose a candidate for $n_0$.**\n\n    Let's choose $n_0 = 1$. This is a common starting point for analyzing polynomial functions.\n\n*   **Step 2: Show that for $n \\geq n_0$, each term of $f(n)$ is bounded by a multiple of $g(n)$.**\n\n    For $n \\geq 1$:\n\n    *   $3n^2 \\leq 3n^2$  (This is trivially true)\n    *   $5n \\leq 5n^2$   (Since $n \\leq n^2$ for $n \\geq 1$)\n    *   $2 \\leq 2n^2$    (Since $1 \\leq n^2$ for $n \\geq 1$)\n\n*   **Step 3: Combine the inequalities.**\n\n    Adding the inequalities from Step 2, we get:\n\n    $3n^2 + 5n + 2 \\leq 3n^2 + 5n^2 + 2n^2$\n\n*   **Step 4: Simplify the right-hand side.**\n\n    $3n^2 + 5n^2 + 2n^2 = 10n^2$\n\n    Therefore, $3n^2 + 5n + 2 \\leq 10n^2$ for all $n \\geq 1$.\n\n*   **Step 5: Choose a value for $c$.**\n\n    We can choose $c = 10$.\n\n*   **Step 6: Verify the Big-O condition.**\n\n    We have shown that $3n^2 + 5n + 2 \\leq 10n^2$ for all $n \\geq 1$. This means that $f(n) \\leq c \\cdot g(n)$ for all $n \\geq n_0$, where $c = 10$ and $n_0 = 1$.\n\n**4. Conclusion:**\n\nSince we have found constants $c = 10$ and $n_0 = 1$ such that $3n^2 + 5n + 2 \\leq 10n^2$ for all $n \\geq 1$, we can conclude that $3n^2 + 5n + 2 = O(n^2)$. \u220e\n\n**Key Insights and Common Pitfalls:**\n\n*   The key idea is to find constants $c$ and $n_0$ that satisfy the Big-O definition. There can be multiple valid choices for $c$ and $n_0$.\n*   A common mistake is to try to prove Big-O by manipulating the inequality in the wrong direction. Remember, you need to show that $f(n)$ is *less than or equal to* a constant multiple of $g(n)$ for sufficiently large $n$.\n*   Another common mistake is not explicitly stating the values of $c$ and $n_0$ that you have found.\n\nThe solution provided is based on the method and example given in [Document 1], [Document 2], [Document 3], and [Document 4].\n",
+      "retrieved_docs_count": 5
+    },
+    {
+      "query": "What is the time complexity of binary search?",
+      "metadata": {
+        "query_type": "complexity",
+        "topic": "algorithms",
+        "difficulty": "easy",
+        "source": "Basic algorithms course"
+      },
+      "bleu": {
+        "BLEU-1": 0.1132,
+        "BLEU-2": 0.0786,
+        "BLEU-3": 0.0507,
+        "BLEU-4": 0.0301,
+        "BLEU": 0.0301
+      },
+      "rouge": {
+        "ROUGE-L-P": 0.0713,
+        "ROUGE-L-R": 0.4857,
+        "ROUGE-L-F1": 0.1243
+      },
+      "pedagogical_quality": {
+        "step_count": 3,
+        "step_granularity": 0.6,
+        "explanation_depth": 0.6,
+        "has_example": 0.0,
+        "mathematical_notation": 1.0,
+        "overall_pedagogical_score": 0.61
+      },
+      "relevance": {
+        "query_term_coverage": 0.75,
+        "avg_source_similarity": 0.0,
+        "avg_pedagogical_score": 0.65
+      },
+      "overall_quality": 0.2169,
+      "timing": {
+        "retrieval_ms": 57.24,
+        "generation_ms": 12108.21,
+        "total_ms": 12165.45
+      },
+      "generated_answer": "Okay, let's analyze the time complexity of binary search.\n\nBinary search is an efficient algorithm for finding a target value within a sorted array. The core idea is to repeatedly divide the search interval in half.\n\n**Analysis using Recursion Tree Method (Not Directly Applicable but Illustrative):**\n\nWhile the recursion tree method isn't the standard way to analyze binary search, we can conceptually relate it to recurrence relations that *can* be solved with recursion trees.  Binary search divides the problem size by 2 at each step, similar to the recurrence `T(n) = T(n/2) + c`, where `c` is a constant representing the cost of the comparison at each step.  This is different from the recurrence `T(n) = 2T(n/2) + n` found in the reference materials (Documents 1, 2, and 5), but the principle of repeatedly dividing the problem size is relevant.\n\n**Standard Analysis: Counting Comparisons**\n\nThe most straightforward way to analyze binary search is by counting the number of comparisons performed in the worst case.\n\n1.  **Worst-Case Scenario:** The worst case occurs when the target value is not present in the array or is located at one of the extreme ends, requiring the algorithm to narrow down the search interval until it contains only one element.\n\n2.  **Number of Iterations:** In each iteration, the size of the search interval is halved.  Let's say the initial array size is $n$.  After $k$ iterations, the size of the interval is approximately $n / 2^k$. The algorithm stops when the interval size becomes 1.\n\n    So, we have:\n    $$n / 2^k = 1$$\n\n    Solving for $k$:\n    $$n = 2^k$$\n    $$k = \\log_2 n$$\n\n3.  **Time Complexity:**  Since each iteration involves a constant number of comparisons (typically one to three), the total number of comparisons in the worst case is proportional to the number of iterations, which is $\\log_2 n$.\n\n    Therefore, the time complexity of binary search in the worst case is $O(\\log n)$.\n\n**Best, Average, and Worst Cases:**\n\n*   **Best Case:** The target element is the middle element of the array in the first try.  In this case, only one comparison is needed. So, the best-case time complexity is $O(1)$.\n\n*   **Average Case:** On average, binary search will also take $O(\\log n)$ time.\n\n*   **Worst Case:** As derived above, the worst-case time complexity is $O(\\log n)$.\n\n**Tight Bound:**\n\nThe worst-case time complexity is $\\Theta(\\log n)$. This means that the number of operations grows logarithmically with the size of the input array.\n\n**In Summary:**\n\nThe time complexity of binary search is:\n\n*   Best Case: $O(1)$\n*   Average Case: $O(\\log n)$\n*   Worst Case: $O(\\log n)$\n\nThe worst-case and average-case complexities are $\\Theta(\\log n)$.\n\n**Comparison with Linear Search:**\n\nBinary search is significantly faster than linear search, which has a time complexity of $O(n)$ in the worst case. However, binary search requires the array to be sorted beforehand, which adds an additional cost if the array is not already sorted.\n",
+      "retrieved_docs_count": 5
+    },
+    {
+      "query": "Explain the difference between O(n) and \u0398(n)",
+      "metadata": {
+        "query_type": "conceptual",
+        "topic": "asymptotic_analysis",
+        "difficulty": "medium",
+        "source": "CLRS Chapter 3"
+      },
+      "bleu": {
+        "BLEU-1": 0.0839,
+        "BLEU-2": 0.0444,
+        "BLEU-3": 0.0255,
+        "BLEU-4": 0.0154,
+        "BLEU": 0.0154
+      },
+      "rouge": {
+        "ROUGE-L-P": 0.0503,
+        "ROUGE-L-R": 0.3571,
+        "ROUGE-L-F1": 0.0882
+      },
+      "pedagogical_quality": {
+        "step_count": 0,
+        "step_granularity": 0.0,
+        "explanation_depth": 0.4,
+        "has_example": 1.0,
+        "mathematical_notation": 1.0,
+        "overall_pedagogical_score": 0.52
+      },
+      "relevance": {
+        "query_term_coverage": 0.5714,
+        "avg_source_similarity": 0.0,
+        "avg_pedagogical_score": 0.69
+      },
+      "overall_quality": 0.1783,
+      "timing": {
+        "retrieval_ms": 46.95,
+        "generation_ms": 17405.29,
+        "total_ms": 17452.24
+      },
+      "generated_answer": "Okay, let's clarify the difference between $O(n)$ and $\\Theta(n)$ in the context of algorithm analysis.\n\n**Core Concepts**\n\nBoth $O(n)$ (Big-O) and $\\Theta(n)$ (Big-Theta) are used to describe the asymptotic behavior of functions, typically representing the time or space complexity of an algorithm.  They tell us how the runtime or memory usage grows as the input size ($n$) increases.\n\n**1. Big-O Notation: $O(n)$ - Asymptotic Upper Bound**\n\n*   **Definition:** $f(n) = O(g(n))$ means that there exist positive constants $c$ and $n_0$ such that $f(n) \\le c \\cdot g(n)$ for all $n \\ge n_0$.\n\n*   **Intuition:**  $O(g(n))$ provides an *upper bound* on the growth rate of $f(n)$.  It says that $f(n)$ grows *no faster* than $g(n)$, up to a constant factor, for sufficiently large $n$.\n\n*   **Example:**  Let's say $f(n) = 3n^2 + 5n + 2$.  We can say that $f(n) = O(n^2)$.  This is because, as shown in [Document 1, 2, 3, 4], we can find constants $c = 10$ and $n_0 = 1$ such that $3n^2 + 5n + 2 \\le 10n^2$ for all $n \\ge 1$.  Note that $f(n)$ is also $O(n^3)$, $O(n^4)$, etc., but $O(n^2)$ is the tightest upper bound.\n\n*   **Analogy:** Think of it like saying, \"My age is no more than 300 years.\" It's technically true (assuming you're not *that* old!), but not very informative.\n\n**2. Big-Theta Notation: $\\Theta(n)$ - Asymptotically Tight Bound**\n\n*   **Definition:** $f(n) = \\Theta(g(n))$ means that there exist positive constants $c_1$, $c_2$, and $n_0$ such that $c_1 \\cdot g(n) \\le f(n) \\le c_2 \\cdot g(n)$ for all $n \\ge n_0$.\n\n*   **Intuition:** $\\Theta(g(n))$ provides a *tight bound* on the growth rate of $f(n)$. It says that $f(n)$ grows at the *same rate* as $g(n)$, up to constant factors, for sufficiently large $n$.  In other words, $f(n)$ is both $O(g(n))$ and $\\Omega(g(n))$, where $\\Omega$ denotes the lower bound.\n\n*   **Example:** If an algorithm takes exactly $5n$ steps, we say its time complexity is $\\Theta(n)$.  It will always take a time proportional to $n$.\n\n*   **Analogy:**  Think of it like saying, \"My age is approximately 25 years.\" This gives a much more precise idea of your age.\n\n**Key Differences Summarized**\n\n| Feature          | $O(n)$ (Big-O)             | $\\Theta(n)$ (Big-Theta)        |\n|------------------|-----------------------------|--------------------------------|\n| Bound            | Upper bound                 | Tight bound                     |\n| Growth Rate      | No faster than             | Same rate as                    |\n| Formality        | $f(n) \\le c \\cdot g(n)$    | $c_1 \\cdot g(n) \\le f(n) \\le c_2 \\cdot g(n)$ |\n| Informative-ness | Less informative            | More informative               |\n\n**In Simple Terms**\n\n*   $O(n)$ is like saying \"at most.\"\n*   $\\Theta(n)$ is like saying \"exactly.\"\n\n**Example to illustrate the difference**\n\nConsider an algorithm that searches for a specific element in an unsorted array of size $n$.\n\n*   **Worst-case:** In the worst case, the element is not in the array, and you have to check every element.  This takes $n$ steps.  So, the worst-case time complexity is $O(n)$.\n*   **Best-case:** In the best case, the element is the first one you check.  This takes 1 step.\n*   **Average-case:** On average, you might have to check $n/2$ elements.\n\nWe can say:\n\n*   The *worst-case* time complexity is $O(n)$.  It *could* be faster, but it will never be slower than a constant times $n$.\n*   The *average-case* time complexity is $\\Theta(n)$.  On average, it will take a time proportional to $n$.\n\n**Important Note:**\n\nWhen we say an algorithm is \"$\\Theta(n)$,\" we are giving a more precise characterization of its growth rate than if we say it is \"$O(n)$.\"  $\\Theta$ provides both an upper and lower bound, whereas $O$ only provides an upper bound.\n",
+      "retrieved_docs_count": 5
+    },
+    {
+      "query": "Solve the recurrence T(n) = 2T(n/2) + n using the Master Theorem",
+      "metadata": {
+        "query_type": "problem_solving",
+        "topic": "recurrence_relations",
+        "difficulty": "medium",
+        "source": "CLRS Chapter 4"
+      },
+      "bleu": {
+        "BLEU-1": 0.1176,
+        "BLEU-2": 0.0704,
+        "BLEU-3": 0.0482,
+        "BLEU-4": 0.0282,
+        "BLEU": 0.0282
+      },
+      "rouge": {
+        "ROUGE-L-P": 0.0924,
+        "ROUGE-L-R": 0.4853,
+        "ROUGE-L-F1": 0.1553
+      },
+      "pedagogical_quality": {
+        "step_count": 4,
+        "step_granularity": 0.8,
+        "explanation_depth": 0.2,
+        "has_example": 0.0,
+        "mathematical_notation": 1.0,
+        "overall_pedagogical_score": 0.55
+      },
+      "relevance": {
+        "query_term_coverage": 0.9091,
+        "avg_source_similarity": 0.0,
+        "avg_pedagogical_score": 0.39
+      },
+      "overall_quality": 0.2045,
+      "timing": {
+        "retrieval_ms": 81.6,
+        "generation_ms": 20945.04,
+        "total_ms": 21026.65
+      },
+      "generated_answer": "Okay, let's solve the recurrence relation $T(n) = 2T(n/2) + n$ using the Master Theorem.\n\n**1. Explain the Master Theorem**\n\nThe Master Theorem provides a cookbook solution for recurrence relations of the form:\n\n$$T(n) = aT(n/b) + f(n)$$\n\nwhere:\n*   $a \\geq 1$ is the number of subproblems in the recursion.\n*   $b > 1$ is the factor by which the subproblem size decreases in each recursive call.\n*   $f(n)$ is the work done outside the recursive calls.\n\nThe Master Theorem compares $f(n)$ with $n^{\\log_b a}$ to determine the asymptotic behavior of $T(n)$.\n\n**2. Apply the Master Theorem to the given recurrence**\n\nOur recurrence is $T(n) = 2T(n/2) + n$.  Let's identify the parameters:\n\n*   $a = 2$\n*   $b = 2$\n*   $f(n) = n$\n\nNow, we calculate $n^{\\log_b a}$:\n\n$$n^{\\log_b a} = n^{\\log_2 2} = n^1 = n$$\n\n**3. Determine the Case**\n\nWe need to compare $f(n) = n$ with $n^{\\log_b a} = n$.  We see that $f(n) = \\Theta(n^{\\log_b a})$.  More specifically, $f(n) = \\Theta(n^{\\log_b a} \\cdot \\log^k n)$ where $k=0$. This corresponds to Case 2 of the Master Theorem.\n\n**4. Apply Case 2 of the Master Theorem**\n\nCase 2 states that if $f(n) = \\Theta(n^{\\log_b a} \\log^k n)$ for some $k \\geq 0$, then:\n\n$$T(n) = \\Theta(n^{\\log_b a} \\log^{k+1} n)$$\n\nIn our case, $k = 0$, so:\n\n$$T(n) = \\Theta(n^{\\log_2 2} \\log^{0+1} n) = \\Theta(n \\log n)$$\n\n**5. Conclusion**\n\nTherefore, the solution to the recurrence relation $T(n) = 2T(n/2) + n$ using the Master Theorem is:\n\n$$T(n) = \\Theta(n \\log n)$$\n\n**Summary of Steps (based on the reference materials):**\n\n1.  **Identify a, b, and f(n):**  From $T(n) = 2T(n/2) + n$, we have $a = 2$, $b = 2$, and $f(n) = n$.\n2.  **Calculate $n^{\\log_b a}$:**  $n^{\\log_2 2} = n$.\n3.  **Compare f(n) and $n^{\\log_b a}$:**  $f(n) = n = \\Theta(n^{\\log_2 2})$. This is Case 2.\n4.  **Apply Case 2:** $T(n) = \\Theta(n^{\\log_b a} \\log n) = \\Theta(n \\log n)$.\n\nDocuments 1, 2, 3, and 4 provide examples of using the Master Theorem, but for a different recurrence. Document 5 solves the same recurrence using the recursion tree method, confirming our result.\n",
+      "retrieved_docs_count": 5
+    },
+    {
+      "query": "What is dynamic programming and when should it be used?",
+      "metadata": {
+        "query_type": "conceptual",
+        "topic": "dynamic_programming",
+        "difficulty": "medium",
+        "source": "CLRS Chapter 15"
+      },
+      "bleu": {
+        "BLEU-1": 0.09,
+        "BLEU-2": 0.0615,
+        "BLEU-3": 0.0421,
+        "BLEU-4": 0.0302,
+        "BLEU": 0.0302
+      },
+      "rouge": {
+        "ROUGE-L-P": 0.0604,
+        "ROUGE-L-R": 0.5444,
+        "ROUGE-L-F1": 0.1088
+      },
+      "pedagogical_quality": {
+        "step_count": 7,
+        "step_granularity": 1.0,
+        "explanation_depth": 0.2,
+        "has_example": 1.0,
+        "mathematical_notation": 1.0,
+        "overall_pedagogical_score": 0.76
+      },
+      "relevance": {
+        "query_term_coverage": 0.8,
+        "avg_source_similarity": 0.0,
+        "avg_pedagogical_score": 0.39
+      },
+      "overall_quality": 0.2588,
+      "timing": {
+        "retrieval_ms": 55.19,
+        "generation_ms": 23603.72,
+        "total_ms": 23658.92
+      },
+      "generated_answer": "Okay, let's break down dynamic programming and when to use it.\n\n**What is Dynamic Programming?**\n\nDynamic programming (DP) is an algorithmic technique used to solve optimization problems by breaking them down into smaller, overlapping subproblems, solving each subproblem only once, and storing the solutions in a table to avoid recomputation.  This approach is particularly effective for problems exhibiting two key properties: optimal substructure and overlapping subproblems.\n\n**1. Optimal Substructure:**\n\nA problem has optimal substructure if an optimal solution to the problem contains within it optimal solutions to subproblems. In other words, the optimal solution can be constructed from optimal solutions to its subproblems.\n\n*Example: Longest Common Subsequence (LCS)*\n\nLet's illustrate optimal substructure with the Longest Common Subsequence (LCS) problem. Given two sequences, $X = x_1x_2...x_m$ and $Y = y_1y_2...y_n$, the LCS is the longest sequence that is a subsequence of both $X$ and $Y$.\n\nLet $L[i, j]$ denote the length of the LCS of $X[1..i]$ (the first $i$ characters of $X$) and $Y[1..j]$ (the first $j$ characters of $Y$). The optimal substructure property can be expressed as follows (based on Documents 3, 4, and 5):\n\n*   If $x_i = y_j$:\n    $L[i, j] = L[i-1, j-1] + 1$\n*   If $x_i \\ne y_j$:\n    $L[i, j] = \\max(L[i-1, j], L[i, j-1])$\n\n*Proof of Optimality:*\n\n*   *Case 1: $x_i = y_j$ and both are in the LCS*\n    The LCS must end with $x_i = y_j$. Removing this character leaves the LCS of $X[1..i-1]$ and $Y[1..j-1]$. If this subproblem's solution were not optimal, we could find a longer LCS for the subproblem, and thus construct a longer LCS for the original problem, which is a contradiction.\n*   *Case 2: $x_i \\ne y_j$*\n    At least one of $x_i$ or $y_j$ is not in the LCS. The LCS is either the LCS of $X[1..i-1], Y[1..j]$ or the LCS of $X[1..i], Y[1..j-1]$. We take the maximum of both to ensure optimality.\n\n**2. Overlapping Subproblems:**\n\nA problem has overlapping subproblems if the problem can be broken down into subproblems which are reused multiple times.  In other words, the same subproblems are solved repeatedly during the recursive computation.\n\nDynamic programming addresses this by solving each subproblem only once and storing the result, typically in a table (an array or matrix). When the same subproblem is encountered again, the stored result is simply retrieved, avoiding redundant computation. This is also known as memoization.\n\n**When to Use Dynamic Programming:**\n\nYou should consider using dynamic programming when:\n\n1.  **The problem exhibits optimal substructure.**  This allows you to build the optimal solution from optimal solutions to subproblems.\n2.  **The problem has overlapping subproblems.** This makes storing and reusing subproblem solutions efficient, preventing exponential recomputation that would occur with a naive recursive approach.\n\n**How Dynamic Programming Works (General Approach):**\n\n1.  **Define Subproblems:** Clearly define the subproblems that need to be solved. This often involves identifying parameters that characterize the \"state\" of the subproblem.\n2.  **Define the Recurrence Relation:**  Express the solution to a subproblem in terms of solutions to smaller subproblems. This is the core of the dynamic programming approach and reflects the optimal substructure property.\n3.  **Base Cases:**  Define the solutions to the \"smallest\" subproblems, which can be solved directly without further recursion.\n4.  **Memoization (Top-Down) or Tabulation (Bottom-Up):**\n    *   *Memoization:* Implement a recursive function that solves the problem. Store the solutions to subproblems in a table (e.g., a dictionary or array) as they are computed. Before computing a subproblem, check if its solution is already stored in the table. If so, return the stored value.\n    *   *Tabulation:* Create a table to store the solutions to subproblems. Fill the table in a bottom-up manner, starting with the base cases and using the recurrence relation to compute the solutions to larger subproblems from the solutions to smaller subproblems.\n5.  **Construct the Optimal Solution:** Once the table is filled, the optimal solution to the original problem can be extracted from the table.  Sometimes, you also need to keep track of the choices made during the computation to reconstruct the actual optimal solution (not just its value).\n\n**Example (Illustrative):**\n\nConsider a simplified example: calculating the nth Fibonacci number.\n\n*   **Subproblems:**  `fib(i)` = the ith Fibonacci number\n*   **Recurrence Relation:** `fib(i) = fib(i-1) + fib(i-2)`\n*   **Base Cases:** `fib(0) = 0`, `fib(1) = 1`\n\nA naive recursive implementation would repeatedly calculate the same Fibonacci numbers. Dynamic programming (either memoization or tabulation) avoids this redundant computation.\n\n**In summary:** Dynamic programming is a powerful technique for solving optimization problems with optimal substructure and overlapping subproblems. It involves breaking down the problem into smaller subproblems, solving each subproblem only once, and storing the solutions to avoid recomputation. This leads to efficient algorithms, often with polynomial time complexity, compared to exponential time complexity for naive recursive solutions. The documents provided highlight the optimal substructure property, which is a key ingredient for a dynamic programming solution (Documents 1, 2, 3, 4, and 5).\n",
+      "retrieved_docs_count": 5
+    },
+    {
+      "query": "What is the time complexity of Dijkstra's algorithm with a binary heap?",
+      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}",
+      "overall_quality": 0.0
+    },
+    {
+      "query": "Prove that if a problem is NP-complete, then P = NP if and only if the problem can be solved in polynomial time",
+      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}",
+      "overall_quality": 0.0
+    },
+    {
+      "query": "What is the 0/1 Knapsack problem and what is its time complexity using dynamic programming?",
+      "metadata": {
+        "query_type": "problem_solving",
+        "topic": "dynamic_programming",
+        "difficulty": "medium",
+        "source": "CLRS Chapter 15"
+      },
+      "bleu": {
+        "BLEU-1": 0.1003,
+        "BLEU-2": 0.0674,
+        "BLEU-3": 0.0426,
+        "BLEU-4": 0.0272,
+        "BLEU": 0.0272
+      },
+      "rouge": {
+        "ROUGE-L-P": 0.0664,
+        "ROUGE-L-R": 0.4476,
+        "ROUGE-L-F1": 0.1156
+      },
+      "pedagogical_quality": {
+        "step_count": 0,
+        "step_granularity": 0.0,
+        "explanation_depth": 0.6,
+        "has_example": 0.0,
+        "mathematical_notation": 1.0,
+        "overall_pedagogical_score": 0.43
+      },
+      "relevance": {
+        "query_term_coverage": 0.8462,
+        "avg_source_similarity": 0.0,
+        "avg_pedagogical_score": 0.35
+      },
+      "overall_quality": 0.1603,
+      "timing": {
+        "retrieval_ms": 77.28,
+        "generation_ms": 22465.18,
+        "total_ms": 22542.46
+      },
+      "generated_answer": "Okay, let's break down the 0/1 Knapsack problem and its time complexity when solved using dynamic programming.\n\n**1. Problem Definition (Based on general knowledge, as the documents don't explicitly define it)**\n\nThe 0/1 Knapsack problem is a classic optimization problem in computer science.  Imagine you have a knapsack with a maximum weight capacity, *W*, and a set of *n* items. Each item *i* has a weight *w<sub>i</sub>* and a value *v<sub>i</sub>*. The goal is to select a subset of items to put into the knapsack such that the total weight of the items does not exceed *W*, and the total value of the items in the knapsack is maximized.  The \"0/1\" part means you can either take an entire item (1) or not take it at all (0); you cannot take fractions of items.\n\n**2. Dynamic Programming Approach (Based on general knowledge, with connections to optimal substructure from the documents)**\n\nDynamic programming is a suitable approach because the 0/1 Knapsack problem exhibits optimal substructure.  This means that the optimal solution to the overall problem can be constructed from optimal solutions to subproblems.  While the provided documents discuss optimal substructure in the context of Longest Common Subsequence (LCS), the underlying principle is the same: we break the problem into smaller, overlapping subproblems.\n\n**3. Defining the Subproblem**\n\nLet's define `dp[i][w]` as the maximum value that can be achieved with a knapsack of capacity `w` using only the first `i` items (items 1 through *i*).\n\n**4. Recurrence Relation**\n\nThe core of the dynamic programming solution lies in the recurrence relation:\n\n*   **Case 1: Item *i* is not included in the optimal solution.**  In this case, the maximum value is the same as the maximum value achievable using only the first *i-1* items and the same weight capacity *w*.  So, `dp[i][w] = dp[i-1][w]`.\n\n*   **Case 2: Item *i* is included in the optimal solution.**  This is only possible if the weight of item *i* ( *w<sub>i</sub>* ) is less than or equal to the remaining capacity *w*.  If it is, then the maximum value is the value of item *i* ( *v<sub>i</sub>* ) plus the maximum value achievable using the first *i-1* items and the remaining weight capacity *w - w<sub>i</sub>*.  So, `dp[i][w] = v[i] + dp[i-1][w - w[i]]`.\n\nCombining these two cases, we get the following recurrence relation:\n\n```\ndp[i][w] =\n  0                                  if i == 0 or w == 0\n  dp[i-1][w]                           if w[i] > w\n  max(dp[i-1][w], v[i] + dp[i-1][w - w[i]])  otherwise\n```\n\n**5. Base Cases**\n\n*   `dp[0][w] = 0` for all `w`: If there are no items, the maximum value is 0, regardless of the knapsack capacity.\n*   `dp[i][0] = 0` for all `i`: If the knapsack capacity is 0, the maximum value is 0, regardless of the items available.\n\n**6. Algorithm Implementation (Based on general knowledge)**\n\nThe dynamic programming algorithm typically involves creating a 2D table (matrix) `dp` of size `(n+1) x (W+1)`.  The table is filled in a bottom-up manner, starting with the base cases and then iterating through the items and weight capacities.\n\n```python\ndef knapsack(W, weights, values, n):\n    dp = [[0 for _ in range(W + 1)] for _ in range(n + 1)]\n\n    for i in range(1, n + 1):\n        for w in range(1, W + 1):\n            if weights[i-1] > w:\n                dp[i][w] = dp[i-1][w]\n            else:\n                dp[i][w] = max(dp[i-1][w], values[i-1] + dp[i-1][w - weights[i-1]])\n\n    return dp[n][W]\n```\n\n**7. Time Complexity Analysis**\n\nThe algorithm has two nested loops:\n\n*   The outer loop iterates `n` times (from 1 to *n*).\n*   The inner loop iterates `W` times (from 1 to *W*).\n\nInside the inner loop, the operations performed (comparison, addition, `max`) take constant time, O(1).  Therefore, the overall time complexity of the dynamic programming solution is O(*nW*).\n\n**8. Space Complexity**\n\nThe algorithm uses a 2D table `dp` of size `(n+1) x (W+1)` to store the intermediate results.  Therefore, the space complexity is O(*nW*).\n\n**Summary**\n\n*   The 0/1 Knapsack problem aims to maximize the value of items placed in a knapsack without exceeding its weight capacity.\n*   Dynamic programming solves it by building a table of optimal solutions to subproblems.\n*   The time complexity of the dynamic programming solution is O(*nW*), where *n* is the number of items and *W* is the knapsack capacity.\n*   The space complexity is O(*nW*).\n",
+      "retrieved_docs_count": 5
+    },
+    {
+      "query": "Compare QuickSort and MergeSort in terms of time complexity, space complexity, and stability",
+      "metadata": {
+        "query_type": "comparison",
+        "topic": "sorting_algorithms",
+        "difficulty": "medium",
+        "source": "CLRS Chapters 7 and 2"
+      },
+      "bleu": {
+        "BLEU-1": 0.0931,
+        "BLEU-2": 0.0437,
+        "BLEU-3": 0.0153,
+        "BLEU-4": 0.0,
+        "BLEU": 0.0
+      },
+      "rouge": {
+        "ROUGE-L-P": 0.0466,
+        "ROUGE-L-R": 0.2809,
+        "ROUGE-L-F1": 0.0799
+      },
+      "pedagogical_quality": {
+        "step_count": 0,
+        "step_granularity": 0.0,
+        "explanation_depth": 0.6,
+        "has_example": 0.0,
+        "mathematical_notation": 1.0,
+        "overall_pedagogical_score": 0.43
+      },
+      "relevance": {
+        "query_term_coverage": 0.9091,
+        "avg_source_similarity": 0.0,
+        "avg_pedagogical_score": 0.35
+      },
+      "overall_quality": 0.145,
+      "timing": {
+        "retrieval_ms": 58.05,
+        "generation_ms": 17225.09,
+        "total_ms": 17283.14
+      },
+      "generated_answer": "Okay, let's compare QuickSort and MergeSort based on their time complexity, space complexity, and stability.  I will primarily use the provided documents, and supplement with general knowledge where necessary. Unfortunately, the provided documents do not contain specific information about QuickSort or MergeSort. Therefore, the following explanation relies on general knowledge of these algorithms.\n\n**1. Time Complexity**\n\n*   **MergeSort:** MergeSort is a divide-and-conquer algorithm. It recursively divides the input array into two halves until each sub-array contains only one element. Then, it merges the sub-arrays in a sorted manner.\n\n    *   **Worst-case:** $O(n \\log n)$\n    *   **Average-case:** $O(n \\log n)$\n    *   **Best-case:** $O(n \\log n)$\n\n    MergeSort's time complexity is consistently $O(n \\log n)$ regardless of the input data. This is because it always divides the array into halves and merges them.\n\n*   **QuickSort:** QuickSort is also a divide-and-conquer algorithm. It selects a 'pivot' element from the array and partitions the other elements into two sub-arrays, according to whether they are less than or greater than the pivot. The sub-arrays are then recursively sorted.\n\n    *   **Worst-case:** $O(n^2)$\n    *   **Average-case:** $O(n \\log n)$\n    *   **Best-case:** $O(n \\log n)$\n\n    QuickSort's worst-case time complexity occurs when the pivot is consistently the smallest or largest element in the array. This leads to highly unbalanced partitions.  The average and best cases occur when the pivot selection results in relatively balanced partitions.\n\n**2. Space Complexity**\n\n*   **MergeSort:** MergeSort requires additional space to store the merged sub-arrays.\n\n    *   **Space Complexity:** $O(n)$\n\n    The auxiliary space is used during the merge operation.\n\n*   **QuickSort:** QuickSort can be implemented in-place, meaning it requires minimal additional space.\n\n    *   **Space Complexity:** $O(\\log n)$ (average case, due to recursion depth)\n    *   **Space Complexity:** $O(n)$ (worst case, due to recursion depth)\n\n    In the average case, the recursion depth is $O(\\log n)$, leading to a logarithmic space complexity. However, in the worst case (unbalanced partitions), the recursion depth can be $O(n)$, resulting in linear space complexity.\n\n**3. Stability**\n\n*   **MergeSort:** MergeSort is a stable sorting algorithm. This means that elements with equal values maintain their relative order in the sorted output. Stability is achieved by carefully merging the sub-arrays, ensuring that elements from the left sub-array are placed before equal elements from the right sub-array.\n\n*   **QuickSort:** QuickSort is generally not a stable sorting algorithm. The partitioning process can change the relative order of equal elements. While stable versions of QuickSort exist, they typically come with a performance overhead.\n\n**Summary Table**\n\n| Feature          | MergeSort         | QuickSort           |\n| ---------------- | ----------------- | ------------------- |\n| Worst-case Time  | $O(n \\log n)$     | $O(n^2)$            |\n| Average-case Time| $O(n \\log n)$     | $O(n \\log n)$       |\n| Best-case Time   | $O(n \\log n)$     | $O(n \\log n)$       |\n| Space            | $O(n)$            | $O(\\log n)$ average, $O(n)$ worst |\n| Stable           | Yes               | No (generally)      |\n\n**In Conclusion:**\n\nMergeSort offers a guaranteed $O(n \\log n)$ time complexity and stability, but it requires $O(n)$ auxiliary space. QuickSort, on the other hand, has an average time complexity of $O(n \\log n)$ and can be implemented with $O(\\log n)$ space (on average), but it has a worst-case time complexity of $O(n^2)$ and is generally unstable. The choice between the two depends on the specific requirements of the application. If guaranteed performance and stability are crucial, MergeSort is a good choice. If space is a major concern and some variability in performance is acceptable, QuickSort might be preferred.\n",
+      "retrieved_docs_count": 5
+    },
+    {
+      "query": "Explain the principle of greedy algorithms and give an example where greedy approach fails",
+      "metadata": {
+        "query_type": "conceptual",
+        "topic": "greedy_algorithms",
+        "difficulty": "medium",
+        "source": "CLRS Chapter 16"
+      },
+      "bleu": {
+        "BLEU-1": 0.0833,
+        "BLEU-2": 0.0423,
+        "BLEU-3": 0.0209,
+        "BLEU-4": 0.0,
+        "BLEU": 0.0
+      },
+      "rouge": {
+        "ROUGE-L-P": 0.053,
+        "ROUGE-L-R": 0.4158,
+        "ROUGE-L-F1": 0.0941
+      },
+      "pedagogical_quality": {
+        "step_count": 6,
+        "step_granularity": 1.0,
+        "explanation_depth": 0.6,
+        "has_example": 1.0,
+        "mathematical_notation": 1.0,
+        "overall_pedagogical_score": 0.88
+      },
+      "relevance": {
+        "query_term_coverage": 0.8462,
+        "avg_source_similarity": 0.0,
+        "avg_pedagogical_score": 0.39
+      },
+      "overall_quality": 0.2828,
+      "timing": {
+        "retrieval_ms": 59.89,
+        "generation_ms": 18950.47,
+        "total_ms": 19010.36
+      },
+      "generated_answer": "Okay, I can help you understand the principle of greedy algorithms and provide an example where a greedy approach fails.  Unfortunately, the provided reference materials do not directly address the general principle of greedy algorithms or examples of their failure. Therefore, the following explanation will incorporate general knowledge of greedy algorithms in addition to the provided documents. I will clearly indicate where I am drawing upon general knowledge.\n\n**Greedy Algorithms: The Principle**\n\nA greedy algorithm is an algorithmic paradigm that follows the problem-solving heuristic of making the locally optimal choice at each stage with the hope of finding a global optimum. In simpler terms, it picks the best immediate, or \"greedy,\" solution without regard for the overall long-term consequences.\n\n**Key Characteristics of Greedy Algorithms (General Knowledge):**\n\n1.  **Locally Optimal Choice:** At each step, the algorithm selects the option that appears to be the best at that moment.\n2.  **No Backtracking:** Once a choice is made, it is not reconsidered or undone.  Greedy algorithms commit to their choices.\n3.  **Easy to Implement:** Greedy algorithms are often simpler to design and implement compared to other algorithmic approaches like dynamic programming.\n4.  **Not Always Optimal:** The locally optimal choices may not always lead to a globally optimal solution.\n\n**When Greedy Algorithms Work (General Knowledge):**\n\nGreedy algorithms are effective when the problem exhibits two key properties:\n\n1.  **Optimal Substructure:** An optimal solution to the problem contains within it optimal solutions to subproblems.\n2.  **Greedy Choice Property:** A globally optimal solution can be arrived at by selecting a locally optimal choice. In other words, the locally optimal choice does not preclude arriving at the global optimum.\n\n**Example Where a Greedy Approach Fails (General Knowledge):**\n\nA classic example where a greedy approach fails is the **0-1 Knapsack Problem**.\n\n**Problem Definition:**\n\nYou are given a knapsack with a maximum weight capacity *W*, and a set of *n* items. Each item *i* has a weight $w_i$ and a value $v_i$. The goal is to select the items to put into the knapsack to maximize the total value, without exceeding the weight capacity. You can either take an item entirely or leave it (hence \"0-1\").\n\n**Greedy Approach:**\n\nA natural greedy approach is to sort the items in descending order of their value-to-weight ratio ($v_i / w_i$) and then add items to the knapsack in that order until the knapsack is full.\n\n**Why It Fails:**\n\nConsider the following instance:\n\n*   Knapsack capacity: $W = 10$\n*   Items:\n    *   Item 1: $w_1 = 6$, $v_1 = 6$ (Value-to-weight ratio: 1)\n    *   Item 2: $w_2 = 5$, $v_2 = 5$ (Value-to-weight ratio: 1)\n    *   Item 3: $w_3 = 4$, $v_3 = 4$ (Value-to-weight ratio: 1)\n\nAll items have the same value-to-weight ratio, so the greedy algorithm might choose item 1 first.  This leaves 4 units of weight capacity.  It can't add item 2 or item 3, so the total value is 6.\n\nHowever, the optimal solution is to take items 2 and 3, with a total weight of 9 (less than 10) and a total value of 9, which is greater than 6.\n\n**Explanation of Failure:**\n\nThe greedy approach fails because it focuses solely on the immediate best choice (highest value-to-weight ratio) without considering the overall impact on the remaining capacity and the potential for combining other items to achieve a higher total value. In this case, taking the item with the highest value-to-weight ratio first prevented us from taking a combination of items that would have yielded a better result.\n\n**Contrast with Dynamic Programming (General Knowledge):**\n\nThe 0-1 Knapsack problem can be solved optimally using dynamic programming. Dynamic programming explores all possible combinations of items to find the optimal solution, ensuring that the global optimum is found.\n\n**Optimal Substructure and LCS (Based on Provided Documents):**\n\nWhile the documents don't directly address the general principle of greedy algorithms, they do illustrate the concept of optimal substructure in the context of the Longest Common Subsequence (LCS) problem.  The documents show that the LCS problem *does* exhibit optimal substructure, which is a property that *can* make greedy algorithms (as well as dynamic programming) effective. However, a greedy approach doesn't directly work for LCS; dynamic programming is typically used. The documents show how the LCS of two sequences can be constructed from the LCS of their prefixes. This is shown by defining $L[i,j]$ as the length of the LCS of $X[1..i]$ and $Y[1..j]$. The optimal substructure property is defined as:\n\n*   If $x_i = y_j$:  $L[i, j] = L[i-1, j-1] + 1$\n*   If $x_i \\ne y_j$: $L[i, j] = \\max(L[i-1, j], L[i, j-1])$\n\nThis recursive relationship demonstrates that the solution to the larger problem (finding the LCS of the full sequences) depends on the solutions to smaller subproblems (finding the LCS of prefixes of the sequences).\n",
+      "retrieved_docs_count": 5
+    },
+    {
+      "query": "What is the difference between Breadth-First Search (BFS) and Depth-First Search (DFS)?",
+      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}",
+      "overall_quality": 0.0
+    },
+    {
+      "query": "Prove that the worst-case time complexity of QuickSort is O(n^2)",
+      "metadata": {
+        "query_type": "proof",
+        "topic": "sorting_algorithms",
+        "difficulty": "hard",
+        "source": "CLRS Chapter 7"
+      },
+      "bleu": {
+        "BLEU-1": 0.1331,
+        "BLEU-2": 0.082,
+        "BLEU-3": 0.0531,
+        "BLEU-4": 0.0309,
+        "BLEU": 0.0309
+      },
+      "rouge": {
+        "ROUGE-L-P": 0.0968,
+        "ROUGE-L-R": 0.466,
+        "ROUGE-L-F1": 0.1603
+      },
+      "pedagogical_quality": {
+        "step_count": 0,
+        "step_granularity": 0.0,
+        "explanation_depth": 0.4,
+        "has_example": 0.0,
+        "proof_structure": 1.0,
+        "mathematical_notation": 1.0,
+        "overall_pedagogical_score": 0.37
+      },
+      "relevance": {
+        "query_term_coverage": 0.9,
+        "avg_source_similarity": 0.0,
+        "avg_pedagogical_score": 0.43
+      },
+      "proof_completeness": {
+        "has_statement": true,
+        "has_steps": false,
+        "has_conclusion": true,
+        "uses_math_notation": true,
+        "logical_flow": 1.0,
+        "completeness_score": 0.7
+      },
+      "overall_quality": 0.1523,
+      "timing": {
+        "retrieval_ms": 49.22,
+        "generation_ms": 12259.2,
+        "total_ms": 12308.41
+      },
+      "generated_answer": "Okay, let's prove that the worst-case time complexity of QuickSort is $O(n^2)$.\n\n**1. Understanding the Goal**\n\nWe want to show that the number of operations QuickSort performs in the worst-case scenario grows no faster than $n^2$, where $n$ is the number of elements being sorted.  In other words, we want to show that there exist constants $c > 0$ and $n_0 > 0$ such that for all $n \\ge n_0$, the number of operations is less than or equal to $cn^2$.\n\n**2. Proof Strategy**\n\nWe'll analyze the worst-case scenario for QuickSort and derive a recurrence relation for its time complexity. Then, we'll solve the recurrence to show that it's $O(n^2)$.\n\n**3. Worst-Case Analysis of QuickSort**\n\nQuickSort's performance depends heavily on the choice of the pivot element. The worst-case occurs when the pivot is consistently the smallest or largest element in the subarray being partitioned.  This leads to highly unbalanced partitions.\n\n*   **Recurrence Relation:**\n\n    In the worst case, one subarray will have 0 elements and the other will have $n-1$ elements. The partitioning step itself takes $O(n)$ time. Therefore, the recurrence relation for the worst-case time complexity, $T(n)$, can be written as:\n\n    $$T(n) = T(n-1) + T(0) + cn$$\n\n    where $c$ is a constant representing the cost of the partition operation per element.  Since $T(0)$ is constant, we can simplify this to:\n\n    $$T(n) = T(n-1) + cn$$\n\n*   **Solving the Recurrence:**\n\n    We can solve this recurrence by iteration (also known as the substitution method):\n\n    $T(n) = T(n-1) + cn$\n    $T(n-1) = T(n-2) + c(n-1)$\n    $T(n-2) = T(n-3) + c(n-2)$\n    ...\n    $T(2) = T(1) + c(2)$\n    $T(1) = c(1)$\n\n    Substituting these equations back into the original equation, we get:\n\n    $T(n) = c(1) + c(2) + ... + c(n-1) + cn$\n    $T(n) = c(1 + 2 + ... + n)$\n\n    We know that the sum of the first $n$ integers is $n(n+1)/2$. Therefore:\n\n    $T(n) = c \\cdot \\frac{n(n+1)}{2} = c \\cdot \\frac{n^2 + n}{2} = \\frac{c}{2}n^2 + \\frac{c}{2}n$\n\n*   **Big-O Notation:**\n\n    We want to show that $T(n) = O(n^2)$.  We have $T(n) = \\frac{c}{2}n^2 + \\frac{c}{2}n$.\n\n    For $n \\ge 1$, we have $\\frac{c}{2}n \\le \\frac{c}{2}n^2$.  Therefore:\n\n    $T(n) = \\frac{c}{2}n^2 + \\frac{c}{2}n \\le \\frac{c}{2}n^2 + \\frac{c}{2}n^2 = cn^2$\n\n    So, we have $T(n) \\le cn^2$ for all $n \\ge 1$.  This matches the definition of Big-O notation with a constant $c$ and $n_0 = 1$.\n\n**4. Conclusion**\n\nTherefore, the worst-case time complexity of QuickSort is $O(n^2)$. \u220e\n\n**Relation to Reference Materials:**\n\nWhile none of the provided documents directly prove the $O(n^2)$ worst-case complexity of QuickSort, they do provide a crucial foundation:\n\n*   **Document 1, 2, 3, 4:** These documents illustrate how to prove that a function is $O(n^2)$ using the formal definition of Big-O notation. They provide a template for finding constants $c$ and $n_0$ that satisfy the Big-O condition.  The structure of our proof follows this template.\n\nThe rest of the explanation is based on general knowledge of QuickSort and recurrence relation analysis, which is standard theoretical computer science material.\n",
+      "retrieved_docs_count": 5
+    },
+    {
+      "query": "What is amortized analysis and explain the aggregate method",
+      "metadata": {
+        "query_type": "conceptual",
+        "topic": "amortized_analysis",
+        "difficulty": "hard",
+        "source": "CLRS Chapter 17"
+      },
+      "bleu": {
+        "BLEU-1": 0.1011,
+        "BLEU-2": 0.0685,
+        "BLEU-3": 0.0483,
+        "BLEU-4": 0.0336,
+        "BLEU": 0.0336
+      },
+      "rouge": {
+        "ROUGE-L-P": 0.0674,
+        "ROUGE-L-R": 0.375,
+        "ROUGE-L-F1": 0.1143
+      },
+      "pedagogical_quality": {
+        "step_count": 4,
+        "step_granularity": 0.8,
+        "explanation_depth": 0.2,
+        "has_example": 1.0,
+        "mathematical_notation": 0.7,
+        "overall_pedagogical_score": 0.625
+      },
+      "relevance": {
+        "query_term_coverage": 0.8889,
+        "avg_source_similarity": 0.0,
+        "avg_pedagogical_score": 0.69
+      },
+      "overall_quality": 0.2204,
+      "timing": {
+        "retrieval_ms": 64.41,
+        "generation_ms": 17419.4,
+        "total_ms": 17483.81
+      },
+      "generated_answer": "Okay, let's break down amortized analysis and the aggregate method.  Unfortunately, the provided documents don't directly define or explain amortized analysis or the aggregate method. Therefore, the following explanation will incorporate general knowledge of these topics within the context of algorithm analysis.\n\n**What is Amortized Analysis?**\n\nAmortized analysis is a technique used to analyze the time complexity of a sequence of operations on a data structure.  Instead of focusing on the worst-case cost of a *single* operation (which might be misleadingly high), it considers the *average* cost of each operation in a *sequence* of operations.  This is particularly useful when some operations are very expensive, but they occur infrequently enough that their cost can be \"averaged out\" over the entire sequence.\n\nThink of it like this: you might occasionally have to perform a costly maintenance task on your car (like replacing the tires).  While that single task is expensive, you don't do it every day.  Amortized analysis is like calculating the average cost of car maintenance per day over a longer period, taking into account both the frequent small costs (like gas) and the infrequent large costs (like new tires).\n\n**Why Use Amortized Analysis?**\n\n*   **More Accurate Complexity:** It provides a more accurate reflection of the actual performance of an algorithm when a sequence of operations is performed.\n*   **Handles Variable Costs:** It's effective when the cost of individual operations varies significantly.\n*   **Design Tool:** It can guide the design of algorithms and data structures to ensure good average-case performance, even if some individual operations are expensive.\n\n**The Aggregate Method**\n\nThe aggregate method is one of the simplest techniques for performing amortized analysis.  Here's how it works:\n\n1.  **Analyze the Sequence:** Determine the worst-case cost of a sequence of *n* operations.\n2.  **Calculate Amortized Cost:** Divide the total worst-case cost by the number of operations, *n*.  This gives you the amortized cost per operation.\n\n**Formally:**\n\nLet $T(n)$ be the total cost of a sequence of $n$ operations.  The amortized cost per operation, $c$, is:\n\n$$c = \\frac{T(n)}{n}$$\n\nThis amortized cost *c* applies to each operation in the sequence.\n\n**Example: Stack Operations with Multipop**\n\nLet's consider a stack with the following operations:\n\n*   `push(x)`: Pushes element *x* onto the stack (cost: 1)\n*   `pop()`: Pops the top element from the stack (cost: 1)\n*   `multipop(k)`: Pops the top *k* elements from the stack, or until the stack is empty (cost: min(k, s), where *s* is the current stack size).\n\nA single `multipop` operation can be expensive (up to *n*, where *n* is the number of elements currently in the stack). However, let's analyze a sequence of *n* operations using the aggregate method.\n\n1.  **Total Cost:**\n    *   Each element can be pushed onto the stack at most once.  Therefore, there can be at most *n* push operations, costing at most *n*.\n    *   Each element can be popped at most once for each time it is pushed. Therefore, the total number of pops, including those in `multipop` operations, is at most *n*. The total cost of all pops is at most *n*.\n    *   Therefore, the total cost of any sequence of *n* operations is at most $n + n = 2n$.\n\n2.  **Amortized Cost:**\n    *   The amortized cost per operation is $T(n)/n = (2n)/n = 2$.\n\nTherefore, using the aggregate method, the amortized cost of each operation (push, pop, or multipop) is O(1).  Even though a `multipop` operation can take O(n) time in the worst case, the amortized analysis shows that the average cost per operation over a sequence of operations is constant.\n\n**Important Considerations:**\n\n*   The aggregate method gives a *single* amortized cost that applies to *all* operations.  Other amortized analysis methods (like the accounting method and the potential method) allow different operations to have different amortized costs.\n*   Amortized analysis provides a *guarantee* on the average performance over a sequence of operations. It does *not* imply anything about the average-case performance of a *single* operation in isolation.\n*   The analysis assumes that you don't know in advance which operations will be performed. The sequence of operations can be arbitrary.\n\nIn summary, amortized analysis, particularly the aggregate method, is a valuable tool for understanding the true cost of algorithms and data structures when considering sequences of operations, especially when individual operation costs vary significantly.\n",
+      "retrieved_docs_count": 5
+    },
+    {
+      "query": "Explain the Floyd-Warshall algorithm and its time complexity",
+      "metadata": {
+        "query_type": "algorithm_explanation",
+        "topic": "graph_algorithms",
+        "difficulty": "hard",
+        "source": "CLRS Chapter 25"
+      },
+      "bleu": {
+        "BLEU-1": 0.0833,
+        "BLEU-2": 0.0446,
+        "BLEU-3": 0.0181,
+        "BLEU-4": 0.0,
+        "BLEU": 0.0
+      },
+      "rouge": {
+        "ROUGE-L-P": 0.0506,
+        "ROUGE-L-R": 0.3366,
+        "ROUGE-L-F1": 0.088
+      },
+      "pedagogical_quality": {
+        "step_count": 2,
+        "step_granularity": 0.4,
+        "explanation_depth": 0.4,
+        "has_example": 1.0,
+        "mathematical_notation": 1.0,
+        "overall_pedagogical_score": 0.64
+      },
+      "relevance": {
+        "query_term_coverage": 0.875,
+        "avg_source_similarity": 0.0,
+        "avg_pedagogical_score": 0.65
+      },
+      "overall_quality": 0.2096,
+      "timing": {
+        "retrieval_ms": 45.11,
+        "generation_ms": 13592.3,
+        "total_ms": 13637.41
+      },
+      "generated_answer": "Okay, let's break down the Floyd-Warshall algorithm and its time complexity.  Unfortunately, the provided reference materials don't directly discuss the Floyd-Warshall algorithm. Therefore, the following explanation will be based on my general knowledge of the algorithm and standard algorithm analysis techniques.\n\n**1. Algorithm Overview**\n\nThe Floyd-Warshall algorithm is a dynamic programming algorithm used to find the shortest paths between *all* pairs of vertices in a weighted graph.  This is different from algorithms like Dijkstra's algorithm (mentioned in [Document 3] and [Document 4]), which finds the shortest paths from a *single* source vertex to all other vertices.  Floyd-Warshall can handle graphs with negative edge weights, but it *cannot* handle graphs with negative cycles (where the sum of the weights in a cycle is negative).  The presence of a negative cycle would mean that shortest paths are not well-defined, as you could keep traversing the cycle to decrease the path length indefinitely.\n\n**2. Dynamic Programming Approach**\n\nThe algorithm uses a dynamic programming approach. Let's define:\n\n*   $d_{ij}^{(k)}$ as the length of the shortest path from vertex $i$ to vertex $j$ using only vertices $\\{1, 2, ..., k\\}$ as intermediate vertices.\n\nThe algorithm iteratively computes $d_{ij}^{(k)}$ for increasing values of $k$.\n\n**3. Algorithm Steps**\n\n1.  **Initialization:**\n    *   Create a matrix `dist` of size $V \\times V$, where $V$ is the number of vertices in the graph.\n    *   Initialize `dist[i][j]` to the weight of the edge between vertex $i$ and vertex $j$. If there is no edge between $i$ and $j$, initialize `dist[i][j]` to infinity ($\\infty$).  `dist[i][i]` is initialized to 0.\n\n2.  **Iteration:**\n    *   For $k$ from 1 to $V$:\n        *   For $i$ from 1 to $V$:\n            *   For $j$ from 1 to $V$:\n                *   `dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])`\n\n**4. Pseudocode**\n\n```\nFloydWarshall(graph):\n  V = number of vertices in graph\n  dist = initialize distance matrix as described above\n\n  for k from 1 to V:\n    for i from 1 to V:\n      for j from 1 to V:\n        dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])\n\n  return dist\n```\n\n**5. Time Complexity Analysis**\n\nThe Floyd-Warshall algorithm consists of three nested loops, each iterating $V$ times (where $V$ is the number of vertices).  The dominant operation inside the loops is the `min` operation, which takes constant time, $O(1)$.\n\nTherefore, the total time complexity is $O(V \\times V \\times V) = O(V^3)$.\n\n*   **Best Case:** $O(V^3)$\n*   **Average Case:** $O(V^3)$\n*   **Worst Case:** $O(V^3)$\n\nThe time complexity is the same in all cases because the algorithm always performs the same number of iterations, regardless of the graph's structure.\n\n**6. Space Complexity**\n\nThe algorithm uses a $V \\times V$ matrix to store the shortest path distances. Therefore, the space complexity is $O(V^2)$.\n\n**7. Example**\n\nConsider a graph with 4 vertices and the following edge weights:\n\n*   1 -> 2: 3\n*   1 -> 3: 8\n*   1 -> 4: \u221e\n*   2 -> 1: \u221e\n*   2 -> 3: \u221e\n*   2 -> 4: 1\n*   3 -> 1: \u221e\n*   3 -> 2: \u221e\n*   3 -> 4: \u221e\n*   4 -> 1: 2\n*   4 -> 2: \u221e\n*   4 -> 3: 9\n\nThe Floyd-Warshall algorithm would iteratively update the `dist` matrix until it contains the shortest path distances between all pairs of vertices.\n\n**8. Comparison with Dijkstra's Algorithm**\n\n*   Floyd-Warshall finds shortest paths between *all* pairs of vertices. Dijkstra's finds shortest paths from a *single* source.\n*   If you need shortest paths from a single source, Dijkstra's algorithm (with a good implementation like using a min-priority queue) can be more efficient ($O(E + V \\log V)$ for a single source, or $O(V(E + V \\log V))$ for all sources if run separately for each vertex).  However, if the graph is dense (i.e., $E$ is close to $V^2$), then $O(V(E + V \\log V))$ approaches $O(V^3)$, making Floyd-Warshall a competitive choice.\n*   Floyd-Warshall can handle negative edge weights (but not negative cycles), while the standard Dijkstra's algorithm cannot.\n\n**In summary:** The Floyd-Warshall algorithm is a relatively simple and effective dynamic programming algorithm for finding all-pairs shortest paths in a graph. Its $O(V^3)$ time complexity makes it suitable for graphs with a moderate number of vertices.\n",
+      "retrieved_docs_count": 5
+    },
+    {
+      "query": "What is the difference between P and NP complexity classes?",
+      "metadata": {
+        "query_type": "conceptual",
+        "topic": "np_completeness",
+        "difficulty": "medium",
+        "source": "CLRS Chapter 34"
+      },
+      "bleu": {
+        "BLEU-1": 0.1184,
+        "BLEU-2": 0.0833,
+        "BLEU-3": 0.0603,
+        "BLEU-4": 0.0415,
+        "BLEU": 0.0415
+      },
+      "rouge": {
+        "ROUGE-L-P": 0.0765,
+        "ROUGE-L-R": 0.4016,
+        "ROUGE-L-F1": 0.1285
+      },
+      "pedagogical_quality": {
+        "step_count": 6,
+        "step_granularity": 1.0,
+        "explanation_depth": 0.8,
+        "has_example": 1.0,
+        "mathematical_notation": 1.0,
+        "overall_pedagogical_score": 0.94
+      },
+      "relevance": {
+        "query_term_coverage": 0.9,
+        "avg_source_similarity": 0.0,
+        "avg_pedagogical_score": 0.69
+      },
+      "overall_quality": 0.3202,
+      "timing": {
+        "retrieval_ms": 45.79,
+        "generation_ms": 12555.81,
+        "total_ms": 12601.6
+      },
+      "generated_answer": "Okay, let's break down the difference between the complexity classes P and NP.\n\n**Core Concepts**\n\n*   **P (Polynomial Time):** This is the class of decision problems that can be *solved* by an algorithm in polynomial time.  In other words, if the input size is *n*, the algorithm's running time is $O(n^k)$ for some constant *k*.  Problems in P are generally considered \"tractable\" or efficiently solvable.\n\n*   **NP (Nondeterministic Polynomial Time):** This is the class of decision problems for which a given solution can be *verified* in polynomial time.  Crucially, NP *doesn't* require that we can *find* the solution in polynomial time, only that we can check if a proposed solution is correct quickly.\n\n**Key Differences and Implications**\n\n1.  **Solvability vs. Verifiability:** The fundamental difference lies in whether we can *find* a solution (P) or merely *check* a solution (NP) efficiently.\n\n2.  **P vs. NP Question:** The big open question in computer science is whether P = NP.  In other words, if a solution can be verified quickly, can it also be found quickly?  Most computer scientists believe that P \u2260 NP, but no one has been able to prove it.\n\n3.  **NP-Completeness:** Within NP, there exists a set of problems called NP-complete problems. These are the \"hardest\" problems in NP.  Formally, a problem L is NP-complete if:\n\n    *   L is in NP.\n    *   Every other problem in NP can be reduced to L in polynomial time.  This means that if you have a polynomial-time algorithm for L, you can solve *any* problem in NP in polynomial time.\n\n**Why is P vs. NP Important?**\n\nDocuments 1-5 highlight the significance of the P vs NP question, particularly in the context of NP-complete problems. If P = NP, then every NP-complete problem can be solved in polynomial time.\n\n**Proof Sketch: If P = NP, then every NP-complete problem is in P**\n\nLet's formalize the argument provided in the reference materials.\n\n*Definitions:*\n\n*   P = class of problems solvable in polynomial time\n*   NP = class of problems verifiable in polynomial time\n*   NP-complete = hardest problems in NP (all NP problems reduce to them)\n\n*Assume:* P = NP\n\nLet L be any NP-complete problem.\n\n1.  *By definition of NP-complete:*\n    *   (1) L \u2208 NP\n    *   (2) For every problem L' \u2208 NP, there exists a polynomial-time reduction from L' to L (denoted L' \u2264<sub>p</sub> L). This means we can transform L' into L in polynomial time.\n\n2.  *Since P = NP:*\n    *   L \u2208 NP implies L \u2208 P.  Therefore, L can be solved in polynomial time.\n\n3.  *For any other NP-complete problem L':*\n    *   L' \u2264<sub>p</sub> L (by definition of NP-complete).\n    *   L can be solved in polynomial time (from step 2).\n    *   A polynomial-time reduction composed with a polynomial-time algorithm gives a polynomial-time algorithm. This is a crucial point: if we can reduce L' to L in polynomial time, and we can solve L in polynomial time, then we can solve L' in polynomial time.\n    *   Therefore, L' \u2208 P.\n\n*Conclusion:* If P = NP, then every NP-complete problem is in P.\n\n**In simpler terms:** If P=NP, then because every problem in NP can be reduced to an NP-complete problem, solving any NP-complete problem in polynomial time would allow us to solve *all* problems in NP in polynomial time.\n\n**Example**\n\nImagine you have a jigsaw puzzle (an NP problem).  If someone gives you a completed puzzle (a proposed solution), you can quickly check if it's correct. That's verification in polynomial time.  However, *solving* the puzzle from scratch might take a very long time.  If P = NP, it would mean there's also a fast way to *solve* the puzzle.\n\n**What if P != NP?**\n\nIf P != NP (which is what most computer scientists believe), it would mean that there are problems in NP that cannot be solved in polynomial time.  For these problems, we can verify a solution quickly, but finding a solution is inherently difficult. This has huge implications for cryptography, optimization, and many other fields.\n",
+      "retrieved_docs_count": 5
+    },
+    {
+      "query": "Describe the Longest Common Subsequence (LCS) problem and its DP solution",
+      "error": "429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.', 'status': 'RESOURCE_EXHAUSTED'}}",
+      "overall_quality": 0.0
+    }
+  ]
+}

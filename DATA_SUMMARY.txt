@@ -1,0 +1,137 @@
+================================================================================
+ALGORAG RESEARCH DATA SUMMARY
+================================================================================
+Generated: 2025-11-03 20:14:01
+
+================================================================================
+1. KNOWLEDGE BASE STATUS
+================================================================================
+
+PDF Documents Ingested: 0
+Total Chunks in Vector DB: 32
+
+Topic Coverage:
+  - ": 96 chunks
+  - e: 82 chunks
+  - r: 78 chunks
+  - s: 60 chunks
+  - n: 58 chunks
+  - o: 58 chunks
+  - t: 54 chunks
+  - a: 52 chunks
+  - c: 50 chunks
+  - i: 48 chunks
+  - _: 48 chunks
+  - p: 42 chunks
+  - m: 34 chunks
+  - [: 32 chunks
+  - ]: 32 chunks
+  - u: 30 chunks
+  - h: 26 chunks
+  - g: 24 chunks
+  - l: 24 chunks
+  - ,: 16 chunks
+  -  : 16 chunks
+  - y: 14 chunks
+  - f: 14 chunks
+  - q: 14 chunks
+  - d: 10 chunks
+
+Source Type Breakdown:
+  - textbook: 32 chunks
+
+================================================================================
+2. RESEARCH GOALS (FROM ABSTRACT)
+================================================================================
+
+Target Knowledge Base Components:
+  - Lecture slides covering 15 major topics: TARGET 847 slides
+  - Practice problems with detailed solutions: TARGET 312 problems
+  - Proof examples and templates: TARGET 156 proofs
+  - Complexity analysis worksheets: TARGET 89 worksheets
+
+Current Status:
+  - Documents ingested: 0 PDFs
+  - Chunks indexed: 32
+  - Progress: 1.6% toward estimated 2000 chunk target
+
+================================================================================
+3. EVALUATION DATASET
+================================================================================
+
+Test Questions: 16 / 450 (TARGET)
+Progress: 3.6%
+
+Coverage by Topic:
+  - asymptotic_analysis: 2 questions
+  - algorithms: 1 questions
+  - recurrence_relations: 1 questions
+  - dynamic_programming: 3 questions
+  - graph_algorithms: 3 questions
+  - np_completeness: 2 questions
+  - sorting_algorithms: 2 questions
+  - greedy_algorithms: 1 questions
+  - amortized_analysis: 1 questions
+
+Coverage by Query Type:
+  - proof: 3 questions
+  - complexity: 2 questions
+  - conceptual: 5 questions
+  - problem_solving: 2 questions
+  - comparison: 2 questions
+  - algorithm_explanation: 2 questions
+
+================================================================================
+4. CURRENT EVALUATION RESULTS
+================================================================================
+
+================================================================================
+5. RESEARCH PAPER CLAIMS - VALIDATION STATUS
+================================================================================
+
+Abstract Claims:
+
+1. 'At least 85% accuracy on standard exam questions'
+   Status: ⏳ Awaiting evaluation
+
+2. 'Significant improvement over baseline'
+   Status: ⏳ Awaiting A/B comparison
+
+3. 'Excel in step-by-step proof constructions'
+   Status: ⏳ Awaiting proof query evaluation
+
+4. 'Multiple solution approaches for complex problems'
+   Status: ✓ IMPLEMENTED - Multi-perspective generation enabled
+
+================================================================================
+6. NEXT STEPS FOR PUBLICATION
+================================================================================
+
+  [ ] Ingest lecture slides and textbook chapters (Target: 50-100 PDFs)
+  [ ] Expand test dataset (16/450 questions)
+  [ ] Run full evaluation with comprehensive knowledge base
+  [ ] Conduct user study with students (optional but strengthens paper)
+  [ ] Generate publication-ready figures and tables
+  [ ] Write research paper sections using generated data
+
+================================================================================
+7. SYSTEM STATUS
+================================================================================
+
+Embedding Backend: local
+Generator Model: gpt-4o-mini
+Vector Database: chroma
+Vector DB Path: /Users/sushan/Desktop/Papers/RAG_Algorithms_and_Complexity/algorag/scripts/../data/vector_db
+
+System Components:
+  ✓ Mathematical entity recognition
+  ✓ Pedagogical ranking
+  ✓ Query-type detection
+  ✓ Proof-aware generation
+  ✓ Evaluation framework (BLEU, ROUGE, Pedagogical)
+  ✓ Baseline comparison
+  ✓ Visualization tools
+
+================================================================================
+END OF SUMMARY
+================================================================================

@@ -1,0 +1,207 @@
+PROOF EXAMPLES: ALGORITHMS & MATHEMATICS
+Total: 156 Examples (12 sections)
+
+===============================================
+SECTION 1: DIRECT PROOFS (Examples 1-16)
+===============================================
+1. For any even integer n, n^2 is even.
+2. The sum of two rational numbers is rational.
+3. For all integers a, b, if a > b then a^2 > b^2.
+4. The product of two odd integers is odd.
+5. For all x > 0, x^2 + 1 > x.
+6. For any real number x, |x| ≥ 0.
+7. For all integers n, n mod 2 = 0 iff n is even.
+8. For all real numbers a, b > 0: a^b > 0.
+9. If n is divisible by 4, then n is even.
+10. The sum of three consecutive integers is divisible by 3.
+11. If a is divisible by b, and b is divisible by c, then a is divisible by c.
+12. For any integer n, n(n+1) is even.
+13. For all integers a > 1: a^2 > a.
+14. The sum of squares of two integers is ≥ 0.
+15. For any integer k, (k+1)^2 > k^2.
+16. The difference of two even numbers is even.
+
+===============================================
+SECTION 2: PROOF BY CONTRADICTION (Examples 17-35)
+===============================================
+17. Sqrt(2) is not rational.
+18. There is no smallest positive real number.
+19. The sum of an irrational and rational number is irrational.
+20. If n^2 is even, then n is even.
+21. Set of prime numbers is infinite.
+22. If a graph has n nodes and more than n(n-1)/2 edges, it is not simple.
+23. There is no integer between 0 and 1.
+24. Every nonzero polynomial of degree n has at most n roots.
+25. If a divides bc and gcd(a, b)=1, then a divides c.
+26. Assume a function is both injective and not injective (contradiction).
+27. If x in R, x^2 = -1, then x is not real.
+28. If n is an odd number, then n is not divisible by 2.
+29. There is no rational solution to x^2 - 3x + 1 = 0.
+30. If p is prime, then p > 1.
+31. The intersection of two disjoint sets is empty.
+32. If sum of digits of n is divisible by 3, then n is divisible by 3.
+33. If a set is finite, it cannot be in bijection with N.
+34. There are infinitely many composite numbers.
+35. No integer can be both even and odd.
+
+===============================================
+SECTION 3: PROOF BY INDUCTION (Examples 36-60)
+===============================================
+36. Sum_{i=1}^{n} i = n(n+1)/2.
+37. Sum_{i=0}^{n} 2^i = 2^{n+1}-1.
+38. n! > 2^n for n ≥ 4.
+39. Fibonacci sequence: F(n) < 2^n for all n ≥ 1.
+40. Every tree with n vertices has n-1 edges.
+41. Sum of first n odd numbers is n^2.
+42. n^3 - n divisible by 6 for n ≥ 1.
+43. 2^n > n^2 for n ≥ 5.
+44. The number of subsets of a set with n elements is 2^n.
+45. Binomial theorem.
+46. The sum of angles of n-sided polygon = (n-2)*180°.
+47. For all n > 1: n! is divisible by n.
+48. For all n ≥ 1, 1 + 3 + ... + (2n-1) = n^2.
+49. Sum_{i=1}^{n} i^2 = n(n+1)(2n+1)/6.
+50. In a complete graph K_n, number of edges is n(n-1)/2.
+51. For n > 1, n^n > n!.
+52. Every integer n > 1 can be written as the product of primes.
+53. a^n - b^n is divisible by a-b for n ≥ 1.
+54. For any graph, degree sum = 2*number of edges.
+55. For n≥0, F(n) = F(n-1)+F(n-2): Fibonacci definition.
+56. Any boolean function can be represented in CNF.
+57. In a balanced binary tree, height = log_2(n+1)-1.
+58. For all n ≥ 1, n^2 ≤ 2^n.
+59. The product rule for set cardinality.
+60. The Handshaking Lemma for graphs.
+
+===============================================
+SECTION 4: PROOF BY CONSTRUCTION (Examples 61-74)
+===============================================
+61. Show there exists infinite primes: construct larger composite.
+62. Construct a bijection between Q+ and N.
+63. Explicit construction of a spanning tree in a connected graph.
+64. Build an example of a surjective function from N to Z.
+65. Construct a cycle in a directed graph if degree constraints are met.
+66. Build a path covering all vertices in a graph (Hamiltonian path).
+67. Given a set of size n, construct its power set.
+68. Build a binary search tree from a given sequence.
+69. Explicit coloring of graph to show chromatic number ≥ k.
+70. Construct a counterexample for Goldbach’s conjecture (open problem).
+71. Show algorithm for finding minimum spanning tree constructs optimal solution.
+72. Build a valid partition for numbers into two subsets with equal sum.
+73. Construct a proof that a particular algorithm terminates.
+74. Show a path exists in an undirected connected graph by walking edge to edge.
+
+===============================================
+SECTION 5: LOOP INVARIANTS (Examples 75-92)
+===============================================
+75. Prove correctness of insertion sort using loop invariant.
+76. Prove selection sort finds minimum each pass.
+77. Show while loop maintains partial results sorted for bubble sort.
+78. Loop invariant for swapping in quicksort partition.
+79. Maintain running sum invariant in linear scanning algorithm.
+80. Show invariant for growing a heap in heapsort.
+81. Loop invariant for traversing linked list for length.
+82. Invariant for checking palindrome in string.
+83. Prove that binary search splits search space correctly at each step.
+84. Maintain balance invariant in AVL tree insertions.
+85. Loop invariant for finding factorial of n iteratively.
+86. invariant for traversal order in tree DFS.
+87. Loop proof for counting Sort correctness.
+88. Invariant for maximum subarray sum (Kadane's algorithm).
+89. Partitioning invariant in merge sort.
+90. Show invariant for edge relaxing in Bellman-Ford.
+91. Invariant for updating distances in Dijkstra’s algorithm.
+92. Loop invariant for parenthesis checker stack.
+
+===============================================
+SECTION 6: RECURSIVE ALGORITHM CORRECTNESS (Examples 93-109)
+===============================================
+93. Proof that recursive factorial computes correct value.
+94. Recursion base case and step for reversing a list.
+95. Recursive binary search terminates.
+96. Merge sort recursive correctness.
+97. Proof for sum of digits using recursion.
+98. Correctness of recursive Fibonacci.
+99. Proof that recursive tree depth computation is valid.
+100. Quicksort recursive correctness induction.
+101. Tower of Hanoi correctness.
+102. Depth-first-traversal recursive correctness.
+103. Combination formula using recursion.
+104. Proof that recursive GCD divides numbers correctly.
+105. Recursion for matrix multiplication correctness.
+106. Proof for recursive palindrome check.
+107. Backtracking algorithm for subset sum correctness.
+108. Recursive graph traversal finds all connected nodes.
+109. Recursion for computing powers: a^n correctness.
+
+===============================================
+SECTION 7: GREEDY CORRECTNESS (Examples 110-119)
+===============================================
+110. Prove interval scheduling greedy selects max jobs.
+111. Greedy change making correctness for denominations.
+112. Huffman coding yields optimal prefix code.
+113. Greedy activity selection optimality.
+114. Coin change greedy failure example.
+115. Fractional knapsack greedy optimality.
+116. MST (Kruskal/Prim) greedy correctness proofs.
+117. Shortest job first correctness.
+118. Job scheduling for deadlines greedy optimality.
+119. Greedy string matching correctness for shortest matches.
+
+===============================================
+SECTION 8: BIG-O PROOFS (Examples 120-134)
+===============================================
+120. Prove O(n^2 + n) = O(n^2).
+121. Show Bubble Sort is O(n^2).
+122. Merge Sort is O(n log n).
+123. Insertion Sort is O(n^2).
+124. Find Big-O for recursive Fibonacci.
+125. Prove Quicksort expected O(n log n), worst O(n^2).
+126. Show binary search is O(log n).
+127. Heap operations O(log n) proof.
+128. Linear search is O(n).
+129. Matrix multiplication (naive) is O(n^3).
+130. Counting sort is O(n+k).
+131. Radix sort is O(nk).
+132. Build BST from sorted array is O(n).
+133. Kruskal’s MST algorithm is O(E log E).
+134. Dijkstra’s shortest path with min heap is O(E + V log V).
+
+===============================================
+SECTION 9: RECURRENCE RELATION PROOFS (Examples 135-144)
+===============================================
+135. T(n) = T(n/2) + O(1) → O(log n).
+136. Merge Sort recurrence: T(n) = 2T(n/2) + O(n).
+137. Quick Sort recurrence: T(n) = T(k) + T(n−k−1) + O(n).
+138. Binary search recurrence: T(n) = T(n/2) + O(1).
+139. Tower of Hanoi: T(n) = 2T(n−1)+1.
+140. Fibonacci recurrence: T(n) = T(n−1)+T(n−2)+O(1).
+141. Strassen’s Matrix multiplication: T(n) = 7T(n/2) + O(n^2).
+142. Master Theorem statement and application.
+143. Karatsuba multiplication recurrence.
+144. Recursion for subsequence enumeration: T(n) = T(n−1)+T(n−1).
+
+===============================================
+SECTION 10: NP-COMPLETENESS REDUCTIONS (Examples 145-155)
+===============================================
+145. Prove SAT is NP-complete.
+146. Reduce Clique to Independent Set.
+147. Reduce 3SAT to Vertex Cover.
+148. Reduce Hamiltonian Path to Hamiltonian Cycle.
+149. Reduce Subset Sum to Partition problem.
+150. Show that Graph Coloring is NP-complete.
+151. Reduce Vertex Cover to Set Cover.
+152. Prove Sudoku is NP-complete.
+153. Reduce Boolean formula to 3SAT.
+154. Reduce Exact Cover to Subset Sum.
+155. Reduce Traveling Salesman Problem to Hamiltonian Cycle.
+
+===============================================
+SECTION 11: ADDITIONAL PROOFS & TECHNIQUES (Examples 156)
+===============================================
+156. Pigeonhole Principle example: proof there exist two people in Kathmandu with the same number of hairs.
+
+=======================================================
+END OF PROOF EXAMPLES
+Total Examples: 156
+=======================================================

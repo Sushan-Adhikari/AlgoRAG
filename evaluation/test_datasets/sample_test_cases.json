@@ -1,0 +1,162 @@
+[
+  {
+    "query": "Prove that 3n^2 + 5n + 2 = O(n^2)",
+    "reference_answer": "To prove f(n) = O(n^2), we need to find constants c > 0 and n0 > 0 such that f(n) <= c*n^2 for all n >= n0. Given f(n) = 3n^2 + 5n + 2. For n >= 1: 5n <= 5n^2 (since n <= n^2 for n >= 1) and 2 <= 2n^2 (since 1 <= n^2 for n >= 1). Therefore, 3n^2 + 5n + 2 <= 3n^2 + 5n^2 + 2n^2 = 10n^2. Choose c = 10 and n0 = 1. Then f(n) <= 10*n^2 for all n >= 1. Hence 3n^2 + 5n + 2 = O(n^2). QED.",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "CLRS Chapter 3"
+    }
+  },
+  {
+    "query": "What is the time complexity of binary search?",
+    "reference_answer": "Binary search has O(log n) time complexity. In each iteration, the algorithm divides the search space in half by comparing the target with the middle element. This halving process continues until the element is found or the search space becomes empty. Since the array is halved at each step, the maximum number of comparisons needed is log2(n), where n is the size of the array. Therefore, the time complexity is O(log n).",
+    "metadata": {
+      "query_type": "complexity",
+      "topic": "algorithms",
+      "difficulty": "easy",
+      "source": "Basic algorithms course"
+    }
+  },
+  {
+    "query": "Explain the difference between O(n) and Θ(n)",
+    "reference_answer": "O(n) (Big-O) represents an upper bound on the growth rate of a function. If f(n) = O(n), it means f(n) grows no faster than n asymptotically. However, Θ(n) (Theta) represents a tight bound, meaning the function grows at exactly the rate of n asymptotically. Formally, f(n) = Θ(n) means f(n) = O(n) AND f(n) = Ω(n), where Ω represents a lower bound. So while 5 = O(n) is technically true, 5 = Θ(1) is more precise. Θ provides both upper and lower bounds simultaneously.",
+    "metadata": {
+      "query_type": "conceptual",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "CLRS Chapter 3"
+    }
+  },
+  {
+    "query": "Solve the recurrence T(n) = 2T(n/2) + n using the Master Theorem",
+    "reference_answer": "The Master Theorem applies to recurrences of the form T(n) = aT(n/b) + f(n). Here, a = 2, b = 2, and f(n) = n. First, calculate nlog_b(a) = nlog_2(2) = n^1 = n. Now compare f(n) with nlog_b(a): f(n) = n = Θ(n^1). This matches Case 2 of the Master Theorem where f(n) = Θ(nlog_b(a)). Therefore, by Case 2, T(n) = Θ(nlog_b(a) * log n) = Θ(n log n).",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "recurrence_relations",
+      "difficulty": "medium",
+      "source": "CLRS Chapter 4"
+    }
+  },
+  {
+    "query": "What is dynamic programming and when should it be used?",
+    "reference_answer": "Dynamic programming is an optimization technique used for solving problems that exhibit two key properties: (1) optimal substructure - the optimal solution can be constructed from optimal solutions of its subproblems, and (2) overlapping subproblems - the same subproblems are solved multiple times. DP works by storing solutions to subproblems to avoid redundant computation, either through memoization (top-down) or tabulation (bottom-up). It should be used when a problem can be broken into overlapping subproblems with optimal substructure, such as in the Fibonacci sequence, shortest paths, and optimization problems like knapsack.",
+    "metadata": {
+      "query_type": "conceptual",
+      "topic": "dynamic_programming",
+      "difficulty": "medium",
+      "source": "CLRS Chapter 15"
+    }
+  },
+  {
+    "query": "What is the time complexity of Dijkstra's algorithm with a binary heap?",
+    "reference_answer": "Dijkstra's algorithm with a binary heap has O((V + E) log V) time complexity, which simplifies to O(E log V) for connected graphs. The algorithm processes each vertex once, and each vertex can potentially trigger updates to adjacent edges. With a binary heap: (1) Building the initial heap takes O(V), (2) Each of V extract-min operations takes O(log V), giving O(V log V), (3) Each of E edges may trigger a decrease-key operation, each taking O(log V), giving O(E log V). Total: O(V log V + E log V) = O((V + E) log V) = O(E log V) for connected graphs where E >= V-1.",
+    "metadata": {
+      "query_type": "complexity",
+      "topic": "graph_algorithms",
+      "difficulty": "hard",
+      "source": "CLRS Chapter 24"
+    }
+  },
+  {
+    "query": "Prove that if a problem is NP-complete, then P = NP if and only if the problem can be solved in polynomial time",
+    "reference_answer": "This follows from the definition of NP-completeness. A problem L is NP-complete if: (1) L ∈ NP, and (2) every problem in NP is polynomial-time reducible to L. Suppose L can be solved in polynomial time. Then for any problem L' in NP, we can reduce L' to L in polynomial time (by definition of NP-complete), then solve L in polynomial time. The composition of two polynomial-time algorithms is polynomial-time, so L' can be solved in polynomial time. Since L' was arbitrary, every problem in NP can be solved in polynomial time, meaning NP ⊆ P. Since P ⊆ NP by definition, we have P = NP. Conversely, if P = NP, then L ∈ NP implies L ∈ P, so L can be solved in polynomial time. QED.",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "np_completeness",
+      "difficulty": "hard",
+      "source": "CLRS Chapter 34"
+    }
+  },
+  {
+    "query": "What is the 0/1 Knapsack problem and what is its time complexity using dynamic programming?",
+    "reference_answer": "The 0/1 Knapsack problem asks: given n items each with weight w_i and value v_i, and a knapsack with capacity W, select items to maximize total value without exceeding capacity W. Each item can be taken (1) or not taken (0), hence '0/1'. The DP solution uses a table DP[i][w] representing the maximum value achievable using the first i items with capacity w. Recurrence: DP[i][w] = max(DP[i-1][w], DP[i-1][w-w_i] + v_i). The algorithm fills an (n+1) × (W+1) table, where each cell takes O(1) time. Therefore, the time complexity is O(nW) and space complexity is O(nW), which can be optimized to O(W) using a 1D array.",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "dynamic_programming",
+      "difficulty": "medium",
+      "source": "CLRS Chapter 15"
+    }
+  },
+  {
+    "query": "Compare QuickSort and MergeSort in terms of time complexity, space complexity, and stability",
+    "reference_answer": "Time Complexity: QuickSort has best/average O(n log n) but worst-case O(n^2) with poor pivot selection. MergeSort has guaranteed Θ(n log n) in all cases. Space Complexity: QuickSort is in-place with O(log n) recursion stack (O(n) worst case). MergeSort requires O(n) auxiliary space for merging. Stability: QuickSort is NOT stable (relative order of equal elements may change). MergeSort IS stable (preserves relative order). In practice, QuickSort is often faster due to better cache locality and lower constant factors, despite worse worst-case complexity. MergeSort is preferred when stability is required or when worst-case guarantees are needed.",
+    "metadata": {
+      "query_type": "comparison",
+      "topic": "sorting_algorithms",
+      "difficulty": "medium",
+      "source": "CLRS Chapters 7 and 2"
+    }
+  },
+  {
+    "query": "Explain the principle of greedy algorithms and give an example where greedy approach fails",
+    "reference_answer": "Greedy algorithms make locally optimal choices at each step, hoping to find a global optimum. They work when a problem exhibits the greedy choice property (local optimum leads to global optimum) and optimal substructure. Example where greedy works: Huffman coding, Dijkstra's algorithm for shortest paths. Example where greedy FAILS: The 0/1 Knapsack problem. Consider capacity W=50, items: (weight=10, value=60), (weight=20, value=100), (weight=30, value=120). Greedy by value/weight ratio chooses item 1 (ratio=6), then can't fit item 3 (ratio=4), and gets item 2 (ratio=5), total value=160. But optimal solution takes items 2 and 3 for total value=220. This shows greedy doesn't always work.",
+    "metadata": {
+      "query_type": "conceptual",
+      "topic": "greedy_algorithms",
+      "difficulty": "medium",
+      "source": "CLRS Chapter 16"
+    }
+  },
+  {
+    "query": "What is the difference between Breadth-First Search (BFS) and Depth-First Search (DFS)?",
+    "reference_answer": "BFS explores nodes level by level using a queue, visiting all neighbors before going deeper. DFS explores as far as possible along each branch using a stack (or recursion), backtracking when necessary. Time Complexity: Both are O(V + E). Space Complexity: BFS is O(V) for queue, DFS is O(V) for stack/recursion. BFS finds shortest path in unweighted graphs and explores nodes in order of distance from source. DFS is better for detecting cycles, topological sorting, and solving maze-like problems. BFS requires more memory for wide graphs, while DFS may exceed recursion depth for deep graphs. BFS guarantees shortest path; DFS does not.",
+    "metadata": {
+      "query_type": "comparison",
+      "topic": "graph_algorithms",
+      "difficulty": "easy",
+      "source": "CLRS Chapter 22"
+    }
+  },
+  {
+    "query": "Prove that the worst-case time complexity of QuickSort is O(n^2)",
+    "reference_answer": "QuickSort's worst case occurs when the pivot is always the smallest or largest element, resulting in maximally unbalanced partitions. Consider the recurrence when partitioning creates subarrays of size 0 and n-1: T(n) = T(0) + T(n-1) + Θ(n) = T(n-1) + Θ(n). Expanding: T(n) = T(n-1) + cn = T(n-2) + c(n-1) + cn = ... = c(n + (n-1) + (n-2) + ... + 1) = c * n(n+1)/2 = Θ(n^2). This happens when the array is already sorted and we always choose the first element as pivot, or when the array is reverse sorted. Therefore, worst-case time complexity is O(n^2). QED.",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "sorting_algorithms",
+      "difficulty": "hard",
+      "source": "CLRS Chapter 7"
+    }
+  },
+  {
+    "query": "What is amortized analysis and explain the aggregate method",
+    "reference_answer": "Amortized analysis determines the average time per operation over a worst-case sequence of operations, providing a tighter bound than worst-case analysis of individual operations. The aggregate method is one technique: (1) Show that a sequence of n operations takes T(n) time in the worst case, (2) The amortized cost per operation is T(n)/n. Example: Dynamic array doubling. If we start with size 1 and double when full, the total cost for n insertions is: 1 + 2 + 4 + 8 + ... + 2^k (where 2^k >= n) for copying, plus n for regular insertions. Sum of powers of 2 is < 2n, so total is < 3n. Amortized cost per insertion is 3n/n = O(1). Even though occasional insertions cost O(n), the average cost is constant.",
+    "metadata": {
+      "query_type": "conceptual",
+      "topic": "amortized_analysis",
+      "difficulty": "hard",
+      "source": "CLRS Chapter 17"
+    }
+  },
+  {
+    "query": "Explain the Floyd-Warshall algorithm and its time complexity",
+    "reference_answer": "Floyd-Warshall is an all-pairs shortest path algorithm for weighted graphs (works with negative weights but not negative cycles). It uses dynamic programming with DP[i][j][k] = shortest path from i to j using only vertices {1,2,...,k} as intermediate nodes. Recurrence: DP[i][j][k] = min(DP[i][j][k-1], DP[i][k][k-1] + DP[k][j][k-1]), meaning either don't use k, or go through k. Base case: DP[i][j][0] = weight of edge (i,j) or infinity. Space can be optimized to 2D by updating in-place. The algorithm has three nested loops over V vertices, giving Θ(V^3) time complexity. It's simple to implement but slower than running Dijkstra V times with Fibonacci heap (O(V^2 log V + VE)).",
+    "metadata": {
+      "query_type": "algorithm_explanation",
+      "topic": "graph_algorithms",
+      "difficulty": "hard",
+      "source": "CLRS Chapter 25"
+    }
+  },
+  {
+    "query": "What is the difference between P and NP complexity classes?",
+    "reference_answer": "P is the class of decision problems solvable in polynomial time by a deterministic Turing machine. Examples: sorting, shortest path, binary search. NP is the class of decision problems whose solutions can be verified in polynomial time by a deterministic Turing machine (equivalently, solvable in polynomial time by a non-deterministic Turing machine). Examples: Boolean satisfiability (SAT), traveling salesman decision problem, graph coloring. Key difference: P requires polynomial-time solution, NP requires only polynomial-time verification. Clearly P ⊆ NP (if you can solve in polynomial time, you can verify in polynomial time). The P vs NP question asks whether P = NP, i.e., whether every problem whose solution can be quickly verified can also be quickly solved. This is an open problem and one of the Millennium Prize Problems.",
+    "metadata": {
+      "query_type": "conceptual",
+      "topic": "np_completeness",
+      "difficulty": "medium",
+      "source": "CLRS Chapter 34"
+    }
+  },
+  {
+    "query": "Describe the Longest Common Subsequence (LCS) problem and its DP solution",
+    "reference_answer": "The LCS problem asks: given two sequences X and Y, find the longest subsequence common to both (subsequence need not be contiguous). DP solution: Let DP[i][j] = length of LCS of X[1..i] and Y[1..j]. Recurrence: If X[i] = Y[j], then DP[i][j] = DP[i-1][j-1] + 1 (match, extend LCS). If X[i] ≠ Y[j], then DP[i][j] = max(DP[i-1][j], DP[i][j-1]) (skip one character). Base case: DP[i][0] = DP[0][j] = 0. The algorithm fills an (m+1) × (n+1) table where m = |X|, n = |Y|. Time complexity: Θ(mn). Space complexity: Θ(mn), optimizable to Θ(min(m,n)). To reconstruct the LCS, backtrack through the DP table from DP[m][n].",
+    "metadata": {
+      "query_type": "algorithm_explanation",
+      "topic": "dynamic_programming",
+      "difficulty": "medium",
+      "source": "CLRS Chapter 15"
+    }
+  }
+]

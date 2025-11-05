@@ -1,0 +1,1804 @@
+[
+  {
+    "query": "Prove f(n) = 9n + 7 = O(n)",
+    "reference_answer": "To prove f(n) = O(n), we need to find constants c > 0 and n₀ > 0 such that f(n) ≤ c·n for all n ≥ n₀. Given f(n) = 9n + 7. For n ≥ 1: 7 ≤ 7n. Therefore, 9n + 7 ≤ 9n + 7n = 16n. Choose c = 16 and n₀ = 1. Then f(n) ≤ 16n for all n ≥ 1. Hence 9n + 7 = O(n). QED.",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "asymptotic_analysis",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 3"
+    }
+  },
+  {
+    "query": "Show that n log n = O(n²)",
+    "reference_answer": "To prove n log n = O(n²), we need to find constants c > 0 and n₀ > 0 such that n log n ≤ c·n² for all n ≥ n₀. For n ≥ 2: log n ≤ n (since n grows faster than log n). Therefore, n log n ≤ n·n = n². Choose c = 1 and n₀ = 2. Then n log n ≤ n² for all n ≥ 2. Hence n log n = O(n²). QED.",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "asymptotic_analysis",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 3"
+    }
+  },
+  {
+    "query": "Prove n² + n log n = O(n²)",
+    "reference_answer": "To prove n² + n log n = O(n²), we need to find constants c > 0 and n₀ > 0 such that n² + n log n ≤ c·n² for all n ≥ n₀. For n ≥ 1: n log n ≤ n² (since log n ≤ n for n ≥ 1). Therefore, n² + n log n ≤ n² + n² = 2n². Choose c = 2 and n₀ = 1. Then n² + n log n ≤ 2n² for all n ≥ 1. Hence n² + n log n = O(n²). QED.",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "asymptotic_analysis",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 3"
+    }
+  },
+  {
+    "query": "True or false: n log n is o(n²)? Justify.",
+    "reference_answer": "True. n log n = o(n²) means lim(n→∞) (n log n)/n² = lim(n→∞) (log n)/n = 0. Since log n grows slower than n, the limit equals 0. Therefore, n log n is o(n²). This means n log n grows strictly slower than n² asymptotically.",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "Prove that 2ⁿ ≥ n³ for sufficiently large n",
+    "reference_answer": "We can prove this using limits or induction. Using limits: lim(n→∞) 2ⁿ/n³ = ∞, so 2ⁿ grows faster than n³. More formally, we can show by induction or calculus that for n ≥ 10, 2ⁿ > n³. The derivative of 2ⁿ is 2ⁿ ln 2 which grows exponentially, while derivative of n³ is 3n² which grows polynomially. Therefore, 2ⁿ eventually dominates n³. A specific bound: for n ≥ 10, 2ⁿ ≥ n³.",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 3"
+    }
+  },
+  {
+    "query": "Give a formal proof that √n is o(n)",
+    "reference_answer": "To prove √n = o(n), we need to show lim(n→∞) √n/n = lim(n→∞) 1/√n = 0. Since the limit equals 0, √n is o(n). Formally, for any ε > 0, we can find n₀ such that for all n ≥ n₀, √n/n < ε. Solving: 1/√n < ε ⇒ n > 1/ε². So choose n₀ = ⌈1/ε²⌉ + 1. Then for all n ≥ n₀, √n/n < ε. Hence √n = o(n).",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "Show that (n+1)ᵏ = O(nᵏ) for constant k",
+    "reference_answer": "To prove (n+1)ᵏ = O(nᵏ), expand (n+1)ᵏ using binomial theorem: (n+1)ᵏ = nᵏ + k·nᵏ⁻¹ + ... + 1. For n ≥ 1, each term nᵏ⁻ⁱ ≤ nᵏ. There are k+1 terms total, so (n+1)ᵏ ≤ (k+1)nᵏ. Choose c = k+1 and n₀ = 1. Then (n+1)ᵏ ≤ (k+1)nᵏ for all n ≥ 1. Hence (n+1)ᵏ = O(nᵏ).",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 3"
+    }
+  },
+  {
+    "query": "Prove n! is not O(2ⁿ)",
+    "reference_answer": "To prove n! is not O(2ⁿ), we show that no constants c, n₀ exist such that n! ≤ c·2ⁿ for all n ≥ n₀. Consider the ratio n!/2ⁿ. For n ≥ 4: n!/2ⁿ = (1·2·3·4·...·n)/(2·2·2·...·2) ≥ (4·5·...·n)/(2·2·...·2) which grows without bound as n increases. More formally, lim(n→∞) n!/2ⁿ = ∞, so n! grows faster than 2ⁿ. Therefore, n! ≠ O(2ⁿ).",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "asymptotic_analysis",
+      "difficulty": "hard",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 3"
+    }
+  },
+  {
+    "query": "Prove n²+n+1 = Θ(n²)",
+    "reference_answer": "To prove n²+n+1 = Θ(n²), we need to show both n²+n+1 = O(n²) and n²+n+1 = Ω(n²). For O(n²): n²+n+1 ≤ n²+n²+n² = 3n² for n ≥ 1, so choose c=3, n₀=1. For Ω(n²): n²+n+1 ≥ n² for all n ≥ 0, so choose c=1, n₀=0. Since both bounds hold, n²+n+1 = Θ(n²).",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "asymptotic_analysis",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "Prove that log(n!) = Θ(n log n)",
+    "reference_answer": "We prove both bounds. Upper bound: log(n!) = log(1·2·...·n) = log 1 + log 2 + ... + log n ≤ n log n. Lower bound: log(n!) ≥ log((n/2)^(n/2)) = (n/2)log(n/2) = (n/2)log n - (n/2)log 2 = Ω(n log n). More precisely, using Stirling's approximation: n! ~ √(2πn)(n/e)ⁿ, so log(n!) ~ n log n - n + O(log n) = Θ(n log n). Therefore, log(n!) = Θ(n log n).",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "asymptotic_analysis",
+      "difficulty": "hard",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 3"
+    }
+  },
+  {
+    "query": "Solve T(n) = 2T(n/2) + n using the Master Theorem",
+    "reference_answer": "The Master Theorem applies to recurrences of the form T(n) = aT(n/b) + f(n). Here, a = 2, b = 2, f(n) = n. Calculate n^(log_b a) = n^(log₂ 2) = n¹ = n. Compare f(n) = n with n^(log_b a) = n: f(n) = Θ(n^(log_b a)). This is Case 2 of the Master Theorem. Therefore, T(n) = Θ(n^(log_b a) log n) = Θ(n log n).",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "recurrence_relations",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 4"
+    }
+  },
+  {
+    "query": "Solve T(n) = T(n-1) + 1",
+    "reference_answer": "This recurrence represents a linear scan. Unrolling: T(n) = T(n-1) + 1 = T(n-2) + 1 + 1 = ... = T(0) + n. Assuming T(0) is constant, T(n) = Θ(n). This can also be seen as the recurrence for a simple loop that executes n times.",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "recurrence_relations",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "Solve T(n) = T(n-1) + n",
+    "reference_answer": "Unrolling the recurrence: T(n) = T(n-1) + n = T(n-2) + (n-1) + n = ... = T(0) + 1 + 2 + ... + n. The sum 1 + 2 + ... + n = n(n+1)/2 = Θ(n²). Therefore, T(n) = Θ(n²). This recurrence appears in algorithms like insertion sort in the worst case.",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "recurrence_relations",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "Solve T(n) = T(n-1) + T(n-2)",
+    "reference_answer": "This is the Fibonacci recurrence. The characteristic equation is r² = r + 1, so r² - r - 1 = 0. The roots are r = (1 ± √5)/2. The solution is T(n) = Θ(φⁿ) where φ = (1 + √5)/2 ≈ 1.618 is the golden ratio. More precisely, T(n) = Θ(((1 + √5)/2)ⁿ) = Θ(1.618ⁿ). This exponential growth makes such algorithms impractical for large n.",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "recurrence_relations",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 4"
+    }
+  },
+  {
+    "query": "Find closed form for T(n) = 2T(n/2) + O(n)",
+    "reference_answer": "This is the merge sort recurrence. Using the Master Theorem: a = 2, b = 2, f(n) = O(n). n^(log_b a) = n^(log₂ 2) = n¹ = n. Since f(n) = Θ(n^(log_b a)), this is Case 2. Therefore, T(n) = Θ(n log n). The closed form shows the divide-and-conquer nature: we split into 2 subproblems of size n/2 and do O(n) work to combine.",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "recurrence_relations",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 2"
+    }
+  },
+  {
+    "query": "Solve T(n) = T(n/3) + O(1)",
+    "reference_answer": "This recurrence represents repeatedly dividing by 3. Using the Master Theorem: a = 1, b = 3, f(n) = O(1). n^(log_b a) = n^(log₃ 1) = n⁰ = 1. Since f(n) = Θ(n^(log_b a)), this is Case 2. Therefore, T(n) = Θ(log n). Alternatively, unrolling: after k divisions, n/3^k = 1 ⇒ k = log₃ n. So T(n) = Θ(log n).",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "recurrence_relations",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 4"
+    }
+  },
+  {
+    "query": "Draw recursion tree for T(n) = 2T(n/2) + n log n",
+    "reference_answer": "At root: work = n log n. Two children: each has work = (n/2) log(n/2). Next level: four children, each with work = (n/4) log(n/4). The tree has log n levels. Total work = n log n + n log(n/2) + n log(n/4) + ... = n[log n + (log n - 1) + (log n - 2) + ... + 0] = n × Θ((log n)²) = Θ(n (log n)²). Therefore, T(n) = Θ(n (log n)²).",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "recurrence_relations",
+      "difficulty": "hard",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 4"
+    }
+  },
+  {
+    "query": "Formulate DP for the knapsack problem",
+    "reference_answer": "The 0/1 knapsack problem: given n items with weights w_i and values v_i, and capacity W, maximize total value without exceeding capacity. DP formulation: Let DP[i][w] = maximum value using first i items with capacity w. Recurrence: DP[i][w] = max(DP[i-1][w], DP[i-1][w-w_i] + v_i) if w_i ≤ w, else DP[i-1][w]. Base cases: DP[0][w] = 0 for all w, DP[i][0] = 0 for all i. The answer is DP[n][W]. Time complexity: O(nW), space complexity: O(nW) optimizable to O(W).",
+    "metadata": {
+      "query_type": "problem_formulation",
+      "topic": "dynamic_programming",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 16"
+    }
+  },
+  {
+    "query": "Formulate DP for LIS (Longest Increasing Subsequence)",
+    "reference_answer": "LIS problem: find the longest subsequence where elements are in increasing order. DP formulation: Let L[i] = length of LIS ending at position i. Recurrence: L[i] = 1 + max{L[j]} for all j < i where arr[j] < arr[i]. If no such j exists, L[i] = 1. Base case: L[0] = 1. The answer is max{L[i]} over all i. Time complexity: O(n²). Alternative O(n log n) solution uses binary search and maintains active lists.",
+    "metadata": {
+      "query_type": "problem_formulation",
+      "topic": "dynamic_programming",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 15"
+    }
+  },
+  {
+    "query": "DP formulation for matrix chain multiplication",
+    "reference_answer": "Matrix chain multiplication: given matrices A₁...Aₙ with dimensions p₀×p₁, p₁×p₂, ..., pₙ₋₁×pₙ, find the parenthesization that minimizes scalar multiplications. DP formulation: Let m[i][j] = minimum cost to multiply matrices i through j. Recurrence: m[i][j] = min(m[i][k] + m[k+1][j] + pᵢ₋₁pₖpⱼ) for i ≤ k < j. Base case: m[i][i] = 0. The answer is m[1][n]. Time complexity: O(n³), space complexity: O(n²).",
+    "metadata": {
+      "query_type": "problem_formulation",
+      "topic": "dynamic_programming",
+      "difficulty": "hard",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 15"
+    }
+  },
+  {
+    "query": "BFS traversal on undirected graph",
+    "reference_answer": "BFS (Breadth-First Search) explores nodes level by level. Algorithm: 1. Start from source node, mark visited, enqueue. 2. While queue not empty: dequeue node u, visit u, enqueue all unvisited neighbors of u and mark them visited. BFS finds shortest paths in unweighted graphs. Time complexity: O(V + E) using adjacency list. Space complexity: O(V) for queue and visited set. BFS produces a BFS tree where paths from root are shortest paths.",
+    "metadata": {
+      "query_type": "algorithm_explanation",
+      "topic": "graph_algorithms",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 5"
+    }
+  },
+  {
+    "query": "DFS traversal on directed graph",
+    "reference_answer": "DFS (Depth-First Search) explores as far as possible along each branch before backtracking. Algorithm (recursive): 1. Mark node as visited. 2. For each unvisited neighbor: recursively call DFS. Algorithm (iterative): use stack. DFS classifies edges as tree, back, forward, or cross edges. In directed graphs, DFS can detect cycles (back edges). Time complexity: O(V + E), space complexity: O(V) for recursion stack/visited set. DFS produces a DFS forest with discovery/finish times useful for topological sort.",
+    "metadata": {
+      "query_type": "algorithm_explanation",
+      "topic": "graph_algorithms",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 5"
+    }
+  },
+  {
+    "query": "Find connected components using DFS",
+    "reference_answer": "To find connected components in an undirected graph using DFS: 1. Initialize visited array, component counter. 2. For each unvisited node: increment component counter, perform DFS from that node marking all reachable nodes with current component ID. Each DFS call explores one connected component. Time complexity: O(V + E). The algorithm reveals the graph's connectivity structure. In directed graphs, we use Kosaraju's or Tarjan's algorithm for strongly connected components.",
+    "metadata": {
+      "query_type": "algorithm_explanation",
+      "topic": "graph_algorithms",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 5"
+    }
+  },
+  {
+    "query": "Implement Dijkstra's algorithm",
+    "reference_answer": "Dijkstra's algorithm finds shortest paths from a source in weighted graphs with non-negative weights. Algorithm: 1. Initialize distance[source]=0, others=∞, priority queue with all nodes. 2. While queue not empty: extract min node u, for each neighbor v of u: if distance[u] + weight(u,v) < distance[v], update distance[v] and decrease-key in queue. With binary heap: O((V+E) log V). With Fibonacci heap: O(V log V + E). Dijkstra's is greedy and doesn't work with negative weights.",
+    "metadata": {
+      "query_type": "algorithm_implementation",
+      "topic": "graph_algorithms",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 6"
+    }
+  },
+  {
+    "query": "Reduce SAT to 3SAT",
+    "reference_answer": "To reduce SAT to 3SAT, we convert any Boolean formula to an equivalent 3-CNF formula. For clauses with k>3 literals: (l₁ ∨ l₂ ∨ ... ∨ lₖ) becomes (l₁ ∨ l₂ ∨ x₁) ∧ (¬x₁ ∨ l₃ ∨ x₂) ∧ ... ∧ (¬xₖ₋₃ ∨ lₖ₋₁ ∨ lₖ). For clauses with k<3 literals: duplicate literals or add new variables that cancel out. This reduction is polynomial-time and preserves satisfiability. Since SAT is NP-complete and 3SAT is in NP, this shows 3SAT is NP-complete.",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "np_completeness",
+      "difficulty": "hard",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 34"
+    }
+  },
+  {
+    "query": "Reduce Clique to Vertex Cover",
+    "reference_answer": "Reduction: Given graph G and integer k for Clique problem, create complement graph G' and set k' = |V| - k for Vertex Cover. Theorem: G has clique of size k iff G' has vertex cover of size k'. Proof: If C is clique in G, then V-C is vertex cover in G' (since any edge in G' has at least one endpoint not in C). Conversely, if V' is vertex cover in G', then V-V' is clique in G. This polynomial-time reduction shows Vertex Cover is NP-complete since Clique is NP-complete.",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "np_completeness",
+      "difficulty": "hard",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 34"
+    }
+  },
+  {
+    "query": "Classify Hamiltonian Path: NP, NP-Complete, P?",
+    "reference_answer": "Hamiltonian Path (does a graph contain a path visiting each vertex exactly once?) is NP-complete. It is in NP because given a candidate path, we can verify in polynomial time that it visits each vertex exactly once. It is NP-hard because we can reduce Hamiltonian Cycle to Hamiltonian Path (add two vertices connected to all others). Since it's both in NP and NP-hard, Hamiltonian Path is NP-complete. Unless P=NP, there is no polynomial-time algorithm for it.",
+    "metadata": {
+      "query_type": "classification",
+      "topic": "np_completeness",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 34"
+    }
+  },
+  {
+    "query": "Classify TSP: NP, NP-Complete, NP-Hard?",
+    "reference_answer": "The Traveling Salesman Problem (TSP) in its decision form (is there a tour with cost ≤ k?) is NP-complete. It is in NP because given a tour, we can verify its cost in polynomial time. It is NP-hard because we can reduce Hamiltonian Cycle to TSP (set edge weights to 1 for existing edges, 2 for non-existent edges, and k = |V|). The optimization version of TSP is NP-hard. Unless P=NP, there is no polynomial-time exact algorithm for TSP.",
+    "metadata": {
+      "query_type": "classification",
+      "topic": "np_completeness",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 34"
+    }
+  },
+  {
+    "query": "Prove SAT NP-completeness",
+    "reference_answer": "SAT (Boolean satisfiability) is the first problem proven NP-complete (Cook-Levin theorem). Proof: 1) SAT ∈ NP: given assignment, verify in polynomial time. 2) SAT is NP-hard: for any problem L ∈ NP, there is a polynomial-time verifier V. Construct Boolean formula φ that encodes computation of V on input x and certificate y. φ is satisfiable iff V accepts (x,y). The reduction is polynomial-time. Therefore, SAT is NP-complete. This foundational result enables NP-completeness proofs via reduction from SAT.",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "np_completeness",
+      "difficulty": "hard",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 34"
+    }
+  },
+  
+  {
+    "query": "Which grows faster: n log n or n^1.5?",
+    "reference_answer": "To compare n log n and n^1.5, we examine the limit: lim(n→∞) (n log n)/(n^1.5) = lim(n→∞) (log n)/(n^0.5) = 0. Since the limit is 0, n log n grows slower than n^1.5. Therefore, n log n = O(n^1.5) and n^1.5 grows faster asymptotically.",
+    "metadata": {
+      "query_type": "comparison",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "Which grows slower: n log n or n^2/100?",
+    "reference_answer": "To compare n log n and n^2/100, we examine the limit: lim(n→∞) (n log n)/(n^2/100) = lim(n→∞) (100 log n)/n = 0. Since the limit is 0, n log n grows slower than n^2/100. The constant factor 1/100 doesn't affect the asymptotic relationship. Therefore, n log n = o(n^2/100).",
+    "metadata": {
+      "query_type": "comparison",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 3"
+    }
+  },
+  {
+    "query": "Compare growth for n^3 vs 2^n for n=10,50,100",
+    "reference_answer": "For n=10: n^3 = 1000, 2^n ≈ 1024 (similar magnitude). For n=50: n^3 = 125,000, 2^n ≈ 1.13×10^15 (2^n is much larger). For n=100: n^3 = 1,000,000, 2^n ≈ 1.27×10^30 (2^n is astronomically larger). This demonstrates that exponential functions eventually dominate polynomial functions, no matter the polynomial degree.",
+    "metadata": {
+      "query_type": "comparison",
+      "topic": "asymptotic_analysis",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "Given f(n) = n^a, at what a does 2^n overtake f(n)?",
+    "reference_answer": "For any fixed a > 0, 2^n will eventually overtake n^a. This is because lim(n→∞) n^a/2^n = 0 for all a > 0. The crossover point depends on a: for larger a, the crossover occurs at larger n. Formally, 2^n grows faster than any polynomial function n^a, so 2^n = ω(n^a) for all constants a.",
+    "metadata": {
+      "query_type": "conceptual",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 3"
+    }
+  },
+  {
+    "query": "Functional ordering: log n, n^{0.5}, n, n log n, n!, 2^n",
+    "reference_answer": "From slowest to fastest growth: log n < n^{0.5} < n < n log n < 2^n < n!. This ordering holds because: log n grows slower than any positive power of n; n^{0.5} = √n grows slower than n; n log n grows faster than n but slower than n^2; exponential 2^n grows faster than any polynomial; factorial n! grows faster than exponential.",
+    "metadata": {
+      "query_type": "ordering",
+      "topic": "asymptotic_analysis",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "Compare log(n!) vs n log n",
+    "reference_answer": "log(n!) = Θ(n log n). Upper bound: log(n!) ≤ log(n^n) = n log n. Lower bound: log(n!) ≥ log((n/2)^{n/2}) = (n/2)log(n/2) = Θ(n log n). More precisely, using Stirling's approximation: log(n!) = n log n - n + O(log n), so log(n!) ~ n log n for large n. Therefore, they have the same asymptotic growth rate.",
+    "metadata": {
+      "query_type": "comparison",
+      "topic": "asymptotic_analysis",
+      "difficulty": "hard",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 3"
+    }
+  },
+  {
+    "query": "Which grows faster: n^0.5 or log n?",
+    "reference_answer": "n^0.5 (square root of n) grows faster than log n. We can see this by examining the limit: lim(n→∞) (log n)/(n^0.5) = 0. Since the limit is 0, log n grows slower than n^0.5. In fact, n^ε grows faster than log n for any ε > 0.",
+    "metadata": {
+      "query_type": "comparison",
+      "topic": "asymptotic_analysis",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "Is log(log(n)) = o(log n)?",
+    "reference_answer": "Yes, log(log(n)) = o(log n). We can prove this by examining the limit: lim(n→∞) log(log(n))/log(n) = 0. This is because log(log(n)) grows much slower than log(n). In fact, for any constant k, (log n)^k = o(n^ε) for any ε > 0, but here we're comparing two logarithmic functions where the inner log makes the growth extremely slow.",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 3"
+    }
+  },
+  {
+    "query": "Which grows faster: n! or n^n?",
+    "reference_answer": "n^n grows faster than n!. We can see this by comparing their ratios: n!/n^n = (1/n) × (2/n) × ... × (n/n) ≤ 1/n → 0 as n → ∞. Therefore, lim(n→∞) n!/n^n = 0, so n! = o(n^n). In fact, n! grows roughly as (n/e)^n × √(2πn) by Stirling's approximation, while n^n grows as n^n.",
+    "metadata": {
+      "query_type": "comparison",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 3"
+    }
+  },
+  {
+    "query": "Find n such that n log n > 1000",
+    "reference_answer": "We need to solve n log n > 1000. For n=100: 100×log(100) ≈ 100×4.605 = 460.5 < 1000. For n=200: 200×log(200) ≈ 200×5.298 = 1059.6 > 1000. For n=190: 190×log(190) ≈ 190×5.247 = 996.9 < 1000. So the smallest integer n where n log n > 1000 is n=200. The exact solution requires solving n log n = 1000 numerically.",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "asymptotic_analysis",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "For T(n)=n^2+n, find smallest n where T(n)>1000",
+    "reference_answer": "We solve n^2 + n > 1000. This is n^2 + n - 1000 > 0. Using the quadratic formula: n = [-1 ± √(1+4000)]/2 = [-1 ± √4001]/2. √4001 ≈ 63.25, so n ≈ (-1 + 63.25)/2 ≈ 31.125. Since n must be an integer and T(31)=31^2+31=961+31=992<1000, T(32)=1024+32=1056>1000. Therefore, the smallest n is 32.",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "asymptotic_analysis",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "Estimate when 2^n overtakes n^3",
+    "reference_answer": "We need to find where 2^n > n^3. Testing values: n=10: 2^10=1024, 10^3=1000 (very close). n=20: 2^20=1,048,576, 20^3=8,000 (2^n much larger). n=15: 2^15=32,768, 15^3=3,375 (2^n larger). n=12: 2^12=4,096, 12^3=1,728 (2^n larger). n=11: 2^11=2,048, 11^3=1,331 (2^n larger). n=10: almost equal. So 2^n overtakes n^3 around n=10-11. The exact crossover can be found by solving 2^n = n^3 numerically.",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "For f(n)=n^2, how does doubling input affect runtime?",
+    "reference_answer": "If f(n)=n^2, then f(2n)=(2n)^2=4n^2=4f(n). So doubling the input size increases the runtime by a factor of 4. This is characteristic of quadratic time algorithms. In general, for f(n)=n^k, doubling input increases runtime by 2^k.",
+    "metadata": {
+      "query_type": "conceptual",
+      "topic": "asymptotic_analysis",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "If f(n)=O(n), what's f(2n)?",
+    "reference_answer": "If f(n)=O(n), then there exist constants c,n₀ such that f(n)≤cn for all n≥n₀. Then f(2n)≤c(2n)=2cn. So f(2n)=O(n) as well. In fact, if f(n)=O(n), then f(kn)=O(n) for any constant k. The asymptotic class O(n) is closed under constant scaling of the input.",
+    "metadata": {
+      "query_type": "conceptual",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 3"
+    }
+  },
+  {
+    "query": "For bubble sort, how does input size affect worst case time?",
+    "reference_answer": "Bubble sort has worst-case time complexity O(n^2). In the worst case (reverse sorted array), it makes n(n-1)/2 comparisons and swaps. Doubling the input size from n to 2n increases the worst-case time by approximately a factor of 4, since (2n)^2=4n^2. This quadratic growth makes bubble sort impractical for large datasets.",
+    "metadata": {
+      "query_type": "application",
+      "topic": "sorting_algorithms",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 2"
+    }
+  },
+  {
+    "query": "For merge sort, when is n log n > n^2?",
+    "reference_answer": "The inequality n log n > n^2 is equivalent to log n > n (dividing both sides by n, for n>0). But log n ≤ n for all n≥1, with equality only at n=1. Actually, n log n < n^2 for all n>1 since log n < n. The question might be misinterpreted - merge sort's n log n is always less than n^2 for n>4, which is why merge sort is asymptotically faster than quadratic algorithms.",
+    "metadata": {
+      "query_type": "conceptual",
+      "topic": "sorting_algorithms",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 2"
+    }
+  },
+  {
+    "query": "Solve T(n)=T(n-1)+3",
+    "reference_answer": "This recurrence represents a linear process. Unrolling: T(n)=T(n-1)+3=T(n-2)+3+3=...=T(0)+3n. Assuming T(0) is constant, T(n)=Θ(n). Each step adds a constant amount of work, leading to linear growth. This recurrence appears in algorithms that process each element once with constant work per element.",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "recurrence_relations",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "Solve T(n)=T(n/2)+n",
+    "reference_answer": "Using the recursion tree method: At root: work = n. One child: work = n/2. Next: work = n/4, and so on. The tree has log n levels. Total work = n + n/2 + n/4 + ... = n(1 + 1/2 + 1/4 + ...) ≤ 2n. Therefore, T(n)=Θ(n). Alternatively, using Master Theorem: a=1, b=2, f(n)=n. n^(log_b a)=n^0=1. Since f(n)=Ω(n^ε) for ε<1 and af(n/b)=n/2 ≤ cf(n) for c=1/2, Case 3 applies, so T(n)=Θ(n).",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "recurrence_relations",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 4"
+    }
+  },
+  {
+    "query": "Solve T(n)=3T(n/3)+n",
+    "reference_answer": "Using Master Theorem: a=3, b=3, f(n)=n. n^(log_b a)=n^(log_3 3)=n^1=n. Since f(n)=Θ(n^(log_b a)), this is Case 2. Therefore, T(n)=Θ(n log n). The recursion tree has log_3 n levels, with total work n at each level, giving n log_3 n total work.",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "recurrence_relations",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 4"
+    }
+  },
+  {
+    "query": "Analyze complexity for merge sort",
+    "reference_answer": "Merge sort has time complexity Θ(n log n) in all cases (best, average, and worst). The recurrence is T(n)=2T(n/2)+Θ(n). Using Master Theorem: a=2, b=2, f(n)=Θ(n), n^(log_b a)=n^1=n, so Case 2 applies giving T(n)=Θ(n log n). Space complexity is Θ(n) for the auxiliary array used in merging. Merge sort is stable and works well for large datasets but requires additional memory.",
+    "metadata": {
+      "query_type": "analysis",
+      "topic": "sorting_algorithms",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 2"
+    }
+  },
+  {
+    "query": "Analyze complexity for quicksort with random pivot",
+    "reference_answer": "Quicksort with random pivot selection has expected time complexity Θ(n log n). The recurrence is T(n)=T(k)+T(n-k-1)+Θ(n) where k is the pivot position. On average, k≈n/2, giving T(n)=2T(n/2)+Θ(n)=Θ(n log n). Worst-case is O(n^2) but occurs with negligible probability when using random pivots. Space complexity is O(log n) for the recursion stack on average. Randomization makes worst-case behavior unlikely in practice.",
+    "metadata": {
+      "query_type": "analysis",
+      "topic": "sorting_algorithms",
+      "difficulty": "hard",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 7"
+    }
+  },
+  {
+    "query": "Prove correctness of binary search D&C",
+    "reference_answer": "Binary search correctness proof: Invariant: If the key exists in the array, it must be in the current search range [low, high]. Base case: Initially, range is entire array, invariant holds. Inductive step: Compare key with middle element. If equal, found. If key < middle, search left half; if key > middle, search right half. The invariant is maintained because the array is sorted. Termination: Range shrinks by at least half each iteration, eventually becoming empty or finding the key. Therefore, algorithm is correct.",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "divide_and_conquer",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 3"
+    }
+  },
+  {
+    "query": "Complexity of Karatsuba's multiplication",
+    "reference_answer": "Karatsuba's algorithm for multiplying n-digit numbers has time complexity Θ(n^log_2 3) ≈ Θ(n^1.585). The recurrence is T(n)=3T(n/2)+Θ(n). Using Master Theorem: a=3, b=2, f(n)=Θ(n), n^(log_b a)=n^(log_2 3). Since f(n)=O(n^(log_2 3 - ε)) for ε>0, Case 1 applies, giving T(n)=Θ(n^log_2 3). This is faster than the school method's Θ(n^2) for large n.",
+    "metadata": {
+      "query_type": "analysis",
+      "topic": "divide_and_conquer",
+      "difficulty": "hard",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 4"
+    }
+  },
+  {
+    "query": "DP for coin change problem",
+    "reference_answer": "Coin change problem: Given coins of denominations d₁,...,dₘ and amount A, find minimum number of coins needed. DP formulation: Let C[a] = minimum coins for amount a. Recurrence: C[a] = min{C[a-dᵢ]} + 1 over all i where a≥dᵢ. Base case: C[0]=0. Initialize C[a]=∞ for a>0. The answer is C[A]. Time complexity: O(mA), space complexity: O(A). This finds the minimum coins needed, or determines it's impossible if C[A] remains ∞.",
+    "metadata": {
+      "query_type": "problem_formulation",
+      "topic": "dynamic_programming",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 15"
+    }
+  },
+  {
+    "query": "DP for edit distance",
+    "reference_answer": "Edit distance problem: Find minimum operations (insert, delete, replace) to transform string X to Y. DP formulation: Let E[i][j] = edit distance between X[1..i] and Y[1..j]. Recurrence: E[i][j] = min{E[i-1][j]+1 (delete), E[i][j-1]+1 (insert), E[i-1][j-1]+cost (replace)} where cost=0 if X[i]=Y[j] else 1. Base cases: E[0][j]=j, E[i][0]=i. The answer is E[m][n]. Time complexity: O(mn), space complexity: O(mn).",
+    "metadata": {
+      "query_type": "problem_formulation",
+      "topic": "dynamic_programming",
+      "difficulty": "hard",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 15"
+    }
+  },
+  {
+    "query": "DFS for topological sort",
+    "reference_answer": "Topological sort algorithm using DFS: 1. Perform DFS on the DAG. 2. When a vertex is finished (all descendants processed), add it to the front of a list. 3. The final list is a topological ordering. Correctness: In a DAG, if u→v is an edge, then v finishes before u in DFS, so v appears before u in the list, maintaining the partial order. Time complexity: O(V+E). The algorithm works because DFS produces a reverse finishing time order that respects the directed edges.",
+    "metadata": {
+      "query_type": "algorithm_explanation",
+      "topic": "graph_algorithms",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 5"
+    }
+  },
+  {
+    "query": "BFS for shortest path in unweighted graph",
+    "reference_answer": "BFS finds shortest paths in unweighted graphs: 1. Start from source, distance=0. 2. For each vertex dequeued, set distance of unvisited neighbors to current distance+1. 3. The BFS tree gives shortest paths. Correctness: BFS explores vertices in order of increasing distance from source. Time complexity: O(V+E). Each vertex and edge processed once. The algorithm guarantees shortest paths because it always expands the frontier uniformly.",
+    "metadata": {
+      "query_type": "algorithm_explanation",
+      "topic": "graph_algorithms",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 5"
+    }
+  },
+  
+  {
+    "query": "Implement Kruskal's MST algorithm",
+    "reference_answer": "Kruskal's algorithm for Minimum Spanning Tree: 1. Sort all edges by weight. 2. Initialize empty MST. 3. For each edge in sorted order: if adding the edge doesn't form a cycle, add it to MST. Use union-find data structure to efficiently check cycles. Time complexity: O(E log E) for sorting + O(E α(V)) for union-find operations = O(E log V). The algorithm is greedy and always selects the smallest safe edge.",
+    "metadata": {
+      "query_type": "algorithm_implementation",
+      "topic": "graph_algorithms",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 6"
+    }
+  },
+  {
+    "query": "Implement Prim's MST algorithm",
+    "reference_answer": "Prim's algorithm for Minimum Spanning Tree: 1. Start with any vertex in MST. 2. Maintain priority queue of edges connecting MST to outside vertices. 3. Repeatedly add the minimum weight edge that connects MST to a new vertex. 4. Update priority queue with edges from the new vertex. With binary heap: O(E log V). With Fibonacci heap: O(E + V log V). Prim's grows the MST one vertex at a time.",
+    "metadata": {
+      "query_type": "algorithm_implementation",
+      "topic": "graph_algorithms",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 6"
+    }
+  },
+  {
+    "query": "Prove correctness of Kruskal's algorithm",
+    "reference_answer": "Proof of Kruskal's correctness uses the cut property: For any cut (S, V-S) of the graph, the minimum weight edge crossing the cut is in some MST. Kruskal's always adds the minimum weight edge that doesn't form a cycle, which is equivalent to the minimum edge across some cut (the cut separating the current connected components). By induction, each added edge is in some MST. Since the algorithm adds exactly V-1 edges, the result is an MST.",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "graph_algorithms",
+      "difficulty": "hard",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 23"
+    }
+  },
+  {
+    "query": "Reduce Subset Sum to Partition",
+    "reference_answer": "Reduction from Subset Sum to Partition: Given Subset Sum instance (S, t) where S is a set of integers and t is the target, create Partition instance S' = S ∪ {2T - t, T + t} where T = sum(S). If there's a subset summing to t in S, then the partition of S' is: the subset plus (2T - t) in one part, and the complement plus (T + t) in the other. Both parts sum to 2T. Conversely, if S' can be partitioned, then the elements from S must be split to balance the added elements, giving a subset summing to t.",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "np_completeness",
+      "difficulty": "hard",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 34"
+    }
+  },
+  {
+    "query": "Reduce Hamiltonian Path to Hamiltonian Cycle",
+    "reference_answer": "Reduction from Hamiltonian Path to Hamiltonian Cycle: Given graph G for Hamiltonian Path, create G' by adding a new vertex v' connected to all vertices of G. G has a Hamiltonian path iff G' has a Hamiltonian cycle. If G has Hamiltonian path u₁→u₂→...→uₙ, then G' has cycle v'→u₁→u₂→...→uₙ→v'. Conversely, if G' has Hamiltonian cycle, removing v' gives Hamiltonian path in G.",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "np_completeness",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 34"
+    }
+  },
+  {
+    "query": "Is Subset Sum problem NP-complete?",
+    "reference_answer": "Yes, Subset Sum is NP-complete. It is in NP because given a subset, we can verify in polynomial time that it sums to the target. It is NP-hard because we can reduce from 3SAT or Partition. The standard reduction shows that any NP problem can be encoded as a Subset Sum instance. Therefore, Subset Sum is both in NP and NP-hard, making it NP-complete.",
+    "metadata": {
+      "query_type": "classification",
+      "topic": "np_completeness",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 34"
+    }
+  },
+  {
+    "query": "Classify Set Cover: NP-Complete?",
+    "reference_answer": "Yes, Set Cover is NP-complete. It is in NP because given a collection of sets, we can verify in polynomial time that they cover the universe and don't exceed k. It is NP-hard by reduction from Vertex Cover: given graph G and k for Vertex Cover, create Set Cover instance where universe is edges, and each vertex becomes a set containing its incident edges. G has vertex cover of size k iff the sets have a cover of size k.",
+    "metadata": {
+      "query_type": "classification",
+      "topic": "np_completeness",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 35"
+    }
+  },
+  {
+    "query": "Is k-Vertex Cover in P for k=2?",
+    "reference_answer": "Yes, k-Vertex Cover is in P for any fixed k. For k=2, we can check all pairs of vertices (O(V²) pairs) and verify if they cover all edges (O(E) time per pair). Total time O(V²E), which is polynomial. In general, for fixed k, we can check all (V choose k) subsets, which is O(V^k E), polynomial when k is fixed. However, when k is part of the input, Vertex Cover becomes NP-complete.",
+    "metadata": {
+      "query_type": "classification",
+      "topic": "np_completeness",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 34"
+    }
+  },
+  {
+    "query": "Prove Vertex Cover NP-completeness",
+    "reference_answer": "Vertex Cover is NP-complete. It is in NP because given a vertex set, we can verify in O(E) time that every edge has at least one endpoint in the set. It is NP-hard by reduction from 3SAT: given 3-CNF formula, create graph with two vertices per variable (true/false) and triangle for each clause connecting the literals. Add edges between complementary literals. The formula is satisfiable iff the graph has vertex cover of size n + 2m where n is variables, m is clauses.",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "np_completeness",
+      "difficulty": "hard",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 34"
+    }
+  },
+  {
+    "query": "Prove Subset Sum NP-completeness",
+    "reference_answer": "Subset Sum is NP-complete. It is in NP because given a subset, we can verify the sum in polynomial time. It is NP-hard by reduction from 3SAT: given 3-CNF formula with n variables and m clauses, create numbers in base (m+1). For each variable, create two numbers representing true/false assignments. For each clause, create numbers to enforce satisfaction. The target sum is constructed so that a subset exists iff the formula is satisfiable. The reduction is polynomial in the input size.",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "np_completeness",
+      "difficulty": "hard",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 34"
+    }
+  },
+  {
+    "query": "Which function is largest for n=1000: n!, 2^n, n^n?",
+    "reference_answer": "For n=1000: n! ≈ 4.02×10^2567, 2^n ≈ 1.07×10^301, n^n = 1000^1000 = 10^3000. Comparing exponents: n! has exponent ~2567, 2^n has exponent 301, n^n has exponent 3000. Therefore, n^n (10^3000) is largest, followed by n! (10^2567), and 2^n (10^301) is smallest. The ordering is: 2^n < n! < n^n for n=1000.",
+    "metadata": {
+      "query_type": "comparison",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "Compare: n^a and a^n for a=2, n → ∞",
+    "reference_answer": "For fixed a=2, we compare n² vs 2ⁿ. lim(n→∞) n²/2ⁿ = 0, so 2ⁿ grows much faster than n². In general, for any fixed a>1, aⁿ grows faster than n^a. Exponential functions always dominate polynomial functions asymptotically, regardless of the polynomial degree or exponential base (as long as base>1).",
+    "metadata": {
+      "query_type": "comparison",
+      "topic": "asymptotic_analysis",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 3"
+    }
+  },
+  {
+    "query": "Find n where n! > 10^6",
+    "reference_answer": "We test values: 9! = 362,880 < 10^6, 10! = 3,628,800 > 10^6. Therefore, n=10 is the smallest integer where n! > 10^6. For n=10, factorial exceeds one million. This demonstrates the rapid growth of factorial function.",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "asymptotic_analysis",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "For n^2, find n where program takes 1 minute if each operation is 1μs",
+    "reference_answer": "If each operation takes 1μs (10^-6 seconds), and we have n² operations, then time = n² × 10^-6 seconds. Set equal to 60 seconds: n² × 10^-6 = 60 ⇒ n² = 60 × 10^6 = 6 × 10^7 ⇒ n = √(6×10^7) ≈ √60,000,000 ≈ 7746. So for n ≈ 7746, an O(n²) algorithm would take about 1 minute with 1μs per operation.",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "For exponential algorithms, estimate max input size for 1min runtime",
+    "reference_answer": "For exponential time O(2ⁿ) with 1μs per operation: 2ⁿ × 10^-6 = 60 ⇒ 2ⁿ = 60 × 10^6 ≈ 2^26 × 60 (since 2^26 ≈ 67 million). So 2ⁿ ≈ 2^26 ⇒ n ≈ 26. For O(n!), it's even smaller: n! × 10^-6 = 60 ⇒ n! = 60 × 10^6. Testing: 11! ≈ 4×10^7, 10! ≈ 3.6×10^6. So n ≈ 10-11. Exponential and factorial algorithms are impractical for large n.",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "Solve T(n)=4T(n/2)+n^2 using Master Theorem",
+    "reference_answer": "Using Master Theorem: a=4, b=2, f(n)=n². n^(log_b a)=n^(log₂ 4)=n². Since f(n)=Θ(n^(log_b a)), this is Case 2. Therefore, T(n)=Θ(n^(log_b a) log n)=Θ(n² log n). The work is evenly distributed across levels, with logarithmic overhead from the recursion depth.",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "recurrence_relations",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 4"
+    }
+  },
+  {
+    "query": "Solve T(n)=T(n/2)+O(1) using Master Theorem",
+    "reference_answer": "Using Master Theorem: a=1, b=2, f(n)=O(1). n^(log_b a)=n^(log₂ 1)=n⁰=1. Since f(n)=Θ(n^(log_b a)), this is Case 2. Therefore, T(n)=Θ(n^(log_b a) log n)=Θ(log n). This recurrence appears in binary search and other algorithms that halve the problem size with constant work.",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "recurrence_relations",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 4"
+    }
+  },
+  {
+    "query": "Use Master Theorem for Karatsuba algorithm",
+    "reference_answer": "Karatsuba's recurrence: T(n)=3T(n/2)+Θ(n). Master Theorem: a=3, b=2, f(n)=Θ(n). n^(log_b a)=n^(log₂ 3)≈n^1.585. Since f(n)=O(n^(log₂ 3 - ε)) for ε>0 (specifically ε≈0.415), Case 1 applies. Therefore, T(n)=Θ(n^(log₂ 3))≈Θ(n^1.585). This shows Karatsuba is asymptotically faster than school method's Θ(n²).",
+    "metadata": {
+      "query_type": "application",
+      "topic": "recurrence_relations",
+      "difficulty": "hard",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 4"
+    }
+  },
+  {
+    "query": "DP for climbing stairs ways",
+    "reference_answer": "Climbing stairs problem: Count ways to climb n stairs taking 1 or 2 steps at a time. DP formulation: Let W[i] = ways to reach step i. Recurrence: W[i] = W[i-1] + W[i-2]. Base cases: W[0]=1, W[1]=1. This is essentially the Fibonacci sequence. The answer is W[n]. Time complexity: O(n), space complexity: O(n) optimizable to O(1).",
+    "metadata": {
+      "query_type": "problem_formulation",
+      "topic": "dynamic_programming",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 15"
+    }
+  },
+  {
+    "query": "DP for unique paths in grid",
+    "reference_answer": "Unique paths in m×n grid from top-left to bottom-right, moving only right or down. DP formulation: Let P[i][j] = paths to reach cell (i,j). Recurrence: P[i][j] = P[i-1][j] + P[i][j-1]. Base cases: P[0][j]=1 for all j, P[i][0]=1 for all i. The answer is P[m-1][n-1]. Time complexity: O(mn), space complexity: O(mn) optimizable to O(n).",
+    "metadata": {
+      "query_type": "problem_formulation",
+      "topic": "dynamic_programming",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 15"
+    }
+  },
+  {
+    "query": "DP for egg dropping puzzle",
+    "reference_answer": "Egg dropping: Find minimum trials to find critical floor with k eggs and n floors. DP formulation: Let E[e][f] = minimum trials with e eggs and f floors. Recurrence: E[e][f] = 1 + min_{1≤x≤f}(max(E[e-1][x-1], E[e][f-x])). Base cases: E[1][f]=f, E[e][0]=0, E[e][1]=1. The answer is E[k][n]. Time complexity: O(kn²), space complexity: O(kn).",
+    "metadata": {
+      "query_type": "problem_formulation",
+      "topic": "dynamic_programming",
+      "difficulty": "hard",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 15"
+    }
+  },
+  {
+    "query": "Bellman-Ford for shortest path",
+    "reference_answer": "Bellman-Ford algorithm for shortest paths with negative weights: 1. Initialize distance[source]=0, others=∞. 2. Relax all edges V-1 times. 3. Check for negative cycles by testing if any edge can still be relaxed. Time complexity: O(VE). Works with negative weights but not negative cycles. Detects negative cycles if they exist. Slower than Dijkstra but more general.",
+    "metadata": {
+      "query_type": "algorithm_implementation",
+      "topic": "graph_algorithms",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 6"
+    }
+  },
+  {
+    "query": "Shortest path in DAG using topological sort",
+    "reference_answer": "For DAGs, shortest paths can be found in O(V+E) time: 1. Compute topological ordering. 2. Initialize distance[source]=0, others=∞. 3. Process vertices in topological order: for each outgoing edge (u,v) with weight w, if distance[u]+w < distance[v], update distance[v]. Correct because when processing u, all incoming edges to u have been processed. Works with negative weights in DAGs. More efficient than Bellman-Ford for DAGs.",
+    "metadata": {
+      "query_type": "algorithm_explanation",
+      "topic": "graph_algorithms",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 6"
+    }
+  },
+  {
+    "query": "Floyd-Warshall for all-pairs shortest paths",
+    "reference_answer": "Floyd-Warshall algorithm: Computes shortest paths between all pairs. DP formulation: Let D[k][i][j] = shortest path from i to j using intermediate vertices {1,...,k}. Recurrence: D[k][i][j] = min(D[k-1][i][j], D[k-1][i][k] + D[k-1][k][j]). Space can be optimized to 2D. Time complexity: Θ(V³), space: Θ(V²). Works with negative weights but not negative cycles. Simpler than running Dijkstra V times.",
+    "metadata": {
+      "query_type": "algorithm_explanation",
+      "topic": "graph_algorithms",
+      "difficulty": "hard",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 6"
+    }
+  },
+  {
+    "query": "Prove optimal substructure for knapsack",
+    "reference_answer": "Knapsack optimal substructure proof: Let O be optimal solution for capacity W with n items. Consider whether item n is in O: Case 1: n not in O, then O is optimal for first n-1 items with capacity W. Case 2: n in O, then O-{n} is optimal for first n-1 items with capacity W-w_n. Proof by contradiction: if a better solution existed for the subproblem, we could combine with the decision about item n to get a better overall solution, contradicting optimality of O.",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "dynamic_programming",
+      "difficulty": "hard",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 16"
+    }
+  },
+  {
+    "query": "Prove NP-completeness of Hamiltonian Cycle",
+    "reference_answer": "Hamiltonian Cycle is NP-complete. It is in NP because given a cycle, we can verify it visits each vertex exactly once. It is NP-hard by reduction from Vertex Cover: given graph G and k for Vertex Cover, construct G' where each edge becomes a gadget. G has vertex cover of size k iff G' has Hamiltonian cycle. The reduction encodes the vertex cover selection into Hamiltonian cycle existence. Therefore, Hamiltonian Cycle is NP-complete.",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "np_completeness",
+      "difficulty": "hard",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 34"
+    }
+  },
+  {
+    "query": "Analyze T(n)=T(n-1)+2T(n-2)+O(1)",
+    "reference_answer": "This is a linear homogeneous recurrence with characteristic equation: r² = r + 2, so r² - r - 2 = 0. The roots are r = 2 and r = -1. Therefore, the solution is T(n) = A·2ⁿ + B·(-1)ⁿ + O(1). The dominant term is 2ⁿ, so T(n) = Θ(2ⁿ). This exponential growth makes such algorithms impractical for large n.",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "recurrence_relations",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 4"
+    }
+  },
+  {
+    "query": "Recursion for max-subarray sum",
+    "reference_answer": "The maximum subarray sum problem can be solved using divide-and-conquer in O(n log n) time. Recurrence: T(n) = 2T(n/2) + Θ(n). The algorithm divides the array in half, recursively finds maximum subarray in left and right halves, and finds maximum crossing subarray in Θ(n) time. The maximum of these three gives the solution. Using Master Theorem: a=2, b=2, f(n)=Θ(n), so T(n)=Θ(n log n).",
+    "metadata": {
+      "query_type": "algorithm_explanation",
+      "topic": "divide_and_conquer",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 4"
+    }
+  },
+  {
+    "query": "Solve T(n)=T(n/2)+T(n/4)+O(n)",
+    "reference_answer": "This recurrence can be solved using the recursion tree method. The tree has irregular structure but the total work is dominated by the root level. The recurrence T(n) = T(n/2) + T(n/4) + O(n) has solution T(n) = O(n). This can be verified using the Akra-Bazzi method or by observing that the geometric series of work converges to O(n).",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "recurrence_relations",
+      "difficulty": "hard",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 4"
+    }
+  },
+  {
+    "query": "Find closed form for T(n)=T(n-1)+n^2",
+    "reference_answer": "Unrolling the recurrence: T(n) = T(n-1) + n² = T(n-2) + (n-1)² + n² = ... = T(0) + 1² + 2² + ... + n². The sum of squares is n(n+1)(2n+1)/6 = Θ(n³). Therefore, T(n) = Θ(n³). This recurrence appears in algorithms that process all pairs of elements.",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "recurrence_relations",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "Closed form for T(n)=T(n-1)+log n",
+    "reference_answer": "Unrolling: T(n) = T(n-1) + log n = T(n-2) + log(n-1) + log n = ... = T(0) + Σ_{i=1}^n log i = T(0) + log(n!). Since log(n!) = Θ(n log n), we have T(n) = Θ(n log n). This recurrence appears in algorithms that process elements with logarithmic work per element.",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "recurrence_relations",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 4"
+    }
+  },
+  {
+    "query": "D&C for Closest Pair of Points in 2D",
+    "reference_answer": "Closest pair algorithm: 1. Sort points by x-coordinate. 2. Divide points into left and right halves. 3. Recursively find closest pairs in left and right. 4. Find closest split pair (one point in left, one in right) by checking points within strip of width δ around median, where δ is min of left and right closest distances. 5. The closest pair is min of left, right, and split pairs. Time complexity: T(n) = 2T(n/2) + O(n) = O(n log n).",
+    "metadata": {
+      "query_type": "algorithm_explanation",
+      "topic": "divide_and_conquer",
+      "difficulty": "hard",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 33"
+    }
+  },
+  {
+    "query": "Recurrence for Strassen's matrix multiplication",
+    "reference_answer": "Strassen's algorithm recurrence: T(n) = 7T(n/2) + Θ(n²). Using Master Theorem: a=7, b=2, f(n)=Θ(n²). n^(log_b a)=n^(log₂ 7)≈n^2.807. Since f(n)=O(n^(log₂ 7 - ε)) for ε>0, Case 1 applies. Therefore, T(n)=Θ(n^(log₂ 7))≈Θ(n^2.807), which is faster than the standard O(n³) matrix multiplication.",
+    "metadata": {
+      "query_type": "analysis",
+      "topic": "divide_and_conquer",
+      "difficulty": "hard",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 4"
+    }
+  },
+  {
+    "query": "D&C analysis for finding kth order statistic",
+    "reference_answer": "Quickselect algorithm for kth order statistic has expected time O(n). Recurrence: T(n) = T(n/2) + O(n) on average (with good pivot selection). Using Master Theorem: a=1, b=2, f(n)=O(n), n^(log_b a)=n^0=1. Since f(n)=Ω(n^ε) for ε<1 and af(n/b)≤cf(n) for c<1, Case 3 applies, giving T(n)=Θ(n). Worst-case is O(n²) but unlikely with random pivots.",
+    "metadata": {
+      "query_type": "analysis",
+      "topic": "divide_and_conquer",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 9"
+    }
+  },
+  {
+    "query": "Complexity for quickselect algorithm",
+    "reference_answer": "Quickselect (for kth smallest element) has average-case time O(n) and worst-case O(n²). The recurrence for average case is T(n) = T(n/2) + O(n) assuming good pivot selection that splits the array roughly in half. This solves to T(n) = O(n). With median-of-medians pivot selection, worst-case becomes O(n) but with larger constant factors. Space complexity is O(1) for iterative version.",
+    "metadata": {
+      "query_type": "analysis",
+      "topic": "divide_and_conquer",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 9"
+    }
+  },
+  {
+    "query": "D&C for exponentiation",
+    "reference_answer": "Exponentiation using divide-and-conquer: To compute aⁿ, if n is even: aⁿ = (a^(n/2))², if n is odd: aⁿ = a·(a^((n-1)/2))². Recurrence: T(n) = T(n/2) + Θ(1). Using Master Theorem: a=1, b=2, f(n)=Θ(1), n^(log_b a)=n^0=1, so Case 2 applies: T(n)=Θ(log n). This is much faster than the naive O(n) algorithm.",
+    "metadata": {
+      "query_type": "algorithm_explanation",
+      "topic": "divide_and_conquer",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 4"
+    }
+  },
+  {
+    "query": "DP for longest palindromic subsequence",
+    "reference_answer": "Longest Palindromic Subsequence: Given string s, find longest subsequence that is a palindrome. DP formulation: Let L[i][j] = length of LPS from i to j. Recurrence: if s[i]=s[j], L[i][j]=2+L[i+1][j-1]; else L[i][j]=max(L[i+1][j], L[i][j-1]). Base cases: L[i][i]=1, L[i][i-1]=0. Fill table for increasing substring lengths. Time complexity: O(n²), space: O(n²).",
+    "metadata": {
+      "query_type": "problem_formulation",
+      "topic": "dynamic_programming",
+      "difficulty": "hard",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 15"
+    }
+  },
+  {
+    "query": "DP for weighted interval scheduling",
+    "reference_answer": "Weighted Interval Scheduling: Given intervals with weights, select non-overlapping intervals to maximize total weight. DP formulation: Sort intervals by finish time. Let p(j) = largest index i < j such that interval i doesn't overlap j. Let OPT(j) = max weight using first j intervals. Recurrence: OPT(j) = max(OPT(j-1), w_j + OPT(p(j))). Precompute p(j) in O(n log n). Time complexity: O(n log n), space: O(n).",
+    "metadata": {
+      "query_type": "problem_formulation",
+      "topic": "dynamic_programming",
+      "difficulty": "hard",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 15"
+    }
+  },
+  {
+    "query": "DP for min-cost path in grid",
+    "reference_answer": "Min-cost path in grid from (0,0) to (m-1,n-1) with movement only right or down. DP formulation: Let C[i][j] = min cost to reach (i,j). Recurrence: C[i][j] = cost[i][j] + min(C[i-1][j], C[i][j-1]). Base cases: C[0][0]=cost[0][0], C[i][0]=Σ_{k=0}^i cost[k][0], C[0][j]=Σ_{k=0}^j cost[0][k]. Time complexity: O(mn), space: O(mn) optimizable to O(n).",
+    "metadata": {
+      "query_type": "problem_formulation",
+      "topic": "dynamic_programming",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 15"
+    }
+  },
+  {
+    "query": "DP for counting binary search trees",
+    "reference_answer": "Count number of unique BSTs with n distinct keys. DP formulation: Let C[n] = number of BSTs with n nodes. Recurrence: C[n] = Σ_{i=0}^{n-1} C[i]·C[n-1-i] with C[0]=1. This is the Catalan number recurrence. Solution: C[n] = (2n choose n)/(n+1) = Θ(4ⁿ/n^(3/2)). Time to compute: O(n²) using DP, O(1) using closed form.",
+    "metadata": {
+      "query_type": "problem_formulation",
+      "topic": "dynamic_programming",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 15"
+    }
+  },
+  {
+    "query": "DFS for strongly connected components",
+    "reference_answer": "Kosaraju's algorithm for SCCs: 1. Do DFS on original graph, record finishing times. 2. Compute transpose graph (reverse all edges). 3. Do DFS on transpose graph in decreasing order of finishing times. Each DFS tree in step 3 is an SCC. Time complexity: O(V+E). Correct because in the transpose graph, SCCs remain the same, and processing in reverse finishing time order ensures we find complete SCCs.",
+    "metadata": {
+      "query_type": "algorithm_explanation",
+      "topic": "graph_algorithms",
+      "difficulty": "hard",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 5"
+    }
+  },
+  {
+    "query": "BFS for bipartite test",
+    "reference_answer": "BFS can test if a graph is bipartite: 1. Start BFS from any vertex, color it 0. 2. Color neighbors with alternating colors (1, then 0, then 1, etc.). 3. If any edge connects vertices of same color, graph is not bipartite. Time complexity: O(V+E). A graph is bipartite iff it contains no odd-length cycles, which BFS can detect by finding edges between same-level vertices.",
+    "metadata": {
+      "query_type": "algorithm_explanation",
+      "topic": "graph_algorithms",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 5"
+    }
+  },
+  {
+    "query": "DFS for cycle detection in directed graph",
+    "reference_answer": "DFS can detect cycles in directed graphs using recursion stack: 1. Maintain visited array and recursion stack array. 2. During DFS, if we encounter a vertex that is in the recursion stack, a cycle exists. 3. Backtrack by removing vertex from recursion stack when finished. Time complexity: O(V+E). The recursion stack tracks the current DFS path, so any back edge to a vertex in the stack indicates a cycle.",
+    "metadata": {
+      "query_type": "algorithm_explanation",
+      "topic": "graph_algorithms",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 5"
+    }
+  },
+  {
+    "query": "Find articulation points using DFS",
+    "reference_answer": "Articulation points (cut vertices) can be found using DFS: 1. Maintain discovery time and low value for each vertex. 2. Low value is minimum of discovery time and low values of descendants and back edges. 3. Root is articulation point if it has >1 children. 4. Non-root v is articulation point if it has a child u with low[u] ≥ disc[v]. Time complexity: O(V+E). This uses Tarjan's algorithm variant.",
+    "metadata": {
+      "query_type": "algorithm_explanation",
+      "topic": "graph_algorithms",
+      "difficulty": "hard",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 5"
+    }
+  },
+  {
+    "query": "Bellman-Ford for detecting negative cycles",
+    "reference_answer": "Bellman-Ford can detect negative cycles: After V-1 iterations of relaxing all edges, if we can still relax any edge, a negative cycle exists. Specifically: 1. Run standard Bellman-Ford for V-1 iterations. 2. Do one more iteration: if any distance decreases, negative cycle exists. 3. To find the cycle, backtrack using predecessor pointers. Time complexity: O(VE). The algorithm guarantees that after V-1 iterations, all shortest paths are found unless negative cycles exist.",
+    "metadata": {
+      "query_type": "algorithm_explanation",
+      "topic": "graph_algorithms",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 6"
+    }
+  },
+  {
+    "query": "MST for complete graph",
+    "reference_answer": "For complete graphs with n vertices (having n(n-1)/2 edges), Prim's algorithm with adjacency matrix takes O(n²) time. With binary heap, it takes O(E log V) = O(n² log n), which is worse for dense graphs. Kruskal's takes O(E log E) = O(n² log n²) = O(n² log n). For complete graphs, the simple O(n²) Prim's implementation is optimal since any MST algorithm must consider Ω(n²) edges.",
+    "metadata": {
+      "query_type": "analysis",
+      "topic": "graph_algorithms",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 6"
+    }
+  },
+  {
+    "query": "Reduce Graph Coloring to 3SAT",
+    "reference_answer": "Reduction from 3-Coloring to 3SAT: Given graph G for 3-coloring, create 3SAT formula with 3 variables per vertex (x_v,r, x_v,g, x_v,b) representing colors. Clauses: 1. Each vertex gets exactly one color: (x_v,r ∨ x_v,g ∨ x_v,b) and ¬(x_v,r ∧ x_v,g) etc. 2. For each edge (u,v): ¬(x_u,r ∧ x_v,r) ∧ ¬(x_u,g ∧ x_v,g) ∧ ¬(x_u,b ∧ x_v,b). G is 3-colorable iff the formula is satisfiable. The reduction is polynomial-time.",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "np_completeness",
+      "difficulty": "hard",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 34"
+    }
+  },
+  {
+    "query": "Reduce Vertex Cover to Set Cover",
+    "reference_answer": "Reduction from Vertex Cover to Set Cover: Given graph G=(V,E) and k for Vertex Cover, create Set Cover instance where universe U = E (the edges). For each vertex v ∈ V, create set S_v containing all edges incident to v. G has vertex cover of size k iff the sets {S_v} have a set cover of size k. The reduction preserves the solution size and is clearly polynomial-time.",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "np_completeness",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 35"
+    }
+  },
+  {
+    "query": "Classify Graph Coloring problem",
+    "reference_answer": "Graph k-Coloring (can graph be colored with k colors so adjacent vertices have different colors?) is NP-complete for k ≥ 3. It is in NP because given a coloring, we can verify in polynomial time. It is NP-hard by reduction from 3SAT. For k=2 (bipartite testing), the problem is in P (can be solved using BFS). For planar graphs, 4-Coloring is NP-complete but every planar graph is 4-colorable (Four Color Theorem).",
+    "metadata": {
+      "query_type": "classification",
+      "topic": "np_completeness",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 34"
+    }
+  },
+  {
+    "query": "Classify Partition problem",
+    "reference_answer": "Partition problem (can a set of integers be partitioned into two subsets with equal sum?) is NP-complete. It is in NP because given a partition, we can verify equal sums in polynomial time. It is NP-hard by reduction from Subset Sum: given Subset Sum instance (S,t), create Partition instance S' = S ∪ {2T-t, T+t} where T = sum(S). There's a subset summing to t in S iff S' can be partitioned. Partition is a special case of Subset Sum where target = half the total sum.",
+    "metadata": {
+      "query_type": "classification",
+      "topic": "np_completeness",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 34"
+    }
+  },
+  {
+    "query": "Prove Set Cover NP-completeness",
+    "reference_answer": "Set Cover is NP-complete. It is in NP because given a collection of sets, we can verify they cover the universe in polynomial time. It is NP-hard by reduction from Vertex Cover: given graph G and k for Vertex Cover, create Set Cover instance where universe is edges, and for each vertex v, create set containing edges incident to v. G has vertex cover of size k iff the sets have a cover of size k. Therefore, Set Cover is NP-complete.",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "np_completeness",
+      "difficulty": "hard",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 35"
+    }
+  },
+
+  {
+    "query": "DP for subset sum problem",
+    "reference_answer": "Subset Sum problem: Given a set of integers and target t, determine if a subset sums to t. DP formulation: Let SS[i][s] = true if there's a subset of first i items summing to s. Recurrence: SS[i][s] = SS[i-1][s] OR SS[i-1][s-arr[i]] if s ≥ arr[i]. Base case: SS[0][0]=true, SS[0][s]=false for s>0. The answer is SS[n][t]. Time complexity: O(nt), space: O(nt) optimizable to O(t).",
+    "metadata": {
+      "query_type": "problem_formulation",
+      "topic": "dynamic_programming",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 15"
+    }
+  },
+  {
+    "query": "DP for rod cutting",
+    "reference_answer": "Rod cutting problem: Given rod of length n and prices for different lengths, maximize revenue. DP formulation: Let R[i] = maximum revenue for rod of length i. Recurrence: R[i] = max(price[j] + R[i-j]) for 1 ≤ j ≤ i. Base case: R[0]=0. The answer is R[n]. Time complexity: O(n²), space: O(n). This exhibits optimal substructure - optimal solution contains optimal solutions to subproblems.",
+    "metadata": {
+      "query_type": "problem_formulation",
+      "topic": "dynamic_programming",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 15"
+    }
+  },
+  {
+    "query": "BFS for finding number of islands in grid",
+    "reference_answer": "Islands in grid problem: Count connected components of '1's in 2D grid. BFS approach: 1. Iterate through all cells. 2. When finding unvisited '1', increment count and do BFS to mark all connected '1's as visited. 3. BFS explores in 4 directions (up, down, left, right). Time complexity: O(mn) for m×n grid. Each cell visited once. Space complexity: O(mn) for visited matrix, O(min(m,n)) for BFS queue in worst case.",
+    "metadata": {
+      "query_type": "algorithm_explanation",
+      "topic": "graph_algorithms",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 5"
+    }
+  },
+  {
+    "query": "DFS for maze solving",
+    "reference_answer": "Maze solving using DFS: 1. Start from entrance, mark visited. 2. For each neighbor (up, down, left, right) that is open and unvisited: recursively explore. 3. If exit found, return success. 4. Backtrack if dead end. Time complexity: O(mn) for m×n maze. DFS may not find shortest path but will find a path if exists. For shortest path, BFS is better. DFS uses stack (recursion) while BFS uses queue.",
+    "metadata": {
+      "query_type": "algorithm_explanation",
+      "topic": "graph_algorithms",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 5"
+    }
+  },
+  {
+    "query": "DFS for Hamiltonian cycle detection",
+    "reference_answer": "Hamiltonian cycle detection using DFS: 1. Start DFS from any vertex. 2. Keep track of current path. 3. When path contains all vertices, check if last vertex connects to start vertex. 4. Backtrack to explore other possibilities. Time complexity: O(V!) in worst case - tries all permutations. No known polynomial time algorithm since Hamiltonian Cycle is NP-complete. Optimization: prune early when path cannot be extended to Hamiltonian cycle.",
+    "metadata": {
+      "query_type": "algorithm_explanation",
+      "topic": "graph_algorithms",
+      "difficulty": "hard",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 34"
+    }
+  },
+  {
+    "query": "Prove optimal substructure for LIS",
+    "reference_answer": "Longest Increasing Subsequence optimal substructure proof: Let L be an LIS ending at position i. Consider the second-to-last element j in L. Then the prefix L[1..j] must be an LIS ending at j. Proof by contradiction: if there were a longer increasing subsequence ending at j, we could replace the prefix and get a longer LIS ending at i, contradicting optimality. Therefore, LIS exhibits optimal substructure - optimal solution contains optimal solutions to subproblems.",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "dynamic_programming",
+      "difficulty": "hard",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 15"
+    }
+  },
+  {
+    "query": "Prove optimal substructure for matrix chain multiplication",
+    "reference_answer": "Matrix chain multiplication optimal substructure: Let optimal parenthesization of A_i...A_j split at k. Then the parenthesizations of A_i...A_k and A_k+1...A_j must be optimal. Proof: if either had a better parenthesization, we could substitute it to get a better overall parenthesization, contradicting optimality. The cost = cost(left) + cost(right) + p_i-1·p_k·p_j. Therefore, matrix chain multiplication exhibits optimal substructure, enabling dynamic programming.",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "dynamic_programming",
+      "difficulty": "hard",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 15"
+    }
+  },
+  {
+    "query": "Reduce Independent Set to Clique",
+    "reference_answer": "Reduction from Independent Set to Clique: Given graph G and k for Independent Set, create complement graph G' where edges become non-edges and vice versa. G has independent set of size k iff G' has clique of size k. Proof: In G, an independent set has no edges between vertices; in G', these same vertices have all possible edges between them, forming a clique. The reduction is O(V²) time - just complement the adjacency matrix.",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "np_completeness",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 34"
+    }
+  },
+  {
+    "query": "Reduce Circuit SAT to SAT",
+    "reference_answer": "Reduction from Circuit SAT to SAT: Given a Boolean circuit, create a CNF formula that is satisfiable iff the circuit is satisfiable. For each gate, add clauses that encode its functionality. AND gate z = x∧y becomes (¬x ∨ ¬y ∨ z) ∧ (x ∨ ¬z) ∧ (y ∨ ¬z). OR gate: (x ∨ y ∨ ¬z) ∧ (¬x ∨ z) ∧ (¬y ∨ z). NOT gate: (x ∨ z) ∧ (¬x ∨ ¬z). The output gate is forced to true. The reduction is polynomial in circuit size.",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "np_completeness",
+      "difficulty": "hard",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 34"
+    }
+  },
+  {
+    "query": "Classify Dominating Set problem",
+    "reference_answer": "Dominating Set problem (find set S of vertices such that every vertex is either in S or adjacent to a vertex in S) is NP-complete. It is in NP because given a set, we can verify in polynomial time that it dominates all vertices. It is NP-hard by reduction from Vertex Cover: given Vertex Cover instance, the same set is a dominating set (since every edge has endpoint in cover, so vertices not in cover are adjacent to cover). Therefore, Dominating Set is NP-complete.",
+    "metadata": {
+      "query_type": "classification",
+      "topic": "np_completeness",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 35"
+    }
+  },
+  
+  {
+    "query": "Prove that for any ε > 0, log n = O(n^ε)",
+    "reference_answer": "To prove log n = O(n^ε) for any ε > 0, we need to show lim(n→∞) (log n)/(n^ε) = 0. Using L'Hôpital's rule: lim(n→∞) (1/n)/(εn^(ε-1)) = lim(n→∞) 1/(εn^ε) = 0. Therefore, for any constants c > 0 and ε > 0, there exists n₀ such that log n ≤ c·n^ε for all n ≥ n₀. Hence log n = O(n^ε).",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 3"
+    }
+  },
+  {
+    "query": "Prove that 5n+4 is o(n log n)",
+    "reference_answer": "To prove 5n+4 = o(n log n), we need to show lim(n→∞) (5n+4)/(n log n) = 0. Divide numerator and denominator: (5n+4)/(n log n) = 5/log n + 4/(n log n). Both terms approach 0 as n→∞. Therefore, 5n+4 = o(n log n). This means linear functions grow strictly slower than n log n asymptotically.",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "Prove that n = Θ(n log n)? Justify.",
+    "reference_answer": "False. n ≠ Θ(n log n). To be Θ(n log n), we would need both n = O(n log n) and n = Ω(n log n). While n = O(n log n) is true (since n ≤ n log n for n ≥ 2), n = Ω(n log n) is false because lim(n→∞) n/(n log n) = lim(n→∞) 1/log n = 0. Therefore, n grows strictly slower than n log n, so n = o(n log n) but not Θ(n log n).",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 3"
+    }
+  },
+  {
+    "query": "Prove O(n^2) ∩ O(n^3) = O(n^2)",
+    "reference_answer": "To prove O(n²) ∩ O(n³) = O(n²): If f(n) ∈ O(n²) ∩ O(n³), then f(n) ∈ O(n²) and f(n) ∈ O(n³). But O(n²) ⊆ O(n³), so the intersection is just O(n²). More formally: f(n) ∈ O(n²) means ∃c₁,n₁: f(n) ≤ c₁n² for n ≥ n₁. f(n) ∈ O(n³) means ∃c₂,n₂: f(n) ≤ c₂n³ for n ≥ n₂. But the O(n²) bound is tighter for large n, so the intersection is O(n²).",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "asymptotic_analysis",
+      "difficulty": "hard",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 3"
+    }
+  },
+  {
+    "query": "Prove O(n log n) ⊆ O(n^2)",
+    "reference_answer": "To prove O(n log n) ⊆ O(n²): If f(n) ∈ O(n log n), then ∃c,n₀: f(n) ≤ c·n log n for n ≥ n₀. Since n log n ≤ n² for n ≥ 2, we have f(n) ≤ c·n² for n ≥ max(n₀,2). Therefore, f(n) ∈ O(n²). This shows that any function that is O(n log n) is also O(n²), but the converse is not true (e.g., n^1.5 is O(n²) but not O(n log n)).",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 3"
+    }
+  },
+  {
+    "query": "Asymptotic comparison of n, n log n, n^2, 2^n, n!",
+    "reference_answer": "From slowest to fastest growth: n < n log n < n² < 2ⁿ < n!. Proof: lim(n→∞) n/(n log n) = 0, lim(n→∞) (n log n)/n² = 0, lim(n→∞) n²/2ⁿ = 0, lim(n→∞) 2ⁿ/n! = 0. Therefore: n = o(n log n), n log n = o(n²), n² = o(2ⁿ), 2ⁿ = o(n!). This hierarchy is fundamental in algorithm analysis.",
+    "metadata": {
+      "query_type": "comparison",
+      "topic": "asymptotic_analysis",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "Prove that log_2(n^k) = O(log n)",
+    "reference_answer": "log₂(n^k) = k·log₂ n. Since k is constant, k·log₂ n = O(log n). More formally: |k·log₂ n| ≤ |k|·|log₂ n|, so choose c = |k| and n₀ = 1. Then k·log₂ n ≤ c·log₂ n for all n ≥ n₀. Therefore, log₂(n^k) = O(log n). This shows that polynomial factors inside logarithms become constant factors in big-O notation.",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "asymptotic_analysis",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 3"
+    }
+  },
+  {
+    "query": "Prove that 2^{n+1} = O(2^n)",
+    "reference_answer": "2^{n+1} = 2·2ⁿ. Therefore, 2^{n+1} ≤ 2·2ⁿ for all n ≥ 0. Choose c = 2 and n₀ = 0. Then 2^{n+1} ≤ c·2ⁿ for all n ≥ n₀. Hence 2^{n+1} = O(2ⁿ). This demonstrates that constant factors in the exponent become constant factors in big-O notation.",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "asymptotic_analysis",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 3"
+    }
+  },
+  {
+    "query": "Prove n! = Ω(n^{n/2})",
+    "reference_answer": "Using Stirling's approximation: n! ~ √(2πn)(n/e)ⁿ. Then n!/(n^{n/2}) ~ √(2πn)(n/e)ⁿ/n^{n/2} = √(2πn)·n^{n/2}/eⁿ. For large n, this grows without bound since n^{n/2} grows faster than eⁿ. More precisely: n! ≥ (n/2)^{n/2} for n ≥ 2 (by pairing terms), so n! = Ω(n^{n/2}).",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "asymptotic_analysis",
+      "difficulty": "hard",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 3"
+    }
+  },
+  {
+    "query": "Prove log(n!) ≤ n log n",
+    "reference_answer": "log(n!) = log(1·2·...·n) = log 1 + log 2 + ... + log n ≤ log n + log n + ... + log n (n times) = n log n. Therefore, log(n!) ≤ n log n for all n ≥ 1. This gives an upper bound on log(n!). The tighter bound from Stirling's approximation is log(n!) = n log n - n + O(log n).",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 3"
+    }
+  },
+  {
+    "query": "Prove for f(n)=O(g(n)), if g(n)=O(h(n)), then f(n)=O(h(n))",
+    "reference_answer": "Transitivity proof: If f(n)=O(g(n)), then ∃c₁,n₁: f(n) ≤ c₁·g(n) for n ≥ n₁. If g(n)=O(h(n)), then ∃c₂,n₂: g(n) ≤ c₂·h(n) for n ≥ n₂. Then for n ≥ max(n₁,n₂), f(n) ≤ c₁·g(n) ≤ c₁·c₂·h(n). Choose c = c₁·c₂ and n₀ = max(n₁,n₂). Then f(n) ≤ c·h(n) for n ≥ n₀. Therefore, f(n)=O(h(n)).",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 3"
+    }
+  },
+  {
+    "query": "Prove f(n)=Θ(n) iff f(n)=O(n) and f(n)=Ω(n)",
+    "reference_answer": "This is the definition of Θ-notation. f(n)=Θ(n) means ∃c₁,c₂,n₀>0: c₁·n ≤ f(n) ≤ c₂·n for n ≥ n₀. The upper bound f(n) ≤ c₂·n is exactly f(n)=O(n). The lower bound c₁·n ≤ f(n) is exactly f(n)=Ω(n). Therefore, f(n)=Θ(n) if and only if f(n)=O(n) and f(n)=Ω(n). This equivalence holds for any function, not just n.",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "asymptotic_analysis",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 3"
+    }
+  },
+  {
+    "query": "Prove that n^3 + n^2 + n = Θ(n^3)",
+    "reference_answer": "To prove n³ + n² + n = Θ(n³): For n ≥ 1, n³ ≤ n³ + n² + n ≤ n³ + n³ + n³ = 3n³. Choose c₁=1, c₂=3, n₀=1. Then c₁·n³ ≤ n³ + n² + n ≤ c₂·n³ for all n ≥ n₀. Therefore, n³ + n² + n = Θ(n³). This demonstrates that lower-order terms can be ignored in Θ-notation.",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "asymptotic_analysis",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "Asymptotic bounds for sum_{i=1}^n i^2",
+    "reference_answer": "The sum Σ_{i=1}^n i² = n(n+1)(2n+1)/6 = (2n³ + 3n² + n)/6. Therefore, Σ_{i=1}^n i² = Θ(n³). More precisely: (1/6)n³ ≤ Σ_{i=1}^n i² ≤ n³ for n ≥ 1. The exact closed form shows it's a cubic polynomial, so the asymptotic growth is Θ(n³).",
+    "metadata": {
+      "query_type": "analysis",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "Bound n^0.5 ≤ n ≤ n^2 for n ≥ 1",
+    "reference_answer": "For n ≥ 1: Since 0.5 ≤ 1 ≤ 2, and n^x is increasing in x for n > 1, we have n^0.5 ≤ n^1 ≤ n^2. More formally: For n ≥ 1, √n ≤ n ≤ n² because: √n ≤ n when n ≥ 1 (divide by √n: 1 ≤ √n, true for n ≥ 1), and n ≤ n² when n ≥ 1 (divide by n: 1 ≤ n, true for n ≥ 1). This ordering holds for all n ≥ 1.",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "asymptotic_analysis",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "Compare asymptotic growth of n^k, k>0 for varying k",
+    "reference_answer": "For n^k with different k > 0: if k₁ < k₂, then n^{k₁} = o(n^{k₂}). Proof: lim(n→∞) n^{k₁}/n^{k₂} = lim(n→∞) 1/n^{k₂-k₁} = 0. Therefore, polynomial functions are ordered by their exponents: n^a < n^b for 0 < a < b. This forms a hierarchy: constant < log n < n^ε < n^a < n^b for 0 < ε < a < b.",
+    "metadata": {
+      "query_type": "comparison",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 3"
+    }
+  },
+  {
+    "query": "For which n is n! > 2^n?",
+    "reference_answer": "Testing values: n=1: 1! = 1, 2^1 = 2 (n! < 2^n). n=2: 2! = 2, 2^2 = 4 (n! < 2^n). n=3: 6 < 8. n=4: 24 > 16. So n! > 2^n for n ≥ 4. More precisely, using induction or calculus, we can show n! grows faster than 2^n for n ≥ 4. The crossover occurs between n=3 and n=4.",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "asymptotic_analysis",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "Is log^2 n = o(n)?",
+    "reference_answer": "Yes, log² n = o(n). Proof: lim(n→∞) (log² n)/n = 0. This can be shown using L'Hôpital's rule or by recognizing that any polylogarithmic function (log^k n) grows slower than any polynomial function n^ε for ε > 0. More generally, log^k n = o(n^ε) for any constants k > 0 and ε > 0.",
+    "metadata": {
+      "query_type": "proof",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 3"
+    }
+  },
+  {
+    "query": "Compare n, n+, n^2+, n log n, 2^n for increasing n",
+    "reference_answer": "Assuming 'n+' means n+1 and 'n^2+' means n²+1: For large n, the asymptotic ordering is: n ≈ n+1 < n log n < n² ≈ n²+1 < 2ⁿ. The constant additions become negligible for large n. More precisely: n = Θ(n+1), n² = Θ(n²+1), and the full ordering is: n = o(n log n), n log n = o(n²), n² = o(2ⁿ).",
+    "metadata": {
+      "query_type": "comparison",
+      "topic": "asymptotic_analysis",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "Find for large n: n log n vs n^2/n",
+    "reference_answer": "n²/n = n. Comparing n log n vs n: lim(n→∞) (n log n)/n = lim(n→∞) log n = ∞. Therefore, n log n grows faster than n. So for large n: n < n log n. The expression n²/n simplifies to n, so we're comparing n log n with n, and n log n dominates.",
+    "metadata": {
+      "query_type": "comparison",
+      "topic": "asymptotic_analysis",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  
+  {
+    "query": "Compare log n and log_2 n for large n",
+    "reference_answer": "log n and log₂ n differ only by a constant factor: log₂ n = log n / log 2. Since log 2 is a constant, log₂ n = Θ(log n). Therefore, for asymptotic analysis, they are equivalent. The choice of logarithm base affects only the constant factors in big-O notation, not the asymptotic growth rate.",
+    "metadata": {
+      "query_type": "comparison",
+      "topic": "asymptotic_analysis",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 3"
+    }
+  },
+  {
+    "query": "For f(n)=n!/(2^n), analyze growth rate",
+    "reference_answer": "f(n) = n!/(2ⁿ) grows super-exponentially. Using Stirling's approximation: n! ~ √(2πn)(n/e)ⁿ, so f(n) ~ √(2πn)(n/e)ⁿ/2ⁿ = √(2πn)(n/(2e))ⁿ. Since n/(2e) > 1 for n > 2e ≈ 5.44, f(n) grows faster than any exponential function. More precisely, lim(n→∞) f(n) = ∞, and f(n) = ω(cⁿ) for any constant c.",
+    "metadata": {
+      "query_type": "analysis",
+      "topic": "asymptotic_analysis",
+      "difficulty": "hard",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 3"
+    }
+  },
+  {
+    "query": "Does n^2 - n log n dominate n log n for large n?",
+    "reference_answer": "Yes, n² - n log n dominates n log n for large n. lim(n→∞) (n² - n log n)/(n log n) = lim(n→∞) (n/log n - 1) = ∞. Therefore, n² - n log n grows much faster than n log n. In fact, n² - n log n = Θ(n²), while n log n = o(n²), so the quadratic term dominates.",
+    "metadata": {
+      "query_type": "comparison",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "For n→∞, compare n log n and n log(n log n)",
+    "reference_answer": "n log(n log n) = n(log n + log log n) = n log n + n log log n. Since n log log n grows faster than n log n? Actually, lim(n→∞) (n log(n log n))/(n log n) = lim(n→∞) (1 + log log n/log n) = 1. So they have the same asymptotic growth: n log(n log n) = Θ(n log n). The extra log log n term is asymptotically negligible.",
+    "metadata": {
+      "query_type": "comparison",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 3"
+    }
+  },
+  {
+    "query": "Rank: n^{1/3}, n^{1/2}, n^2, n^{10}",
+    "reference_answer": "From slowest to fastest growth: n^{1/3} < n^{1/2} < n² < n^{10}. Since 1/3 < 1/2 < 2 < 10, and for n > 1, n^a < n^b when a < b. More formally: n^{1/3} = o(n^{1/2}), n^{1/2} = o(n²), n² = o(n^{10}).",
+    "metadata": {
+      "query_type": "ordering",
+      "topic": "asymptotic_analysis",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "Compare constant, logarithmic, linear, quadratic, and exponential for n=1000",
+    "reference_answer": "For n=1000: Constant: 1, Logarithmic: log₂(1000) ≈ 10, Linear: 1000, Quadratic: 1,000,000, Exponential: 2^1000 ≈ 10^301. The growth rates differ dramatically: constant and logarithmic are manageable, linear is acceptable, quadratic may be borderline for large n, while exponential is completely infeasible for n=1000.",
+    "metadata": {
+      "query_type": "comparison",
+      "topic": "asymptotic_analysis",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "Which grows faster: log(n!), sqrt(n!), n!",
+    "reference_answer": "From slowest to fastest: log(n!) < √(n!) < n!. Proof: log(n!) = Θ(n log n), √(n!) = Θ(n^{n/2}/e^{n/2}), n! = Θ(n^n/e^n). Since n log n = o(n^{n/2}) and n^{n/2} = o(n^n), the ordering holds. More intuitively: taking log or square root of factorial still leaves extremely fast growth, but slower than factorial itself.",
+    "metadata": {
+      "query_type": "comparison",
+      "topic": "asymptotic_analysis",
+      "difficulty": "hard",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 3"
+    }
+  },
+  {
+    "query": "Compare n log n vs log n!",
+    "reference_answer": "log(n!) = Θ(n log n), so they have the same asymptotic growth rate. Upper bound: log(n!) ≤ n log n. Lower bound: log(n!) ≥ log((n/2)^{n/2}) = (n/2)log(n/2) = Θ(n log n). Using Stirling's approximation: log(n!) = n log n - n + O(log n) = Θ(n log n). Therefore, n log n and log(n!) are asymptotically equivalent.",
+    "metadata": {
+      "query_type": "comparison",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 3"
+    }
+  },
+  {
+    "query": "Compare n log n and n^{1.00001} asymptotically",
+    "reference_answer": "n^{1.00001} grows faster than n log n. Proof: lim(n→∞) (n log n)/(n^{1.00001}) = lim(n→∞) log n/n^{0.00001} = 0. Therefore, n log n = o(n^{1.00001}). Even though 1.00001 is very close to 1, any polynomial with exponent > 1 eventually dominates n log n.",
+    "metadata": {
+      "query_type": "comparison",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 3"
+    }
+  },
+  {
+    "query": "Compare n, n^2, log n, n log n, exp(n), n!",
+    "reference_answer": "From slowest to fastest: log n < n < n log n < n² < exp(n) < n!. Proof: lim(n→∞) log n/n = 0, lim(n→∞) n/(n log n) = 0, lim(n→∞) (n log n)/n² = 0, lim(n→∞) n²/exp(n) = 0, lim(n→∞) exp(n)/n! = 0. This is the standard complexity hierarchy used in algorithm analysis.",
+    "metadata": {
+      "query_type": "ordering",
+      "topic": "asymptotic_analysis",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "Order: 5n, n^2+2n, log n, 3^n for various n",
+    "reference_answer": "Asymptotic ordering (slowest to fastest): log n < 5n < n²+2n < 3ⁿ. For large n, the constant factors and lower-order terms become negligible. More precisely: log n = o(n), 5n = Θ(n) = o(n²), n²+2n = Θ(n²) = o(3ⁿ). The exponential function 3ⁿ eventually dominates all polynomial functions.",
+    "metadata": {
+      "query_type": "ordering",
+      "topic": "asymptotic_analysis",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "Compare: n^a and a^n for a=2, n → ∞",
+    "reference_answer": "For fixed a=2: n² vs 2ⁿ. lim(n→∞) n²/2ⁿ = 0, so 2ⁿ grows much faster than n². In general, for any fixed a>1, aⁿ grows faster than n^a. Exponential functions always dominate polynomial functions asymptotically, regardless of the polynomial degree.",
+    "metadata": {
+      "query_type": "comparison",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 3"
+    }
+  },
+  {
+    "query": "Which is dominant: n/ln(n) or ln(n^n)?",
+    "reference_answer": "ln(nⁿ) = n ln n. Compare n/ln n vs n ln n: lim(n→∞) (n/ln n)/(n ln n) = lim(n→∞) 1/(ln n)² = 0. Therefore, n/ln n = o(n ln n), so ln(nⁿ) = n ln n grows faster. In fact, n/ln n grows slightly faster than n but slower than n log n.",
+    "metadata": {
+      "query_type": "comparison",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 3"
+    }
+  },
+  {
+    "query": "Compare: n^0.5, n^{0.9}, n^0.3",
+    "reference_answer": "From slowest to fastest: n^0.3 < n^0.5 < n^0.9. Since 0.3 < 0.5 < 0.9, and for n > 1, n^a < n^b when a < b. More formally: n^0.3 = o(n^0.5), n^0.5 = o(n^0.9). Polynomial functions are ordered by their exponents.",
+    "metadata": {
+      "query_type": "ordering",
+      "topic": "asymptotic_analysis",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "For T(n)=n^2+n, find smallest n where T(n)>1000",
+    "reference_answer": "Solve n² + n > 1000 ⇒ n² + n - 1000 > 0. Using quadratic formula: n = [-1 ± √(1+4000)]/2 = [-1 ± √4001]/2. √4001 ≈ 63.25, so n ≈ (-1 + 63.25)/2 ≈ 31.125. Since n must be integer: T(31)=31²+31=961+31=992<1000, T(32)=1024+32=1056>1000. Therefore, smallest n is 32.",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "asymptotic_analysis",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "Find n where n! > 10^6",
+    "reference_answer": "Test values: 9! = 362,880 < 10^6, 10! = 3,628,800 > 10^6. Therefore, n=10 is the smallest integer where n! > 10^6. The factorial function grows very rapidly: it exceeds one million at just n=10.",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "asymptotic_analysis",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "Estimate when 2^n overtakes n^3",
+    "reference_answer": "Find where 2ⁿ = n³. Test values: n=10: 2^10=1024, 10^3=1000 (very close). n=11: 2048 > 1331. n=12: 4096 > 1728. So 2ⁿ overtakes n³ between n=10 and n=11. More precisely, solving 2ⁿ = n³ numerically gives n ≈ 9.97, so the crossover occurs around n=10.",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "For f(n)=n^2, how does doubling input affect runtime?",
+    "reference_answer": "If f(n)=n², then f(2n)=(2n)²=4n²=4f(n). Doubling the input increases runtime by a factor of 4. This is characteristic of quadratic time algorithms. In general, for f(n)=n^k, doubling input increases runtime by 2^k.",
+    "metadata": {
+      "query_type": "conceptual",
+      "topic": "asymptotic_analysis",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "If f(n)=O(n), what's f(2n)?",
+    "reference_answer": "If f(n)=O(n), then ∃c,n₀: f(n)≤cn for n≥n₀. Then f(2n)≤c(2n)=2cn. So f(2n)=O(n) as well. The asymptotic class O(n) is closed under constant scaling of input. More generally, if f(n)=O(g(n)), then f(cn)=O(g(n)) for any constant c>0.",
+    "metadata": {
+      "query_type": "conceptual",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 3"
+    }
+  },
+  {
+    "query": "For bubble sort, how does input size affect worst case time?",
+    "reference_answer": "Bubble sort has worst-case time complexity O(n²). In worst case (reverse sorted array), it makes n(n-1)/2 comparisons and swaps. Doubling input size from n to 2n increases worst-case time by factor of approximately 4, since (2n)²=4n². This quadratic growth makes bubble sort impractical for large datasets.",
+    "metadata": {
+      "query_type": "application",
+      "topic": "sorting_algorithms",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 2"
+    }
+  },
+  {
+    "query": "For merge sort, when is n log n > n^2?",
+    "reference_answer": "The inequality n log n > n² would require log n > n, which is false for n>1. Actually, n log n < n² for all n>4. The question might be misinterpreted - merge sort's n log n is always less than n² for sufficiently large n, which is why merge sort is asymptotically faster than quadratic algorithms like bubble sort.",
+    "metadata": {
+      "query_type": "conceptual",
+      "topic": "sorting_algorithms",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 2"
+    }
+  },
+
+  {
+    "query": "For insertion sort, what input size makes runtime > 1 sec?",
+    "reference_answer": "Assuming each comparison takes 1 nanosecond (10^-9 sec) and worst-case O(n²) time: n² × 10^-9 > 1 ⇒ n² > 10^9 ⇒ n > 31,623. So for input size around 31,600, insertion sort would take >1 second in worst case. This demonstrates why O(n²) algorithms become impractical for large n.",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 2"
+    }
+  },
+  {
+    "query": "Find value of n for f(n)=100n, g(n)=n^2+10^6 to cross",
+    "reference_answer": "Solve 100n = n² + 10^6 ⇒ n² - 100n + 10^6 = 0. Discriminant: 100² - 4×10^6 = 10,000 - 4,000,000 = -3,990,000 < 0. So they never cross - g(n) is always larger. For large n, n² dominates 100n, and the constant 10^6 ensures g(n) > f(n) for all n.",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "For n=100, 1,000, 10,000, calculate values for n log n, n^2, etc.",
+    "reference_answer": "n=100: n log n ≈ 664, n²=10,000, 2ⁿ≈1.27×10^30. n=1,000: n log n≈9,966, n²=1,000,000, 2ⁿ≈10^301. n=10,000: n log n≈132,877, n²=100,000,000, 2ⁿ astronomically large. This shows exponential growth quickly becomes infeasible, while n log n remains manageable even for large n.",
+    "metadata": {
+      "query_type": "calculation",
+      "topic": "asymptotic_analysis",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "If f(n)=n!, what input size makes f(n) > 10^10?",
+    "reference_answer": "Test values: 12! = 479,001,600 < 10^10, 13! = 6,227,020,800 < 10^10, 14! = 87,178,291,200 > 10^10. Therefore, n=14 is the smallest where n! > 10^10. Factorial growth is extremely rapid - exceeding 10 billion at just n=14.",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "asymptotic_analysis",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "Analyze crossover point for O(n) vs O(n log n)",
+    "reference_answer": "For algorithms with the same constant factors, O(n) will always be faster than O(n log n) for sufficiently large n, since n < n log n for n > 1. However, if the O(n) algorithm has a larger constant factor, the crossover occurs when c₁n = c₂n log n ⇒ log n = c₁/c₂. For example, if c₁=100 and c₂=1, crossover at n=2^100 (extremely large).",
+    "metadata": {
+      "query_type": "analysis",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 3"
+    }
+  },
+  {
+    "query": "For n^2, find n where program takes 1 minute if each operation is 1μs",
+    "reference_answer": "Each operation: 1μs = 10^-6 sec. n² operations take n² × 10^-6 seconds. Set equal to 60 seconds: n² × 10^-6 = 60 ⇒ n² = 60 × 10^6 = 6 × 10^7 ⇒ n = √(6×10^7) ≈ √60,000,000 ≈ 7,746. So an O(n²) algorithm can handle n≈7,746 in 1 minute with 1μs operations.",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "For T(n)=n^3, at what n does T(n)=O(n^3) reach 10^9?",
+    "reference_answer": "T(n)=n³. Set n³ = 10^9 ⇒ n = ∛(10^9) = 10^3 = 1,000. So when n=1,000, n³=10^9 operations. This illustrates cubic complexity - input size of 1,000 requires 1 billion operations.",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "asymptotic_analysis",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "For T(n)=2^n, when does T(n) > 10^6?",
+    "reference_answer": "2ⁿ > 10^6. Taking log₂: n > log₂(10^6) ≈ log₂(1,000,000) ≈ 20 (since 2^20=1,048,576). So for n > 20, 2ⁿ > 10^6. This shows exponential algorithms become impractical very quickly.",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "asymptotic_analysis",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "Crossover analysis for log n vs n log n",
+    "reference_answer": "log n vs n log n: lim(n→∞) (log n)/(n log n) = lim(n→∞) 1/n = 0, so log n = o(n log n). For any constant factors, n log n will eventually dominate log n. The ratio (log n)/(n log n) = 1/n → 0, so the gap widens as n increases.",
+    "metadata": {
+      "query_type": "analysis",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 3"
+    }
+  },
+  {
+    "query": "At what n does n^2 = 1,000,000?",
+    "reference_answer": "n² = 1,000,000 ⇒ n = √1,000,000 = 1,000. So when n=1,000, n² reaches one million. This is a common benchmark - quadratic algorithms can handle input sizes around 1,000 reasonably, but become slow for larger n.",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "asymptotic_analysis",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "If runtime is proportional to n^4, what's max feasible n?",
+    "reference_answer": "Assuming 1 operation per nanosecond and 1 second limit: n⁴ × 10^-9 ≤ 1 ⇒ n⁴ ≤ 10^9 ⇒ n ≤ 10^(9/4) = 10^2.25 ≈ 178. So maximum feasible n ≈ 178 for O(n⁴) with 1 second limit. This shows why quartic algorithms are rarely practical for large problems.",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "For f(n)=n!, find max n such that f(n)<10^9",
+    "reference_answer": "Test values: 11! = 39,916,800 < 10^9, 12! = 479,001,600 < 10^9, 13! = 6,227,020,800 > 10^9. Therefore, maximum n such that n! < 10^9 is n=12. Factorial growth is so rapid that even n=13 exceeds 6 billion.",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "asymptotic_analysis",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "For T(n)=n log n, find n for T(n)=1,000,000",
+    "reference_answer": "Solve n log₂ n = 1,000,000. Test values: n=50,000: 50,000×log₂(50,000)≈50,000×15.6=780,000, n=65,000: 65,000×16=1,040,000. More precisely, n≈62,500 gives 62,500×15.93≈995,000. So n≈63,000-64,000 gives T(n)≈1,000,000.",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "Compute growth for O(n^2), O(n log n), O(2^n) at n=10,100,1000",
+    "reference_answer": "n=10: n²=100, n log n≈33, 2ⁿ=1024. n=100: n²=10,000, n log n≈664, 2ⁿ≈1.27×10^30. n=1000: n²=1,000,000, n log n≈9,966, 2ⁿ≈10^301. This demonstrates why exponential algorithms are infeasible for moderate n, while n log n remains efficient.",
+    "metadata": {
+      "query_type": "calculation",
+      "topic": "asymptotic_analysis",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "For f(n)=2^n+100n, find n where 2^n dominates 100n",
+    "reference_answer": "2ⁿ dominates 100n when 2ⁿ > 100n. Test values: n=10: 1024 > 1000, but ratio is close. n=15: 32,768 > 1,500 (ratio ~22). n=20: 1,048,576 > 2,000 (ratio ~524). So 2ⁿ clearly dominates by n=15-20. More precisely, solve 2ⁿ = 100n numerically gives n≈9.97, so crossover around n=10.",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "If f(n)=O(n^2), what is f(10n)?",
+    "reference_answer": "If f(n)=O(n²), then ∃c,n₀: f(n)≤cn² for n≥n₀. Then f(10n)≤c(10n)²=100cn². So f(10n)=O(n²) as well - the asymptotic class is preserved under constant scaling. However, the actual value increases by factor of 100 when input is scaled by 10.",
+    "metadata": {
+      "query_type": "conceptual",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Second Edition, Chapter 3"
+    }
+  },
+  {
+    "query": "For T(n)=n!, calculate T(n) for n=5,6,7,8,9",
+    "reference_answer": "5! = 120, 6! = 720, 7! = 5,040, 8! = 40,320, 9! = 362,880. This demonstrates the rapid growth of factorial: each increment multiplies by the next integer, leading to exponential-like growth.",
+    "metadata": {
+      "query_type": "calculation",
+      "topic": "asymptotic_analysis",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "Find n for T(n)=2n+7 where T(n)>100",
+    "reference_answer": "Solve 2n+7 > 100 ⇒ 2n > 93 ⇒ n > 46.5. Since n must be integer, smallest n is 47. T(47)=2×47+7=94+7=101>100. This linear function grows slowly compared to polynomial or exponential functions.",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "asymptotic_analysis",
+      "difficulty": "easy",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "For T(n)=n^a, find a making T(n)>10^6 for n=1000",
+    "reference_answer": "T(1000)=1000^a > 10^6 ⇒ (10^3)^a > 10^6 ⇒ 10^(3a) > 10^6 ⇒ 3a > 6 ⇒ a > 2. So for any a > 2, T(1000) > 10^6. For a=2, T(1000)=10^6 exactly; for a=2.1, T(1000)≈1.26×10^6.",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "For runtime T(n)=n^{1.5}, estimate max n for 1s",
+    "reference_answer": "Assuming 1 operation per nanosecond: n^1.5 × 10^-9 ≤ 1 ⇒ n^1.5 ≤ 10^9 ⇒ n ≤ (10^9)^(2/3) = 10^6 = 1,000,000. So O(n^1.5) can handle n up to 1 million in 1 second. This subquadratic complexity is quite efficient.",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  },
+  {
+    "query": "Given T(n)=n^2/10 + n, find n for T(n)>5000",
+    "reference_answer": "Solve n²/10 + n > 5000 ⇒ n² + 10n - 50,000 > 0. Quadratic formula: n = [-10 ± √(100+200,000)]/2 = [-10 ± √200,100]/2. √200,100≈447.33, so n≈(-10+447.33)/2≈218.67. Since n must be integer, smallest n is 219. T(219)=219²/10+219≈4,796+219=5,015>5000.",
+    "metadata": {
+      "query_type": "problem_solving",
+      "topic": "asymptotic_analysis",
+      "difficulty": "medium",
+      "source": "Introduction to Algorithms, Data Structures and Formal Languages, Chapter 1"
+    }
+  }
+
+
+
+
+
+
+]
