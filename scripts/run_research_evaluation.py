@@ -344,23 +344,30 @@ class ResearchEvaluationRunner:
         with open(summary_file, 'w', encoding='utf-8') as f:
             f.write("AlgoRAG Research Evaluation Results\n")
             f.write("="*80 + "\n\n")
-            f.write(f"Total test cases: {aggregated['total_test_cases']}\n")
-            f.write(f"Successful: {aggregated['successful']}\n")
-            f.write(f"Failed: {aggregated['failed']}\n\n")
 
-            f.write("Overall Metrics:\n")
-            f.write("-"*80 + "\n")
-            for metric, value in aggregated['overall_metrics'].items():
-                if value is not None:
-                    f.write(f"{metric}: {value:.4f}\n")
+            # Check if there were any successful evaluations
+            if "error" in aggregated:
+                f.write(f"ERROR: {aggregated['error']}\n")
+                f.write(f"Total test cases attempted: {len(results)}\n")
+                f.write(f"All evaluations failed - check error logs for details\n")
+            else:
+                f.write(f"Total test cases: {aggregated['total_test_cases']}\n")
+                f.write(f"Successful: {aggregated['successful']}\n")
+                f.write(f"Failed: {aggregated['failed']}\n\n")
 
-            f.write("\n\nBy Topic:\n")
-            f.write("-"*80 + "\n")
-            for topic, metrics in aggregated['by_topic'].items():
-                f.write(f"\n{topic} ({metrics['count']} cases):\n")
-                for metric, value in metrics.items():
-                    if metric != 'count' and value is not None:
-                        f.write(f"  {metric}: {value:.4f}\n")
+                f.write("Overall Metrics:\n")
+                f.write("-"*80 + "\n")
+                for metric, value in aggregated['overall_metrics'].items():
+                    if value is not None:
+                        f.write(f"{metric}: {value:.4f}\n")
+
+                f.write("\n\nBy Topic:\n")
+                f.write("-"*80 + "\n")
+                for topic, metrics in aggregated['by_topic'].items():
+                    f.write(f"\n{topic} ({metrics['count']} cases):\n")
+                    for metric, value in metrics.items():
+                        if metric != 'count' and value is not None:
+                            f.write(f"  {metric}: {value:.4f}\n")
 
         logger.info(f"✓ Saved paper summary: {summary_file}")
 
@@ -375,17 +382,22 @@ class ResearchEvaluationRunner:
         logger.info("EVALUATION SUMMARY")
         logger.info("="*80)
 
-        logger.info(f"\nTotal test cases: {aggregated['total_test_cases']}")
-        logger.info(f"Successful: {aggregated['successful']}")
-        logger.info(f"Failed: {aggregated['failed']}")
+        # Check if there were any successful evaluations
+        if "error" in aggregated:
+            logger.error(f"\n✗ ERROR: {aggregated['error']}")
+            logger.error("All evaluations failed - check error logs for details")
+        else:
+            logger.info(f"\nTotal test cases: {aggregated['total_test_cases']}")
+            logger.info(f"Successful: {aggregated['successful']}")
+            logger.info(f"Failed: {aggregated['failed']}")
 
-        logger.info("\nOverall Metrics:")
-        logger.info("-"*80)
-        for metric, value in aggregated['overall_metrics'].items():
-            if value is not None:
-                logger.info(f"{metric:30s}: {value:.4f}")
+            logger.info("\nOverall Metrics:")
+            logger.info("-"*80)
+            for metric, value in aggregated['overall_metrics'].items():
+                if value is not None:
+                    logger.info(f"{metric:30s}: {value:.4f}")
 
-        logger.info("\n✓ Evaluation complete!")
+            logger.info("\n✓ Evaluation complete!")
 
 
 def main():
