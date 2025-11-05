@@ -308,19 +308,16 @@ ANSWER:
         """Generate using Ollama."""
         import requests
 
-        # Ollama API endpoint
-        url = f"{self.ollama_url}/api/chat"
+        # Ollama API endpoint - use /api/generate
+        url = f"{self.ollama_url}/api/generate"
 
-        # Prepare messages
-        messages = [
-            {"role": "system", "content": system_instruction},
-            {"role": "user", "content": prompt}
-        ]
+        # Combine system instruction and prompt
+        full_prompt = f"{system_instruction}\n\n{prompt}"
 
         # Make request
         payload = {
             "model": self.model_name,
-            "messages": messages,
+            "prompt": full_prompt,
             "stream": False,
             "options": {
                 "temperature": self.temperature,
@@ -332,7 +329,7 @@ ANSWER:
             response = requests.post(url, json=payload, timeout=120)
             response.raise_for_status()
             result = response.json()
-            return result["message"]["content"]
+            return result["response"]
         except requests.exceptions.RequestException as e:
             logger.error(f"Ollama request failed: {e}")
             raise RuntimeError(f"Ollama generation failed: {e}")
