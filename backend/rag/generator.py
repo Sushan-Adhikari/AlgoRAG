@@ -452,14 +452,14 @@ class AnswerGenerator:
         """
         # Map backend to default model names
         default_models = {
-            "ollama": "llama3.1:7b",  # Ollama default
+            "ollama": "llama3.1:8b",  # Ollama default
             "gemini": "gemini-2.0-flash-exp",
             "openai": "gpt-4o-mini"
         }
 
         # Use provided model_name or default for backend
         if model_name is None:
-            model_name = default_models.get(backend, "llama3.1:7b")
+            model_name = default_models.get(backend, "llama3.1:8b")
 
         # Initialize the underlying Generator
         self.generator = Generator(
