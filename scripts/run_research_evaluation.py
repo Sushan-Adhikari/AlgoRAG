@@ -24,7 +24,6 @@ from rag.preprocessing import MathPreprocessor
 # Import evaluation metrics
 sys.path.insert(0, str(Path(__file__).parent.parent / "evaluation"))
 from metrics import (
-    RAGEvaluator,
     compute_bleu_score,
     compute_rouge_scores,
     compute_bertscore,
@@ -75,7 +74,6 @@ class ResearchEvaluationRunner:
         )
         self.generator = AnswerGenerator(backend=llm_backend)
         self.preprocessor = MathPreprocessor()
-        self.evaluator = RAGEvaluator(self.retriever, self.generator)
 
         logger.info("✓ Components initialized")
 
