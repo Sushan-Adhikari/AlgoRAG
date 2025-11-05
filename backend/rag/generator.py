@@ -305,27 +305,21 @@ ANSWER:
         return response.choices[0].message.content
 
     def _generate_ollama(self, prompt: str, system_instruction: str) -> str:
-        """Generate using Ollama CLI."""
+        """Generate using Ollama CLI via stdin (handles long prompts better)."""
         import subprocess
-        import json
 
         # Combine system instruction and prompt
         full_prompt = f"{system_instruction}\n\n{prompt}"
 
-        # Use ollama run command via CLI
-        # Format: ollama run <model> "<prompt>"
+        # Use echo | ollama run for better handling of long prompts
         try:
-            # Build the command
-            cmd = [
-                "ollama", "run", self.model_name,
-                full_prompt
-            ]
+            logger.info(f"Running Ollama CLI: ollama run {self.model_name} [via stdin]")
+            logger.info(f"Prompt length: {len(full_prompt)} chars")
 
-            logger.info(f"Running Ollama CLI: ollama run {self.model_name} [prompt]")
-
-            # Run the command
+            # Run ollama with prompt via stdin
             result = subprocess.run(
-                cmd,
+                ["ollama", "run", self.model_name],
+                input=full_prompt,
                 capture_output=True,
                 text=True,
                 timeout=120
@@ -342,7 +336,7 @@ ANSWER:
             if not response_text:
                 raise RuntimeError("Ollama returned empty response")
 
-            logger.info(f"Generated response length: {len(response_text)} chars")
+            logger.info(f"✓ Generated response: {len(response_text)} chars")
             return response_text
 
         except subprocess.TimeoutExpired:
