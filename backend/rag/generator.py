@@ -305,34 +305,52 @@ ANSWER:
         return response.choices[0].message.content
 
     def _generate_ollama(self, prompt: str, system_instruction: str) -> str:
-        """Generate using Ollama."""
-        import requests
-
-        # Ollama API endpoint - use /api/generate
-        url = f"{self.ollama_url}/api/generate"
+        """Generate using Ollama CLI."""
+        import subprocess
+        import json
 
         # Combine system instruction and prompt
         full_prompt = f"{system_instruction}\n\n{prompt}"
 
-        # Make request
-        payload = {
-            "model": self.model_name,
-            "prompt": full_prompt,
-            "stream": False,
-            "options": {
-                "temperature": self.temperature,
-                "num_predict": self.max_tokens
-            }
-        }
-
+        # Use ollama run command via CLI
+        # Format: ollama run <model> "<prompt>"
         try:
-            response = requests.post(url, json=payload, timeout=120)
-            response.raise_for_status()
-            result = response.json()
-            return result["response"]
-        except requests.exceptions.RequestException as e:
-            logger.error(f"Ollama request failed: {e}")
-            raise RuntimeError(f"Ollama generation failed: {e}")
+            # Build the command
+            cmd = [
+                "ollama", "run", self.model_name,
+                full_prompt
+            ]
+
+            logger.info(f"Running Ollama CLI: ollama run {self.model_name} [prompt]")
+
+            # Run the command
+            result = subprocess.run(
+                cmd,
+                capture_output=True,
+                text=True,
+                timeout=120
+            )
+
+            if result.returncode != 0:
+                logger.error(f"Ollama CLI failed with return code {result.returncode}")
+                logger.error(f"stderr: {result.stderr}")
+                raise RuntimeError(f"Ollama CLI failed: {result.stderr}")
+
+            # The output is in stdout
+            response_text = result.stdout.strip()
+
+            if not response_text:
+                raise RuntimeError("Ollama returned empty response")
+
+            logger.info(f"Generated response length: {len(response_text)} chars")
+            return response_text
+
+        except subprocess.TimeoutExpired:
+            logger.error("Ollama CLI timed out after 120 seconds")
+            raise RuntimeError("Ollama CLI timed out after 120 seconds")
+        except Exception as e:
+            logger.error(f"Ollama CLI execution failed: {e}")
+            raise RuntimeError(f"Ollama CLI execution failed: {e}")
 
 
 def test_generator():
