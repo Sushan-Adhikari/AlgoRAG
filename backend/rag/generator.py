@@ -307,31 +307,45 @@ ANSWER:
     def _generate_ollama(self, prompt: str, system_instruction: str) -> str:
         """Generate using Ollama CLI via stdin (handles long prompts better)."""
         import subprocess
+        import os
 
         # Combine system instruction and prompt
         full_prompt = f"{system_instruction}\n\n{prompt}"
 
-        # Use echo | ollama run for better handling of long prompts
+        # Set environment variable to avoid tokenizers warning
+        env = os.environ.copy()
+        env["TOKENIZERS_PARALLELISM"] = "false"
+
         try:
             logger.info(f"Running Ollama CLI: ollama run {self.model_name} [via stdin]")
             logger.info(f"Prompt length: {len(full_prompt)} chars")
 
-            # Run ollama with prompt via stdin
-            result = subprocess.run(
+            # Use Popen for better control over stdin/stdout
+            process = subprocess.Popen(
                 ["ollama", "run", self.model_name],
-                input=full_prompt,
-                capture_output=True,
+                stdin=subprocess.PIPE,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
                 text=True,
-                timeout=120
+                env=env
             )
 
-            if result.returncode != 0:
-                logger.error(f"Ollama CLI failed with return code {result.returncode}")
-                logger.error(f"stderr: {result.stderr}")
-                raise RuntimeError(f"Ollama CLI failed: {result.stderr}")
+            # Write prompt to stdin and get output
+            try:
+                stdout, stderr = process.communicate(input=full_prompt, timeout=120)
+            except subprocess.TimeoutExpired:
+                process.kill()
+                stdout, stderr = process.communicate()
+                logger.error("Ollama CLI timed out after 120 seconds")
+                raise RuntimeError("Ollama CLI timed out after 120 seconds")
+
+            if process.returncode != 0:
+                logger.error(f"Ollama CLI failed with return code {process.returncode}")
+                logger.error(f"stderr: {stderr}")
+                raise RuntimeError(f"Ollama CLI failed: {stderr}")
 
             # The output is in stdout
-            response_text = result.stdout.strip()
+            response_text = stdout.strip()
 
             if not response_text:
                 raise RuntimeError("Ollama returned empty response")
@@ -339,9 +353,6 @@ ANSWER:
             logger.info(f"✓ Generated response: {len(response_text)} chars")
             return response_text
 
-        except subprocess.TimeoutExpired:
-            logger.error("Ollama CLI timed out after 120 seconds")
-            raise RuntimeError("Ollama CLI timed out after 120 seconds")
         except Exception as e:
             logger.error(f"Ollama CLI execution failed: {e}")
             raise RuntimeError(f"Ollama CLI execution failed: {e}")
