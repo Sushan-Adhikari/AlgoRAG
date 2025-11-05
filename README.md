@@ -75,11 +75,30 @@ AlgoRAG addresses key challenges in theoretical computer science education:
 
 ### Prerequisites
 
-- Python 3.9+
+- Python 3.8+
 - Node.js 16+ (for frontend)
 - pip and npm
 
-### Installation
+### For Research Use
+
+**See [RESEARCH_GUIDE.md](RESEARCH_GUIDE.md) for complete research workflow.**
+
+Quick validation:
+```bash
+# Validate your environment
+python scripts/validate_setup.py
+
+# Ingest your data
+python scripts/ingest_all_data.py
+
+# Run evaluation
+python scripts/run_research_evaluation.py --test-file evaluation/test_datasets/sample_test_cases.json
+
+# Analyze results
+python scripts/analyze_results.py --results-file results/detailed_results_*.json
+```
+
+### For Demo/Development Use
 
 1. **Clone the repository**
 ```bash
@@ -90,7 +109,7 @@ cd algorag
 2. **Set up environment variables**
 ```bash
 cp .env.example .env
-# Edit .env with your API keys (optional for local mode)
+# Edit .env with your API keys (GEMINI_API_KEY or OPENAI_API_KEY)
 ```
 
 3. **Install backend dependencies**
@@ -99,24 +118,19 @@ cd backend
 pip install -r requirements.txt
 ```
 
-4. **Generate sample data**
+4. **Ingest your data**
 ```bash
 cd ../scripts
-python generate_sample_pdfs.py
+python ingest_all_data.py
 ```
 
-5. **Ingest sample data**
-```bash
-bash ingest_sample.sh
-```
-
-6. **Start the backend server**
+5. **Start the backend server**
 ```bash
 cd ../backend
 uvicorn app:app --reload --host 0.0.0.0 --port 8000
 ```
 
-7. **Install and start frontend** (separate terminal)
+6. **Install and start frontend** (separate terminal)
 ```bash
 cd frontend
 npm install
@@ -228,15 +242,28 @@ algorag/
 │   │   └── App.css           # Styling
 │   └── package.json
 ├── scripts/
-│   ├── generate_sample_pdfs.py
-│   ├── ingest_sample.sh
-│   └── test_harness.py
+│   ├── ingest_all_data.py     # Ingest all knowledge base data
+│   ├── run_research_evaluation.py  # Run full evaluation
+│   ├── analyze_results.py     # Generate paper tables/stats
+│   ├── validate_setup.py      # Validate environment
+│   └── test_harness.py        # Component testing
+├── evaluation/
+│   ├── metrics.py             # BLEU, ROUGE, pedagogical metrics
+│   └── test_datasets/         # Test question datasets
 ├── data/
-│   ├── knowledge_base/        # Source documents
-│   └── vector_db/             # ChromaDB storage
+│   ├── knowledge_base/        # Source documents (PDFs, TXT)
+│   │   ├── textbooks/         # CLRS, Kleinberg & Tardos
+│   │   ├── lecture_slides/    # Course slides
+│   │   ├── practice_problems/ # Questions & solutions
+│   │   ├── proofs/            # Proof examples
+│   │   └── worksheets/        # Complexity analysis
+│   └── vector_db/             # ChromaDB storage (generated)
+├── results/                   # Evaluation results (generated)
+├── analysis/                  # Paper tables & stats (generated)
 ├── docker-compose.yml
 ├── .env.example
-└── README.md
+├── README.md                  # This file
+└── RESEARCH_GUIDE.md          # Complete research workflow
 ```
 
 ## ⚙️ Configuration
@@ -308,23 +335,37 @@ GENERATOR_MODEL=gpt-4
 
 ## 📚 Research Context
 
-This system implements the research proposal:
-> "Retrieval-Augmented Generation for Theoretical Computer Science Education:
-> A Comprehensive Evaluation Framework for Algorithm Analysis and Complexity Theory"
+This system implements the research paper:
+> **"Retrieval-Augmented Generation for Theoretical Computer Science Education:
+> A Comprehensive Evaluation Framework for Algorithm Analysis and Complexity Theory"**
+>
+> *Sushan Adhikari, Sunidhi Sharma, Darshan Lamichhane, Usan Adhikari*
+>
+> Kathmandu University, 2025
+
+### 🔬 For Researchers
+
+**See [RESEARCH_GUIDE.md](RESEARCH_GUIDE.md) for:**
+- Complete research workflow
+- Data preparation guidelines
+- Evaluation procedures
+- Results analysis and paper generation
+- Test dataset requirements (450+ cases)
 
 ### Key Innovations
 
-1. **Mathematical Entity Recognition**: Custom preprocessing for complexity notations
-2. **Pedagogical Re-ranking**: Prioritizes educational value, not just similarity
+1. **Mathematical Entity Recognition**: Custom preprocessing for complexity notations (O, Ω, Θ)
+2. **Pedagogical Re-ranking**: Prioritizes educational value over pure similarity (70/30 split)
 3. **Proof-Aware Generation**: Specialized prompting for step-by-step proofs
-4. **Multi-Backend Support**: Flexible embedding and LLM backends
+4. **Multi-Backend Support**: Flexible embedding and LLM backends (local/cloud)
 
-### Evaluation Metrics
+### Research Targets
 
-- Answer Accuracy: Target ≥85% on standard exam questions
-- Relevance Score: ROUGE/BLEU against reference answers
-- Student Comprehension: Pre/post intervention assessments
-- Proof Completeness: All logical steps present
+- ✅ Answer Accuracy: ≥85% on standard exam questions
+- ✅ Relevance Score: ROUGE-L > 0.45, BLEU > 0.40
+- ✅ Response Time: < 5 seconds per query
+- ✅ Proof Completeness: Step-by-step construction with all logical steps
+- 📊 Student Comprehension: Pre/post intervention assessment (user study)
 
 ## 🛠️ Development
 
