@@ -4,8 +4,11 @@ Research evaluation script for AlgoRAG paper.
 Runs comprehensive experiments and generates results for publication.
 """
 
-import sys
+# Set environment variables BEFORE any imports to avoid tokenizers warning
 import os
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
+
+import sys
 from pathlib import Path
 import json
 import time

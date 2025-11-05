@@ -331,13 +331,14 @@ ANSWER:
             )
 
             # Write prompt to stdin and get output
+            # Timeout: 240 seconds (4 min) for long prompts with context
             try:
-                stdout, stderr = process.communicate(input=full_prompt, timeout=120)
+                stdout, stderr = process.communicate(input=full_prompt, timeout=240)
             except subprocess.TimeoutExpired:
                 process.kill()
                 stdout, stderr = process.communicate()
-                logger.error("Ollama CLI timed out after 120 seconds")
-                raise RuntimeError("Ollama CLI timed out after 120 seconds")
+                logger.error("Ollama CLI timed out after 240 seconds")
+                raise RuntimeError("Ollama CLI timed out after 240 seconds")
 
             if process.returncode != 0:
                 logger.error(f"Ollama CLI failed with return code {process.returncode}")
