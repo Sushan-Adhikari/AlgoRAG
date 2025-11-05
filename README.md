@@ -76,27 +76,44 @@ AlgoRAG addresses key challenges in theoretical computer science education:
 ### Prerequisites
 
 - Python 3.8+
-- Node.js 16+ (for frontend)
-- pip and npm
+- Ollama with llama3.1:7b (or Gemini/OpenAI API key)
+- 16GB RAM recommended
 
-### For Research Use
+### 🎓 For Real Research (179 Exam Questions)
 
-**See [RESEARCH_GUIDE.md](RESEARCH_GUIDE.md) for complete research workflow.**
+**Complete workflow:** See [REAL_RESEARCH_WORKFLOW.md](REAL_RESEARCH_WORKFLOW.md)
 
-Quick validation:
+**Automated one-command research:**
 ```bash
-# Validate your environment
-python scripts/validate_setup.py
+# Complete research pipeline (one command!)
+python scripts/run_complete_research.py
+```
 
-# Ingest your data
+**Or step-by-step:**
+```bash
+# 1. Setup (one-time)
+cd backend && pip install -r requirements.txt && cd ..
+cp .env.example .env  # Set GENERATOR_BACKEND=ollama
+
+# 2. Ingest your real data (23 MB of PDFs and materials)
 python scripts/ingest_all_data.py
 
-# Run evaluation
-python scripts/run_research_evaluation.py --test-file evaluation/test_datasets/sample_test_cases.json
+# 3. Run evaluation on 179 real exam questions
+python scripts/run_research_evaluation.py \
+  --test-file evaluation/test_datasets/exam_questions/evaluation_dataset.json \
+  --llm-backend ollama
 
-# Analyze results
-python scripts/analyze_results.py --results-file results/detailed_results_*.json
+# 4. Generate LaTeX tables and statistics for paper
+python scripts/analyze_results.py \
+  --results-file results/detailed_results_*.json
 ```
+
+**Your Research Data:**
+- ✅ 179 real exam questions (7 topics)
+- ✅ Textbooks: CLRS (13 MB), Kleinberg & Tardos (1.9 MB)
+- ✅ Lecture slides (8.2 MB)
+- ✅ Practice problems, proofs, worksheets (35 KB)
+- ✅ 100% FREE setup with Ollama
 
 ### For Demo/Development Use
 

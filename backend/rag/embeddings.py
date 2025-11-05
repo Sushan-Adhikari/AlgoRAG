@@ -55,12 +55,31 @@ class EmbeddingClient:
         """Initialize local sentence-transformers model (FREE)."""
         try:
             from sentence_transformers import SentenceTransformer
+            import os
 
             model_name = self.config.get("model_name", "all-mpnet-base-v2")
             device = self.config.get("device", "cpu")
 
+            # Set environment variables to disable HuggingFace authentication
+            os.environ["HF_HUB_DISABLE_TELEMETRY"] = "1"
+            os.environ["TRANSFORMERS_OFFLINE"] = "0"  # Allow downloads but don't require auth
+
+            # Unset any HF_TOKEN that might cause auth issues
+            if "HF_TOKEN" in os.environ:
+                del os.environ["HF_TOKEN"]
+            if "HUGGING_FACE_HUB_TOKEN" in os.environ:
+                del os.environ["HUGGING_FACE_HUB_TOKEN"]
+
             logger.info(f"Loading local model: {model_name} on {device}")
-            self.model = SentenceTransformer(model_name, device=device)
+            logger.info("This may take a few minutes on first run (downloading model)...")
+
+            # Load model without authentication
+            self.model = SentenceTransformer(
+                model_name,
+                device=device,
+                cache_folder=os.path.expanduser("~/.cache/sentence_transformers")
+            )
+
             self.dimension = self.model.get_sentence_embedding_dimension()
             self.backend = "local"
 
@@ -71,6 +90,10 @@ class EmbeddingClient:
                 "sentence-transformers not installed. "
                 "Install with: pip install sentence-transformers"
             )
+        except Exception as e:
+            logger.error(f"Error loading sentence-transformers model: {e}")
+            logger.error("If you see HuggingFace auth errors, this is normal - the model will download without authentication")
+            raise
 
     def _init_gemini(self):
         """Initialize Gemini embedding model (PAID - with free tier)."""
