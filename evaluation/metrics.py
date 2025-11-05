@@ -541,6 +541,137 @@ def quick_evaluate(reference: str, generated: str) -> Dict[str, float]:
     return {**bleu, **rouge}
 
 
+# ==================== Standalone Wrapper Functions ====================
+# These functions are used by the research evaluation script
+
+def compute_bleu_score(generated: str, reference: str) -> float:
+    """
+    Compute BLEU-4 score.
+
+    Args:
+        generated: Generated answer
+        reference: Reference answer
+
+    Returns:
+        BLEU-4 score (0-1)
+    """
+    evaluator = EvaluationMetrics()
+    result = evaluator.compute_bleu(reference, generated, max_n=4)
+    return result.get('bleu-4', 0.0)
+
+
+def compute_rouge_scores(generated: str, reference: str) -> Dict[str, float]:
+    """
+    Compute ROUGE scores (ROUGE-1, ROUGE-2, ROUGE-L).
+
+    Args:
+        generated: Generated answer
+        reference: Reference answer
+
+    Returns:
+        Dictionary with rouge1_f, rouge2_f, rougeL_f
+    """
+    evaluator = EvaluationMetrics()
+
+    # Compute ROUGE-L
+    rouge_l = evaluator.compute_rouge_l(reference, generated)
+
+    # For ROUGE-1 and ROUGE-2, we'll use a simpler implementation
+    # based on n-gram overlap
+    def compute_rouge_n(ref: str, gen: str, n: int) -> Dict[str, float]:
+        ref_tokens = evaluator._tokenize(ref)
+        gen_tokens = evaluator._tokenize(gen)
+
+        # Get n-grams
+        ref_ngrams = [tuple(ref_tokens[i:i+n]) for i in range(len(ref_tokens)-n+1)]
+        gen_ngrams = [tuple(gen_tokens[i:i+n]) for i in range(len(gen_tokens)-n+1)]
+
+        if not ref_ngrams or not gen_ngrams:
+            return {'precision': 0.0, 'recall': 0.0, 'f1': 0.0}
+
+        # Count overlapping n-grams
+        ref_counter = Counter(ref_ngrams)
+        gen_counter = Counter(gen_ngrams)
+
+        overlap = sum((ref_counter & gen_counter).values())
+
+        precision = overlap / len(gen_ngrams) if gen_ngrams else 0.0
+        recall = overlap / len(ref_ngrams) if ref_ngrams else 0.0
+        f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0.0
+
+        return {'precision': precision, 'recall': recall, 'f1': f1}
+
+    rouge1 = compute_rouge_n(reference, generated, 1)
+    rouge2 = compute_rouge_n(reference, generated, 2)
+
+    return {
+        'rouge1_f': rouge1['f1'],
+        'rouge1_p': rouge1['precision'],
+        'rouge1_r': rouge1['recall'],
+        'rouge2_f': rouge2['f1'],
+        'rouge2_p': rouge2['precision'],
+        'rouge2_r': rouge2['recall'],
+        'rougeL_f': rouge_l['f1'],
+        'rougeL_p': rouge_l['precision'],
+        'rougeL_r': rouge_l['recall']
+    }
+
+
+def compute_bertscore(generated_list: List[str], reference_list: List[str]) -> Dict[str, List[float]]:
+    """
+    Compute BERTScore (placeholder - requires bert-score package).
+
+    Args:
+        generated_list: List of generated answers
+        reference_list: List of reference answers
+
+    Returns:
+        Dictionary with precision, recall, f1 lists
+    """
+    # BERTScore requires the bert-score package which is heavy
+    # For now, return placeholder values
+    # To use real BERTScore: pip install bert-score
+    try:
+        from bert_score import score
+        P, R, F1 = score(generated_list, reference_list, lang='en', verbose=False)
+        return {
+            'precision': P.tolist(),
+            'recall': R.tolist(),
+            'f1': F1.tolist()
+        }
+    except ImportError:
+        # Return placeholder if bert-score not installed
+        n = len(generated_list)
+        return {
+            'precision': [0.0] * n,
+            'recall': [0.0] * n,
+            'f1': [0.0] * n
+        }
+
+
+def compute_pedagogical_quality(question: str, answer: str, retrieved_docs: List[Dict]) -> Dict[str, float]:
+    """
+    Compute pedagogical quality metrics.
+
+    Args:
+        question: The question asked
+        answer: Generated answer
+        retrieved_docs: Retrieved documents used
+
+    Returns:
+        Dictionary with pedagogical quality metrics
+    """
+    evaluator = EvaluationMetrics()
+
+    # Compute pedagogical quality
+    ped_quality = evaluator.compute_pedagogical_quality(answer)
+
+    # Add relevance metrics
+    relevance = evaluator.compute_relevance(question, answer, retrieved_docs)
+
+    return {**ped_quality, **relevance}
+
+
 if __name__ == '__main__':
     # Example usage for testing
     evaluator = EvaluationMetrics()
