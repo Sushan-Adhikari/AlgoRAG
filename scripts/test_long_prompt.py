@@ -20,6 +20,7 @@ When answering:
 3. Reference relevant theorems or techniques
 4. Keep explanations concise but complete"""
 
+    # Make context longer to match actual RAG prompts (~4500 chars)
     context = """
 Retrieved Context Documents:
 
@@ -29,6 +30,7 @@ We say f(n) = O(g(n)) if there exist positive constants c and n₀ such that
 0 ≤ f(n) ≤ c·g(n) for all n ≥ n₀.
 
 This means f(n) grows no faster than g(n), up to a constant factor.
+Big-O is an asymptotic upper bound - it describes the worst-case growth rate.
 
 2. Proving Big-O:
 To prove f(n) = O(g(n)), we need to:
@@ -40,18 +42,55 @@ Example: Prove 3n + 5 = O(n)
 - So with c = 4 and n₀ = 5, we have 3n + 5 ≤ 4n for all n ≥ 5
 - Therefore 3n + 5 = O(n)
 
-3. Common Growth Rates:
-O(1) < O(log n) < O(n) < O(n log n) < O(n²) < O(n³) < O(2ⁿ) < O(n!)
+More examples:
+- 7n² + 3n + 5 = O(n²) because for large n, n² dominates
+- log₂(n) + 100 = O(log n) because constants don't affect asymptotic growth
+- 2ⁿ + n¹⁰⁰ = O(2ⁿ) because exponentials dominate polynomials
+
+3. Common Growth Rates (from slowest to fastest):
+O(1) < O(log n) < O(√n) < O(n) < O(n log n) < O(n²) < O(n³) < O(2ⁿ) < O(n!)
+
+Constant time is the fastest, factorial time is the slowest.
 
 4. Properties of Big-O:
 - Transitivity: If f = O(g) and g = O(h), then f = O(h)
 - Sum rule: If f₁ = O(g) and f₂ = O(g), then f₁ + f₂ = O(g)
 - Product rule: If f = O(g) and h = O(k), then f·h = O(g·k)
 - Constant factors: If f = O(g), then c·f = O(g) for any constant c > 0
+- Drop lower-order terms: n² + n = O(n²)
 
 5. Linear Functions:
 Any function of the form f(n) = an + b where a, b are constants is O(n).
 This is because for sufficiently large n, the linear term an dominates.
+
+For example: 5n + 100 = O(n), 1000n + 1 = O(n), even n/2 + 999 = O(n).
+The constants (a and b) don't matter for Big-O - only the highest degree term.
+
+6. Polynomial Functions:
+For polynomials f(n) = aₖnᵏ + aₖ₋₁nᵏ⁻¹ + ... + a₁n + a₀, we have f(n) = O(nᵏ).
+Only the highest degree term matters.
+
+7. Logarithmic Functions:
+All logarithms have the same growth rate: log₂(n) = O(log n) = O(log₁₀ n).
+The base doesn't matter because logₐ(n) = logᵦ(n) / logᵦ(a), so they differ only by a constant.
+
+8. Common Algorithm Complexities:
+- Array access: O(1)
+- Linear search: O(n)
+- Binary search: O(log n)
+- Bubble sort, insertion sort: O(n²)
+- Merge sort, quicksort (average): O(n log n)
+- Traveling salesman (brute force): O(n!)
+
+9. Limit Definition (Alternative Proof Method):
+f(n) = O(g(n)) if and only if lim(n→∞) f(n)/g(n) exists and is finite.
+This is often easier to use than finding explicit constants c and n₀.
+
+10. Common Mistakes:
+- Don't forget Big-O is an UPPER bound, not exact growth
+- Constants DO matter in practice (10n vs 10000n), just not for Big-O
+- Big-O describes asymptotic behavior (large n), not small inputs
+- f(n) = O(g(n)) does NOT mean f(n) ≤ g(n), it means f(n) ≤ c·g(n) for some constant c
 """
 
     question = "\n\nQuestion: Prove that f(n) = 9n + 7 = O(n) using the formal definition."
@@ -62,7 +101,8 @@ This is because for sufficiently large n, the linear term an dominates.
     print("Testing Ollama with Long Prompt (Actual RAG Length)")
     print("=" * 70)
     print(f"\nPrompt length: {len(full_prompt)} chars")
-    print("Expected time: 15-60 seconds (depending on hardware)")
+    print("Expected time: 60-120 seconds (long prompt with context)")
+    print("Timeout: 240 seconds")
     print("\nRunning...\n")
 
     # Set environment to avoid warnings
@@ -84,11 +124,11 @@ This is because for sufficiently large n, the linear term an dominates.
         # Add progress indicator
         print("Waiting for response", end="", flush=True)
 
-        # Communicate with timeout
+        # Communicate with timeout (same as actual evaluation: 240 seconds)
         try:
-            stdout, stderr = process.communicate(input=full_prompt, timeout=180)
+            stdout, stderr = process.communicate(input=full_prompt, timeout=240)
         except subprocess.TimeoutExpired:
-            print("\n\n✗ TIMEOUT after 180 seconds!")
+            print("\n\n✗ TIMEOUT after 240 seconds!")
             process.kill()
             stdout, stderr = process.communicate()
             print("\nThis suggests:")
