@@ -611,9 +611,9 @@ def compute_rouge_scores(generated: str, reference: str) -> Dict[str, float]:
         'rouge2_f': rouge2['f1'],
         'rouge2_p': rouge2['precision'],
         'rouge2_r': rouge2['recall'],
-        'rougeL_f': rouge_l['f1'],
-        'rougeL_p': rouge_l['precision'],
-        'rougeL_r': rouge_l['recall']
+        'rougeL_f': rouge_l['ROUGE-L-F1'],
+        'rougeL_p': rouge_l['ROUGE-L-P'],
+        'rougeL_r': rouge_l['ROUGE-L-R']
     }
 
 
