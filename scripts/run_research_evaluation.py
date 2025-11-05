@@ -232,7 +232,7 @@ class ResearchEvaluationRunner:
             except Exception as e:
                 logger.error(f"✗ Failed: {e}")
                 results.append({
-                    "question": test_case["question"],
+                    "question": test_case.get("question") or test_case.get("query", ""),
                     "error": str(e),
                     "timestamp": datetime.now().isoformat()
                 })
