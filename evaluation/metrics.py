@@ -663,8 +663,14 @@ def compute_pedagogical_quality(question: str, answer: str, retrieved_docs: List
     """
     evaluator = EvaluationMetrics()
 
+    # Create metadata dict for pedagogical quality computation
+    metadata = {
+        "query_type": "general",  # Will be overridden if available in retrieved docs
+        "question": question
+    }
+
     # Compute pedagogical quality
-    ped_quality = evaluator.compute_pedagogical_quality(answer)
+    ped_quality = evaluator.compute_pedagogical_quality(answer, metadata)
 
     # Add relevance metrics
     relevance = evaluator.compute_relevance(question, answer, retrieved_docs)
