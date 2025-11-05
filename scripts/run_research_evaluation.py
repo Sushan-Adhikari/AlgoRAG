@@ -115,9 +115,18 @@ class ResearchEvaluationRunner:
         Returns:
             Evaluation results
         """
-        question = test_case["question"]
-        expected_answer = test_case.get("expected_answer", "")
-        topic = test_case.get("topic", "unknown")
+        # Handle both formats: "question" or "query"
+        question = test_case.get("question") or test_case.get("query", "")
+
+        # Handle both formats: "expected_answer" or "reference_answer"
+        expected_answer = test_case.get("expected_answer") or test_case.get("reference_answer", "")
+
+        # Get topic from either root level or metadata
+        metadata = test_case.get("metadata", {})
+        topic = test_case.get("topic") or metadata.get("topic", "unknown")
+
+        # Get query_type from either root level or metadata
+        query_type = test_case.get("query_type") or metadata.get("query_type", "general")
 
         logger.info(f"\nEvaluating: {question[:100]}...")
 
@@ -130,7 +139,7 @@ class ResearchEvaluationRunner:
         answer = self.generator.generate_answer(
             query=question,
             retrieved_docs=retrieved_docs,
-            query_type=test_case.get("query_type", "general")
+            query_type=query_type
         )
 
         elapsed_time = time.time() - start_time
@@ -179,7 +188,8 @@ class ResearchEvaluationRunner:
             "expected_answer": expected_answer,
             "generated_answer": answer,
             "topic": topic,
-            "query_type": test_case.get("query_type", "general"),
+            "query_type": query_type,
+            "difficulty": metadata.get("difficulty", "unknown"),
             "retrieved_docs": [
                 {
                     "content": doc["content"][:200],
