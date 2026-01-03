@@ -106,19 +106,21 @@ def evaluate_single_question(question_data, retriever, generator, preprocessor, 
         retrieved_docs = retriever.retrieve(
             query=query,
             query_metadata=query_features,
-            top_k=5,
-            use_reranking=True
+            top_k=5
         )
         retrieval_time = (time.time() - retrieval_start) * 1000
 
         # Generate answer
         gen_start = time.time()
-        answer = generator.generate(
+        generation_result = generator.generate(
             query=query,
-            context_docs=retrieved_docs,
+            retrieved_docs=retrieved_docs,
             query_type=query_features.get('query_type', 'general')
         )
         generation_time = (time.time() - gen_start) * 1000
+        
+        # Extract actual answer text
+        answer_text = generation_result.get("answer", "")
 
         # Compute metrics
         from metrics import (
@@ -127,14 +129,14 @@ def evaluate_single_question(question_data, retriever, generator, preprocessor, 
             compute_pedagogical_quality
         )
 
-        bleu = compute_bleu_score(reference, answer)
-        rouge = compute_rouge_scores(reference, answer)
-        ped_quality = compute_pedagogical_quality(query, answer, retrieved_docs)
+        bleu = compute_bleu_score(reference, answer_text)
+        rouge = compute_rouge_scores(reference, answer_text)
+        ped_quality = compute_pedagogical_quality(query, answer_text, retrieved_docs)
         ped_score = ped_quality.get('overall_pedagogical_score', 0.5)
 
         # Compute semantic similarity (simple word overlap for now)
         ref_words = set(reference.lower().split())
-        ans_words = set(answer.lower().split())
+        ans_words = set(answer_text.lower().split())
         overlap = len(ref_words & ans_words)
         similarity = overlap / max(len(ref_words), len(ans_words)) if ref_words or ans_words else 0
 
@@ -143,7 +145,7 @@ def evaluate_single_question(question_data, retriever, generator, preprocessor, 
         return {
             "query": query,
             "reference_answer": reference,
-            "generated_answer": answer,
+            "generated_answer": answer_text,
             "metadata": metadata,
             "metrics": {
                 "bleu": bleu,
@@ -236,6 +238,15 @@ def generate_paper_tables(aggregate_stats, output_file):
         f.write("=" * 70 + "\n")
         f.write("LATEX TABLES FOR PAPER\n")
         f.write("=" * 70 + "\n\n")
+
+        # Check if there are successful evaluations
+        if 'aggregate_metrics' not in aggregate_stats:
+            f.write("ERROR: No successful evaluations to generate tables.\n")
+            f.write(f"Total cases: {aggregate_stats.get('total_cases', 0)}\n")
+            f.write(f"Successful cases: {aggregate_stats.get('successful_cases', 0)}\n")
+            if 'error' in aggregate_stats:
+                f.write(f"Error: {aggregate_stats['error']}\n")
+            return
 
         # Table 1: Overall Performance
         f.write("Table 1: Overall Performance Metrics\n")
@@ -347,22 +358,50 @@ def main():
     logger.info("This may take several hours depending on the number of questions.\n")
 
     results = []
+    
+    # Checkpoint file path
+    checkpoint_file = output_dir / "checkpoint_results.json"
+    
+    # Load checkpoint if exists
+    if checkpoint_file.exists():
+        try:
+            with open(checkpoint_file, 'r') as f:
+                results = json.load(f)
+            logger.info(f"🔄 Resuming from checkpoint: Loaded {len(results)} evaluated questions.")
+        except Exception as e:
+            logger.warning(f"Failed to load checkpoint: {e}")
+
+    # Track evaluated queries to skip duplicates
+    evaluated_queries = {r['query'] for r in results}
+
     start_time = time.time()
 
     for i, question_data in enumerate(questions, 1):
+        # Skip if already evaluated
+        if question_data['query'] in evaluated_queries:
+            continue
+
         logger.info(f"[{i}/{len(questions)}] Evaluating: {question_data['query'][:60]}...")
 
         result = evaluate_single_question(
             question_data, retriever, generator, preprocessor, metrics
         )
         results.append(result)
+        
+        # Save checkpoint every 5 questions
+        if len(results) % 5 == 0:
+            with open(checkpoint_file, 'w') as f:
+                json.dump(results, f, indent=2)
 
         if i % 10 == 0:
             elapsed = time.time() - start_time
-            avg_time = elapsed / i
-            remaining = (len(questions) - i) * avg_time
-            logger.info(f"Progress: {i}/{len(questions)} ({i/len(questions)*100:.1f}%)")
-            logger.info(f"Estimated time remaining: {remaining/3600:.1f} hours\n")
+            # Avoid division by zero if resuming
+            processed_count = i - len(evaluated_queries)
+            if processed_count > 0:
+                avg_time = elapsed / processed_count
+                remaining = (len(questions) - i) * avg_time
+                logger.info(f"Progress: {i}/{len(questions)} ({i/len(questions)*100:.1f}%)")
+                logger.info(f"Estimated time remaining: {remaining/3600:.1f} hours\n")
 
     total_time = time.time() - start_time
     logger.info(f"\nEvaluation completed in {total_time/3600:.2f} hours")
@@ -392,17 +431,22 @@ def main():
     print("\n" + "=" * 70)
     print("EVALUATION SUMMARY")
     print("=" * 70)
-    print(f"Total cases: {aggregate_stats['total_cases']}")
-    print(f"Successful: {aggregate_stats['successful_cases']} ({aggregate_stats['success_rate']*100:.1f}%)")
-    print(f"Failed: {aggregate_stats['failed_cases']}")
-    print(f"\nKey Metrics:")
-    metrics = aggregate_stats['aggregate_metrics']
-    print(f"  BLEU: {metrics['mean_bleu']:.4f}")
-    print(f"  ROUGE-1 F1: {metrics['mean_rouge_1_f1']:.4f}")
-    print(f"  ROUGE-L F1: {metrics['mean_rouge_l_f1']:.4f}")
-    print(f"  Semantic Similarity: {metrics['mean_semantic_similarity']:.4f}")
-    print(f"  Pedagogical Quality: {metrics['mean_pedagogical_quality']:.4f}")
-    print(f"  Avg Response Time: {metrics['mean_response_time_s']:.1f}s")
+    print(f"Total cases: {aggregate_stats.get('total_cases', 0)}")
+    print(f"Successful: {aggregate_stats.get('successful_cases', 0)} ({aggregate_stats.get('success_rate', 0)*100:.1f}%)")
+    print(f"Failed: {aggregate_stats.get('failed_cases', 0)}")
+    
+    # Only print detailed metrics if we have successful evaluations
+    if 'aggregate_metrics' in aggregate_stats:
+        print(f"\nKey Metrics:")
+        metrics = aggregate_stats['aggregate_metrics']
+        print(f"  BLEU: {metrics['mean_bleu']:.4f}")
+        print(f"  ROUGE-1 F1: {metrics['mean_rouge_1_f1']:.4f}")
+        print(f"  ROUGE-L F1: {metrics['mean_rouge_l_f1']:.4f}")
+        print(f"  Semantic Similarity: {metrics['mean_semantic_similarity']:.4f}")
+        print(f"  Pedagogical Quality: {metrics['mean_pedagogical_quality']:.4f}")
+        print(f"  Avg Response Time: {metrics['mean_response_time_s']:.1f}s")
+    else:
+        print("\n⚠️ No successful evaluations - check error details in results files")
     print("\n" + "=" * 70)
     print("All results saved to: paper_results/")
     print("Use these files to update your research paper!")

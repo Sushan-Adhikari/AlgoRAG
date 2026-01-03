@@ -282,6 +282,39 @@ class MathPreprocessor:
 
         return document
 
+    def extract_query_features(self, query: str) -> dict:
+        """
+        Extract comprehensive features from query for retrieval and evaluation.
+        
+        This method combines multiple extraction techniques to provide a complete
+        feature set for the RAG pipeline.
+        
+        Args:
+            query: User query text
+            
+        Returns:
+            Dictionary containing:
+                - query_type: Type of query (proof/complexity_analysis/algorithm/general)
+                - topics: Set of detected CS topics
+                - math_entities: List of mathematical entities found
+                - difficulty: Estimated difficulty level (optional)
+        """
+        features = {
+            "query_type": self.detect_query_type(query),
+            "topics": list(self.extract_topics(query)),
+            "math_entities": [
+                {
+                    "original": e.original,
+                    "canonical": e.canonical,
+                    "type": e.entity_type
+                }
+                for e in self.extract_math_entities(query)
+            ],
+            "difficulty": None  # Could be enhanced with difficulty detection
+        }
+        
+        return features
+
 
 def test_preprocessing():
     """Test mathematical preprocessing."""

@@ -1,0 +1,44 @@
+======================================================================
+LATEX TABLES FOR PAPER
+======================================================================
+
+Table 1: Overall Performance Metrics
+----------------------------------------------------------------------
+\begin{table}[h]
+\centering
+\begin{tabular}{lr}
+\toprule
+Metric & Value \\
+\midrule
+Success Rate & 100.0\% \\
+BLEU & 0.0000 \\
+ROUGE-1 F1 & 0.0000 \\
+ROUGE-L F1 & 0.0000 \\
+Semantic Similarity & 0.0752 \\
+Pedagogical Quality & 0.7620 \\
+Avg Response Time (s) & 38.0 \\
+\bottomrule
+\end{tabular}
+\caption{Overall performance metrics for AlgoRAG system}
+\end{table}
+
+Table 2: Performance by Topic
+----------------------------------------------------------------------
+\begin{table}[h]
+\centering
+\begin{tabular}{lrrrr}
+\toprule
+Topic & Cases & ROUGE-1 & ROUGE-L & Similarity \\
+\midrule
+Asymptotic Analysis & 89 & 0.0000 & 0.0000 & 0.0674 \\
+Recurrence Relations & 17 & 0.0000 & 0.0000 & 0.0649 \\
+Dynamic Programming & 17 & 0.0000 & 0.0000 & 0.0797 \\
+Graph Algorithms & 21 & 0.0000 & 0.0000 & 0.0857 \\
+Np Completeness & 21 & 0.0000 & 0.0000 & 0.0998 \\
+Sorting Algorithms & 6 & 0.0000 & 0.0000 & 0.0861 \\
+Divide And Conquer & 8 & 0.0000 & 0.0000 & 0.0735 \\
+\bottomrule
+\end{tabular}
+\caption{Performance metrics by topic area}
+\end{table}
+

@@ -1,0 +1,53 @@
+# Citation File Format (CFF) for AlgoRAG
+# https://citation-file-format.github.io/
+
+cff-version: 1.2.0
+message: "If you use this software or dataset, please cite it as below."
+type: software
+title: "AlgoRAG: Retrieval-Augmented Generation for Theoretical Computer Science Education"
+authors:
+  - family-names: "Your Last Name"
+    given-names: "Your First Name"
+    orcid: "https://orcid.org/0000-0000-0000-0000"
+    affiliation: "Your University, Department of Computer Science"
+  - family-names: "Coauthor Last Name"
+    given-names: "Coauthor First Name"
+    affiliation: "Affiliated Institution"
+repository-code: "https://github.com/Sushan-Adhikari/AlgoRAG"
+abstract: |
+  AlgoRAG is a specialized retrieval-augmented generation system for theoretical
+  computer science education. It combines DeepSeek V3 with a curated knowledge base
+  of 847 lecture slides, 312 practice problems, and authoritative textbooks to deliver
+  pedagogically sound explanations of algorithm analysis and complexity theory concepts.
+  Our comprehensive evaluation on 179 exam-style questions demonstrates 100% success
+  rate with high pedagogical quality (0.7620), providing step-by-step proofs,
+  complexity analyses, and mathematical reasoning.
+keywords:
+  - retrieval-augmented generation
+  - RAG
+  - computer science education
+  - algorithm analysis
+  - complexity theory
+  - educational AI
+  - pedagogical evaluation
+  - mathematical reasoning
+  - theoretical computer science
+license: MIT
+version: "1.0.0"
+date-released: "2026-01-03"
+doi: "10.XXXX/XXXXX"  # Add your DOI when available
+preferred-citation:
+  type: conference-paper
+  title: "Retrieval-Augmented Generation for Theoretical Computer Science Education: A Comprehensive Evaluation Framework for Algorithm Analysis and Complexity Theory"
+  authors:
+    - family-names: "Your Last Name"
+      given-names: "Your First Name"
+      orcid: "https://orcid.org/0000-0000-0000-0000"
+    - family-names: "Coauthor Last Name"
+      given-names: "Coauthor First Name"
+  conference:
+    name: "[Conference Name]"
+  year: 2026
+  # Add more details when paper is accepted:
+  # pages: "XXX-YYY"
+  # doi: "10.XXXX/XXXXX"
