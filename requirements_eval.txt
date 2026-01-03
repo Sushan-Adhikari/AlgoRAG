@@ -1,0 +1,17 @@
+# AlgoRAG Paper Evaluation - Minimal Requirements for Colab/Lightning.ai
+# Install with: pip install -r requirements_eval.txt
+
+# Core dependencies
+sentence-transformers>=2.2.0
+chromadb>=0.4.0
+numpy>=1.24.0
+google-generativeai>=0.3.0  # For Gemini API
+openai>=1.0.0  # For OpenAI API (optional)
+
+# NLP and metrics
+nltk>=3.8
+rouge-score>=0.1.2
+
+# Utilities
+python-dotenv>=1.0.0
+tqdm>=4.65.0

@@ -1,1 +1,56 @@
+# Environment variables
 .env
+.env.local
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+*.egg-info/
+dist/
+build/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+evaluation.log
+
+# Results and outputs
+paper_results/
+results/
+analysis/
+scripts/evaluation_results/
+scripts/eval_quick_test/
+
+# Vector databases (large files)
+data/vector_db/
+scripts/vector_db/
+
+# Node modules
+node_modules/
+frontend/node_modules/
+frontend/build/
+frontend/.env.local
+
+# Temporary files
+*.tmp
+*.bak
+.cache/

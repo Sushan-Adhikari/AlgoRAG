@@ -7,7 +7,7 @@
 
 A specialized Retrieval-Augmented Generation (RAG) system for teaching and learning theoretical computer science, focusing on **algorithm analysis** and **complexity theory**.
 
-## 🎯 Overview
+## Overview
 
 AlgoRAG addresses key challenges in theoretical computer science education:
 
@@ -17,7 +17,7 @@ AlgoRAG addresses key challenges in theoretical computer science education:
 - **Mathematical Entity Recognition**: Understands and normalizes complexity notations (O, Ω, Θ)
 - **Pedagogical Ranking**: Prioritizes educational value over pure similarity
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 ┌─────────────┐
@@ -71,7 +71,7 @@ AlgoRAG addresses key challenges in theoretical computer science education:
 └─────────────┘
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -79,7 +79,7 @@ AlgoRAG addresses key challenges in theoretical computer science education:
 - Ollama with llama3.1:7b (or Gemini/OpenAI API key)
 - 16GB RAM recommended
 
-### 🎓 For Real Research (179 Exam Questions)
+### For Real Research (179 Exam Questions)
 
 **Complete workflow:** See [REAL_RESEARCH_WORKFLOW.md](REAL_RESEARCH_WORKFLOW.md)
 
@@ -109,11 +109,11 @@ python scripts/analyze_results.py \
 ```
 
 **Your Research Data:**
-- ✅ 179 real exam questions (7 topics)
-- ✅ Textbooks: CLRS (13 MB), Kleinberg & Tardos (1.9 MB)
-- ✅ Lecture slides (8.2 MB)
-- ✅ Practice problems, proofs, worksheets (35 KB)
-- ✅ 100% FREE setup with Ollama
+- 179 real exam questions (7 topics)
+- Textbooks: CLRS (13 MB), Kleinberg & Tardos (1.9 MB)
+- Lecture slides (8.2 MB)
+- Practice problems, proofs, worksheets (35 KB)
+- 100% FREE setup with Ollama
 
 ### For Demo/Development Use
 
@@ -156,7 +156,7 @@ npm start
 
 Visit `http://localhost:3000` to use the application!
 
-## 📊 Usage Examples
+## Usage Examples
 
 ### Example 1: Proof Query
 
@@ -219,7 +219,7 @@ Comparison with other search methods:
 - Hash Table: O(1) average, O(n) worst
 ```
 
-## 🧪 Testing
+## Testing
 
 ### Run Test Harness
 ```bash
@@ -228,10 +228,10 @@ python test_harness.py
 ```
 
 This will test:
-1. ✅ Embedding generation (local/cloud)
-2. ✅ Document ingestion
-3. ✅ Retrieval and pedagogical re-ranking
-4. ✅ Answer generation
+1. Embedding generation (local/cloud)
+2. Document ingestion
+3. Retrieval and pedagogical re-ranking
+4. Answer generation
 
 ### Run Unit Tests
 ```bash
@@ -239,7 +239,7 @@ cd backend
 pytest
 ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 algorag/
@@ -283,7 +283,7 @@ algorag/
 └── RESEARCH_GUIDE.md          # Complete research workflow
 ```
 
-## ⚙️ Configuration
+## Configuration
 
 ### Embedding Backends
 
@@ -292,9 +292,9 @@ algorag/
 EMBED_BACKEND=local
 ```
 Uses `sentence-transformers` (all-mpnet-base-v2, 768 dims)
-- ✅ Free, works offline
-- ✅ No API keys needed
-- ✅ Good quality
+- Free, works offline
+- No API keys needed
+- Good quality
 
 #### Gemini (PAID, Free tier available)
 ```env
@@ -319,8 +319,8 @@ Uses text-embedding-3-small (1536 dims)
 ```env
 VECTOR_DB_TYPE=chroma
 ```
-- ✅ Simple, local
-- ✅ No setup required
+- Simple, local
+- No setup required
 - Good for development
 
 #### Qdrant
@@ -330,7 +330,7 @@ VECTOR_DB_TYPE=qdrant
 - More features
 - Better performance at scale
 
-## 💰 Cost Breakdown
+## Cost Breakdown
 
 ### FREE Configuration (Student Budget)
 ```env
@@ -350,7 +350,7 @@ GENERATOR_MODEL=gpt-4
 
 **Estimated monthly cost**: $50 - $200 (depending on volume)
 
-## 📚 Research Context
+## Research Context
 
 This system implements the research paper:
 > **"Retrieval-Augmented Generation for Theoretical Computer Science Education:
@@ -360,7 +360,7 @@ This system implements the research paper:
 >
 > Kathmandu University, 2025
 
-### 🔬 For Researchers
+### For Researchers
 
 **See [RESEARCH_GUIDE.md](RESEARCH_GUIDE.md) for:**
 - Complete research workflow
@@ -378,13 +378,13 @@ This system implements the research paper:
 
 ### Research Targets
 
-- ✅ Answer Accuracy: ≥85% on standard exam questions
-- ✅ Relevance Score: ROUGE-L > 0.45, BLEU > 0.40
-- ✅ Response Time: < 5 seconds per query
-- ✅ Proof Completeness: Step-by-step construction with all logical steps
-- 📊 Student Comprehension: Pre/post intervention assessment (user study)
+- Answer Accuracy: ≥85% on standard exam questions
+- Relevance Score: ROUGE-L > 0.45, BLEU > 0.40
+- Response Time: < 5 seconds per query
+- Proof Completeness: Step-by-step construction with all logical steps
+- Student Comprehension: Pre/post intervention assessment (user study)
 
-## 🛠️ Development
+## Development
 
 ### Adding New Topics
 
@@ -412,7 +412,7 @@ def _init_custom(self):
     pass
 ```
 
-## 🐳 Docker Deployment
+## Docker Deployment
 
 ```bash
 # Build and run all services
@@ -430,7 +430,7 @@ Services:
 - Frontend: `http://localhost:3000`
 - API Docs: `http://localhost:8000/docs`
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please:
 
@@ -439,18 +439,18 @@ Contributions are welcome! Please:
 3. Add tests for new features
 4. Submit a pull request
 
-## 📄 License
+## License
 
 MIT License - see [LICENSE](LICENSE) file
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **Textbooks**: CLRS, Sipser, Kleinberg & Tardos
 - **Frameworks**: FastAPI, React, sentence-transformers
 - **Vector DBs**: ChromaDB, Qdrant
 - **LLMs**: Google Gemini, OpenAI GPT
 
-## 📞 Contact
+## Contact
 
 For questions or collaboration:
 - GitHub Issues: [Create an issue](https://github.com/yourusername/algorag/issues)
@@ -458,4 +458,4 @@ For questions or collaboration:
 
 ---
 
-**Built with ❤️ for theoretical computer science education**
+**Built for theoretical computer science education**

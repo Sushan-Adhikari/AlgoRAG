@@ -70,7 +70,7 @@ function App() {
     <div className="App">
       {/* Header */}
       <header className="header">
-        <h1>🎓 AlgoRAG</h1>
+        <h1>AlgoRAG</h1>
         <p>Retrieval-Augmented Generation for Algorithm Analysis & Complexity Theory</p>
         {health && (
           <div className="health-status">
@@ -128,7 +128,7 @@ function App() {
 
         {error && (
           <div className="error">
-            <h3>❌ Error</h3>
+            <h3>Error</h3>
             <p>{error}</p>
           </div>
         )}
@@ -149,7 +149,7 @@ function App() {
 
             {/* Evidence Sources */}
             <div className="sources-section">
-              <h2>📚 Evidence Sources</h2>
+              <h2>Evidence Sources</h2>
               {result.sources.map((source, idx) => (
                 <div key={idx} className="source-card">
                   <div className="source-header">
@@ -165,7 +165,7 @@ function App() {
                   </div>
                   <div className="source-metadata">
                     {source.metadata.topic && (
-                      <span className="tag">📌 {source.metadata.topic.replace('_', ' ')}</span>
+                      <span className="tag">{source.metadata.topic.replace('_', ' ')}</span>
                     )}
                     {source.metadata.difficulty_level && (
                       <span className="tag level">
@@ -173,7 +173,7 @@ function App() {
                       </span>
                     )}
                     {source.metadata.source_textbook && (
-                      <span className="tag">📖 {source.metadata.source_textbook}</span>
+                      <span className="tag">{source.metadata.source_textbook}</span>
                     )}
                   </div>
                   <div className="source-content">

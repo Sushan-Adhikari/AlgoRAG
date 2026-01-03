@@ -38,7 +38,10 @@ class Generator:
         self.max_tokens = max_tokens
 
         # Determine backend from model name
-        if "gemini" in model_name.lower():
+        if "deepseek" in model_name.lower():
+            self.backend = "deepseek"
+            self._init_deepseek()
+        elif "gemini" in model_name.lower():
             self.backend = "gemini"
             self._init_gemini()
         elif "gpt" in model_name.lower() or "openai" in model_name.lower():
@@ -73,6 +76,27 @@ class Generator:
                 "google-genai not installed. Install with: pip install google-genai"
             )
 
+    def _init_deepseek(self):
+        """Initialize DeepSeek client (OpenAI-compatible)."""
+        try:
+            from openai import OpenAI
+
+            api_key = os.getenv("DEEPSEEK_API_KEY")
+            if not api_key:
+                raise ValueError("DEEPSEEK_API_KEY not found in environment")
+
+            self.client = OpenAI(
+                api_key=api_key,
+                base_url="https://api.deepseek.com"
+            )
+
+            logger.info(f"DeepSeek generator initialized (model: {self.model_name})")
+
+        except ImportError:
+            raise ImportError(
+                "openai not installed. Install with: pip install openai"
+            )
+
     def _init_openai(self):
         """Initialize OpenAI client."""
         try:
@@ -84,7 +108,7 @@ class Generator:
 
             self.client = OpenAI(api_key=api_key)
 
-            logger.info(f"✓ OpenAI generator initialized (model: {self.model_name})")
+            logger.info(f"OpenAI generator initialized (model: {self.model_name})")
 
         except ImportError:
             raise ImportError(
@@ -143,7 +167,7 @@ class Generator:
         # Generate response
         if self.backend == "gemini":
             response = self._generate_gemini(prompt, system_instruction)
-        elif self.backend == "openai":
+        elif self.backend == "openai" or self.backend == "deepseek":
             response = self._generate_openai(prompt, system_instruction)
         elif self.backend == "ollama":
             response = self._generate_ollama(prompt, system_instruction)
@@ -460,7 +484,8 @@ class AnswerGenerator:
         default_models = {
             "ollama": "llama3.1:8b",  # Ollama default
             "gemini": "gemini-2.0-flash-exp",
-            "openai": "gpt-4o-mini"
+            "openai": "gpt-4o-mini",
+            "deepseek": "deepseek-chat"  # DeepSeek default
         }
 
         # Use provided model_name or default for backend
